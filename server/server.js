@@ -22,7 +22,7 @@ app.set('sessionName', 'sid')
 
 // Mongo Session Store
 const store = new MongoDBStore({
-  uri: process.env.MONGODB,
+  uri: process.env.MONGO_DB,
   collection: 'mySessions'
 })
 
@@ -39,8 +39,9 @@ app.use(session({
 //Routes
 app.use('/', indexRoutes)
 
-
+console.log(process.env.MONGO_DB);
 
 app.listen(process.env.PORT ?? 3001, () => {
   console.log(`Server has been started on port ${process.env.PORT}`)
 })
+
