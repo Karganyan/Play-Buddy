@@ -6,7 +6,7 @@ const session = require('express-session')
 const MongoDBStore = require('connect-mongodb-session')(session)
 const mongoose = require('mongoose')
 const cors = require('cors')
-const indexRoutes = require('./routes/indexRoutes')
+const indexRoutes = require('./routes/indexRoutes');
 
 const app = express()
 
@@ -38,8 +38,6 @@ app.use(session({
 
 //Routes
 app.use('/', indexRoutes)
-
-console.log(process.env.MONGO_DB);
 
 app.listen(process.env.PORT ?? 3001, () => {
   console.log(`Server has been started on port ${process.env.PORT}`)
