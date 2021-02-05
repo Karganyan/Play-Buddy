@@ -71,7 +71,23 @@ export const userInSession = () => {
     const res = await req.json()
     if (res.user) {
       dispatch(getUser(res.user))
+    }
+  }
+}
 
+export const userLogoutThunk = (history) => {
+  return async (dispatch) => {
+    const req = await fetch('/user/logout', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      mode: 'cors'
+    })
+    if (req.status === 200) {
+      dispatch(logoutUser({}))
+      history.push('/')
     }
   }
 }
