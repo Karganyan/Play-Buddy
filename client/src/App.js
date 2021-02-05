@@ -3,7 +3,7 @@ import Navbar from "./components/navbar/Navbar"
 import Home from "./components/home/Home"
 import SignIn from "./components/signin/SignIn"
 import SignUp from "./components/signup/SignUp"
-
+import User from './components/Profile/Profile'
 
 function App() {
   return (
@@ -18,18 +18,22 @@ function App() {
           <Home />
         </Route>
 
-        <Route path='/signin'>
+        <Route exact path='/signin'>
           <SignIn />
         </Route>
 
-        <Route path='/signup'>
+        <Route exact path='/signup'>
           <SignUp />
+        </Route>
+
+        <Route exact path='/profile'>
+          <User />
         </Route>
 
       </Switch>
 
     </Router>
-  );
+  )
 }
 
 export default App;
