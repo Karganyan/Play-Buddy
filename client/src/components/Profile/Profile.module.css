@@ -2,16 +2,16 @@
   border: 1px black solid;
   width: 700px;
   height: 700px;
-  text-align: center; 
+  text-align: center;
 }
 
 
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fcf8e8;
-}
+/*body {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  background-color: #fcf8e8;*/
+/*}*/
 
 .avatar {
   width: 150px;

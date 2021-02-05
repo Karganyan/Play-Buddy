@@ -5,9 +5,12 @@ const eventSchema = new mongoose.Schema({
   description: String,
   max_participants: Number,
   place: { type: mongoose.Schema.Types.ObjectId, ref: "Place" },
-  user_ref: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+  participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   level: { type: mongoose.Schema.Types.ObjectId, ref: "Level" },
-  chat_ref: { type: mongoose.Schema.Types.ObjectId, ref: "Event" },
+  chat_ref: { type: mongoose.Schema.GameTypes.ObjectId, ref: "Event" },
+  visible: { type: Boolean, default: true },
+  private: { type: Boolean, default: true },
 });
 
 module.exports = mongoose.model("Event", eventSchema);
