@@ -1,3 +1,4 @@
+import { SET_NEW_CHAT } from "../types/userChats";
 import { SET_NEW_EVENT } from "../types/userEvents";
 
 export function createEventThunk({ eventName, eventTextArea, eventPersons }) {
