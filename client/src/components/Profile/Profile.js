@@ -3,6 +3,7 @@ import styles from "./Profile.module.css";
 import EditProfile from "./EditProfile";
 import Events from "../Events/Events";
 import CreateEventForm from "../CreateEventForm/CreateEventForm";
+import { useState } from "react"
 
 // const Chats = () => {
 //   return (

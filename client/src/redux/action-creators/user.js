@@ -47,6 +47,7 @@ export const signInThunk = (inputValue, history) => {
 }
 
 export const signUpThunk = (inputValue, history) => {
+  console.log('asdadsa')
   return async (dispatch) => {
     const req = await fetch('/user/signup', {
       method: 'POST',
@@ -78,6 +79,7 @@ export const userInSession = () => {
       mode: 'cors'
     })
     const res = await req.json()
+    console.log(res.user)
     if (res.user) {
       dispatch(getUser(res.user))
     }
@@ -98,5 +100,22 @@ export const userLogoutThunk = (history) => {
       dispatch(logoutUser({}))
       history.push('/')
     }
+  }
+}
+export const updateUserThunk = (inputs, userId, history) => {
+  return async (dispatch) => {
+    const req = await fetch('/edit', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      mode: 'cors',
+      body: JSON.stringify({inputs, userId})
+    })
+    const res = await req.json()
+    console.log(res)
+      dispatch(updateUser(res))
+      history.push('/')
   }
 }

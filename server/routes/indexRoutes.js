@@ -1,6 +1,5 @@
 const { Router } = require('express')
-const UserModel = require('../models/user')
-// const mongoose = require('mongoose')
+const User = require('../models/user')
 const router = Router()
 
 
@@ -10,21 +9,15 @@ router.get('/', (req, res) => {
 
 router.post('/edit', async (req, res) => {
   const { name, info, phone } = req.body.inputs;
-  req.session.user = { ...req.user, name, id: req.body.userId }
-
-  console.log(req.session.user);
-
-  console.log(name, info, phone)
-  // console.log(req.body);
-  const user = await UserModel.findByIdAndUpdate(req.body.userId, {
+  const { userId } = req.body
+  req.session.user = { ...req.session.user, name, userId }
+  const user = await User.findByIdAndUpdate(userId, {
     $set: {
       name,
       information: info,
       phone
     }
   }, null, () => {});
-  console.log('=======>USER',user);
-
   res.json(user)
 })
 
