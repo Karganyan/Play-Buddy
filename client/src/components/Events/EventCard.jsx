@@ -1,29 +1,31 @@
+import {
+  Card,
+  CardGroup,
+  Button,
+} from "react-bootstrap";
 import styles from "./Events.module.css";
 
-// return (
-//   <div>
-//     <div>
-//       <div className={`${styles.split} ${styles.left}`}>
-//         <div className={styles.centered}>
-//           <h1>Мои События</h1>
-//         </div>
-//       </div>
-//       <div className={`${styles.split} ${styles.right}`}>
-//         <div className={styles.centered}>
-//           <h1>События</h1>
-//         </div>
-//       </div>
-//     </div>
-//     <button type="button" className={styles.button}>
-//       Создать событие
-//     </button>
-//   </div>
-// );
+
 const EventCard = () => {
   return (
-    <div className={styles.grid}>
-      <div className={styles.eventCard}>событие</div>
-    </div>
+    <CardGroup>
+      <Card style={{ "max-width": "10vw" }}>
+        <Card.Img
+          variant="top"
+          src="https://sun9-71.userapi.com/c850720/v850720894/10d47c/NU0_158reys.jpg"
+        />
+        <Card.Body>
+          <Card.Title>Game/Event title</Card.Title>
+          <Card.Text>
+            <div className={styles.eventDetails}>
+              <span>Time</span>
+              <span>Place</span>
+            </div>
+          </Card.Text>
+          <Button style={{ "max-width": "8vw" }}>Отписаться от события</Button>
+        </Card.Body>
+      </Card>
+    </CardGroup>
   );
 };
 

@@ -31,20 +31,6 @@
     color: red;
 }
 
-.grid {
-    display: flex;
-    width: 50vw;
-    flex-wrap: wrap;
-}
-
-.eventCard {
-    background-color: #A44444;
-    width: 20vw;
-    height: 15vh;
-    border: black;
-    margin: 1vh 1vw;
-}
-
 .eventWrapper {
     display: flex;
 }
