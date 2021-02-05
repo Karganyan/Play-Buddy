@@ -4,6 +4,7 @@ const eventSchema = new mongoose.Schema({
   title: String,
   description: String,
   max_participants: Number,
+  time: Date,
   place: { type: mongoose.Schema.Types.ObjectId, ref: "Place" },
   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],

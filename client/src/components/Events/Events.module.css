@@ -44,3 +44,17 @@
     border: black;
     margin: 1vh 1vw;
 }
+
+.eventWrapper {
+    display: flex;
+}
+
+.eventMainInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.eventDetails {
+    display: flex;
+    justify-content: space-around;
+}
