@@ -1,6 +1,11 @@
 import { Form, Button } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { createEventThunk } from "../../redux/action-creators/createEventThunk";
 const CreateEventForm = () => {
-
+  const dispatch = useDispatch();
+  const createEventHandler = () => {
+    dispatch(createEventThunk());
+  };
   return (
     <div>
       <h1>Редактировать профиль</h1>
@@ -54,7 +59,7 @@ const CreateEventForm = () => {
           />
         </Form.Group>
         <br />
-        <Button variant="primary" type="submit" /* onSubmit={createEventHandler} */>
+        <Button variant="primary" type="submit" onSubmit={createEventHandler}>
           Добавить событие
         </Button>
       </Form>
