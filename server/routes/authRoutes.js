@@ -4,7 +4,7 @@ const passport = require('passport')
 
 router.post('/signin', passport.authenticate('local'), async (req, res) => {
   req.session.user = {id: req.user._id, name: req.user.name}
-  res.json({ status: 200 })
+  res.json({ status: 200, user: req.session.user })
 })
 
 router.post('/signup', passport.authenticate('local'), async (req, res) => {
@@ -13,7 +13,6 @@ router.post('/signup', passport.authenticate('local'), async (req, res) => {
 })
 
 router.get('/in-session', async (req, res) => {
-  console.log(' ------> SERVER',req.session)
   if (req.session) {
     res.json(req.session.user)
   }
