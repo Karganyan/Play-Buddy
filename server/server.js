@@ -8,6 +8,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const indexRoutes = require('./routes/indexRoutes')
 const userRoutes = require('./routes/userRoutes')
+const eventRoutes = require('./routes/eventRoutes')
+
 require('./config/passport-sutup')
 require('./config/passport-setup-google')
 
@@ -18,15 +20,16 @@ mongoose.connect('mongodb://localhost:27017/abba', {useNewUrlParser: true, useUn
   .then((connect) => console.log("Success connect mongo"))
 
 // MiddleWare
-app.use((req, res, next) => {
-  res.header('Access-control-allow-origin', 'http://localhost:3000')
-  res.header('Access-Control-Allow-Credentials', 'true')
-  res.header('Access-Control-Allow-Headers', 'Content-type')
-  next()
-})
+// app.use((req, res, next) => {
+//   res.header('Access-control-allow-origin', 'http://localhost:3000')
+//   res.header('Access-Control-Allow-Credentials', 'true')
+//   res.header('Access-Control-Allow-Headers', 'Content-type')
+//   next()
+// })
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
-// app.use(cors())
+app.set('trust proxy', 1)
+app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('sessionName', 'sid')
 
@@ -54,6 +57,7 @@ app.use(passport.session())
 //Routes
 app.use('/', indexRoutes)
 app.use('/user', userRoutes)
+app.use('/event', eventRoutes)
 
 
 

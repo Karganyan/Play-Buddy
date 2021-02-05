@@ -20,13 +20,14 @@ export const logoutUser = (user) => {
 
 export const signInThunk = (inputValue, history) => {
   return async (dispatch) => {
-    const req = await fetch('http://localhost:3001/user/signin', {
+    const req = await fetch('/user/signin', {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(inputValue)
+      body: JSON.stringify(inputValue),
+      mode: 'cors'
     })
     const res = await req.json()
 
@@ -39,13 +40,14 @@ export const signInThunk = (inputValue, history) => {
 
 export const signUpThunk = (inputValue, history) => {
   return async (dispatch) => {
-    const req = await fetch('http://localhost:3001/user/signup', {
+    const req = await fetch('/user/signup', {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(inputValue)
+      body: JSON.stringify(inputValue),
+      mode: 'cors'
     })
     const res = await req.json()
 
@@ -58,16 +60,18 @@ export const signUpThunk = (inputValue, history) => {
 
 export const userInSession = () => {
   return async (dispatch) => {
-    const req = await fetch('http://localhost:3001/user/in-session', {
+    const req = await fetch('/user/in-session', {
       method: 'GET',
       credentials: 'include',
       headers: {
         'Content-type': 'application/json',
-      }
+      },
+      mode: 'cors'
     })
     const res = await req.json()
-    dispatch(getUser(res))
+    if (res.user) {
+      dispatch(getUser(res.user))
+
+    }
   }
 }
-
-
