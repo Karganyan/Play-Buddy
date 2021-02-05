@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom"
 import { useState } from 'react'
 import { useHistory } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
+import {getUser} from "../../redux/action-creators/user"
 
 const SignIn = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const [ inputValue, setInputValue ] = useState()
 
   const inputHandler = (event) => {
@@ -23,8 +26,9 @@ const SignIn = () => {
       body: JSON.stringify(inputValue)
     })
     const res = await req.json()
-    console.log(res)
+
     if (res.status === 200) {
+      dispatch(getUser(res.user))
       history.push('/')
     }
   }

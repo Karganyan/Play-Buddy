@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
 import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { getUser, logoutUser } from "../../redux/action-creators/user"
 
 const Navbar = () => {
-  const [ user, setUser ] = useState({})
+  const dispatch = useDispatch()
+  const user = useSelector((store => store.user))
   const history = useHistory()
   useEffect(() => {
     (async () => {
@@ -15,10 +18,10 @@ const Navbar = () => {
         }
       })
       const res = await req.json()
-      setUser(res)
+      dispatch(getUser(res))
     })()
   }, [])
-  console.log(user)
+
   const logoutHandler = async () => {
     const req = await fetch('http://localhost:3001/auth/logout', {
       method: 'GET',
@@ -28,10 +31,8 @@ const Navbar = () => {
       }
     })
     if (req.status === 200) {
-      // dispatch({type: 'LOGOUT', payload: {}})
-      setUser({})
+      dispatch(logoutUser({}))
       history.push('/')
-      console.log(user)
     }
   }
 
@@ -62,7 +63,6 @@ const Navbar = () => {
                 </li>
               </>
             }
-
           </ul>
         </div>
       </div>

@@ -15,7 +15,6 @@ const Home = () => {
       setUser(res)
     })()
   }, [])
-  console.log('----ff> ', user)
   return (
     <div className='container mt-5'>
       {user?.id && user?.id ? user.name : 'home'}
