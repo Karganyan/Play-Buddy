@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import styles from './Profile.module.css';
 import EditProfile from './EditProfile';
 import Events from '../Events/Events';
+import { useState } from 'react';
+
+
 
 const Chats = () => {
   return (
@@ -12,6 +15,8 @@ const Chats = () => {
 };
 
 function User() {
+  const [edit, setEdit] = useState(false);
+  
   return (
     <Router>
       <div className='Profile'>

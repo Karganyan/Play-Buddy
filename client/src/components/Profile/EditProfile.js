@@ -1,12 +1,30 @@
 import { Form, Button } from 'react-bootstrap';
+import { useState } from 'react';
+
 const EditProfile = () => {
+  const [name, setName] = useState('');
+  const [info, setInfo] = useState('');
+  const [picture, setPicture] = useState('');
+  const [phone, setPhone] = useState('');
+  const [game, setGame] = useState('');
+
+  const nameHandler = (event) => {
+    console.log(event.target.name);
+    
+  }
+
   return (
     <div>
       <h1>Редактировать профиль</h1>
       <Form>
         <Form.Group>
           <Form.Label>Имя</Form.Label>
-          <Form.Control type='text' placeholder='Введите имя' />
+          <Form.Control onChange={nameHandler} type='text' placeholder='Введи имя' value={name}/>
+        </Form.Group>
+        <br />
+        <Form.Group>
+          <Form.Label>Информация</Form.Label>
+          <Form.Control type='text' placeholder='Расскажи немножко о себе' value={info} />
         </Form.Group>
         <br />
         <Form.Group>
@@ -17,14 +35,18 @@ const EditProfile = () => {
         <br />
         <Form.Group>
           <Form.Label>Телефон</Form.Label>
-          <Form.Control type="tel"
-         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-         placeholder="Введите номер телефона" required/>
+          <Form.Control
+            type='tel'
+            pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
+            placeholder='Введи номер телефона для связи'
+            value={phone}
+            required
+          />
         </Form.Group>
         <br />
         <Form.Group>
           <Form.Label>Любимые игры</Form.Label>
-          <Form.Control type='text' placeholder='Добавить игру' />
+          <Form.Control type='text' placeholder='Добавь игру' />
         </Form.Group>
         <br />
         <Button variant='primary' type='submit'>
