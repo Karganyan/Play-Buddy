@@ -10,12 +10,13 @@ const Navbar = () => {
   const history = useHistory()
   useEffect(() => {
     (async () => {
-      const req = await fetch('http://localhost:3001/auth/in-session', {
+      const req = await fetch('/auth/in-session', {
         method: 'GET',
         credentials: 'include',
         headers: {
           'Content-type': 'application/json',
-        }
+        },
+        mode: 'cors'
       })
       const res = await req.json()
       dispatch(getUser(res))
@@ -23,12 +24,13 @@ const Navbar = () => {
   }, [])
 
   const logoutHandler = async () => {
-    const req = await fetch('http://localhost:3001/auth/logout', {
+    const req = await fetch('/auth/logout', {
       method: 'GET',
       credentials: 'include',
       headers: {
         'Content-type': 'application/json',
-      }
+      },
+      mode: 'cors'
     })
     if (req.status === 200) {
       dispatch(logoutUser({}))
@@ -64,37 +66,28 @@ const Navbar = () => {
                 </li>
               </>
             ) : (
-              <>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signin">
-                    Sign In
+                <>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/signin">
+                      Sign In
                   </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/signup">
-                    Sign Up
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/signup">
+                      Sign Up
                   </Link>
-                </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/profile">
-                    Profile
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="/profile">
+                      Profile
                   </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link"
-                    to="/logout"
-                    onClick={logoutHandler}
-                  >
-                    Log Out
-                  </Link>
-                </li>
-              </>
-            )}
+                  </li>
+                </>
+              )}
           </ul>
         </div>
       </div>
     </nav>
   );
 }
-  export default Navbar
+export default Navbar
