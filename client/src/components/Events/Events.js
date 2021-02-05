@@ -1,4 +1,5 @@
 import styles from './Events.module.css';
+import EventCard from './EventCard';
 
 const Events = () => {
   return (
@@ -12,10 +13,10 @@ const Events = () => {
         <div className={`${styles.split} ${styles.right}`}>
           <div className={styles.centered}>
             <h1>События</h1>
+            <EventCard/>
           </div>
         </div>
       </div>
-      <button type='button' className={styles.button}>Создать событие</button>
     </div>
   );
 };
