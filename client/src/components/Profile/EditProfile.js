@@ -9,7 +9,7 @@ const EditProfile = () => {
   const [game, setGame] = useState('');
 
   const nameHandler = (event) => {
-    console.log(event.target.name);
+    console.log(event.target.value);
     
   }
 
@@ -19,12 +19,12 @@ const EditProfile = () => {
       <Form>
         <Form.Group>
           <Form.Label>Имя</Form.Label>
-          <Form.Control onChange={nameHandler} type='text' placeholder='Введи имя' value={name}/>
+          <Form.Control onChange={nameHandler} type='text' placeholder='Введи имя'/>
         </Form.Group>
         <br />
         <Form.Group>
           <Form.Label>Информация</Form.Label>
-          <Form.Control type='text' placeholder='Расскажи немножко о себе' value={info} />
+          <Form.Control type='text' placeholder='Расскажи немножко о себе'/>
         </Form.Group>
         <br />
         <Form.Group>
@@ -39,7 +39,7 @@ const EditProfile = () => {
             type='tel'
             pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
             placeholder='Введи номер телефона для связи'
-            value={phone}
+        
             required
           />
         </Form.Group>
