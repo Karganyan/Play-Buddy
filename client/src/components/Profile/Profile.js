@@ -3,7 +3,6 @@ import styles from './Profile.module.css';
 import EditProfile from './EditProfile';
 import Events from '../Events/Events';
 
-
 const Chats = () => {
   return (
     <div>
@@ -55,7 +54,7 @@ const Profile = () => {
         <br />
         <br />
         <br />
-          <h1>FAVORITE GAMES</h1>
+        <h1>FAVORITE GAMES</h1>
         <div className={styles.cards}>
           <div className={styles.card}>
             {/* <img className='card-img-top' src='...' alt='Card' /> */}
@@ -63,6 +62,9 @@ const Profile = () => {
           <div className={styles.card}></div>
           <div className={styles.card}></div>
         </div>
+        <Link to='/edit'>
+          <button className='btn btn-danger'>Редактировать профиль</button>
+        </Link>
       </div>
     </div>
   );
