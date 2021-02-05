@@ -20,13 +20,14 @@ export const logoutUser = (user) => {
 
 export const signInThunk = (inputValue, history) => {
   return async (dispatch) => {
-    const req = await fetch('http://localhost:3001/auth/signin', {
+    const req = await fetch('/auth/signin', {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(inputValue)
+      body: JSON.stringify(inputValue),
+      mode: 'cors'
     })
     const res = await req.json()
 
@@ -39,13 +40,14 @@ export const signInThunk = (inputValue, history) => {
 
 export const signUpThunk = (inputValue, history) => {
   return async (dispatch) => {
-    const req = await fetch('http://localhost:3001/auth/signup', {
+    const req = await fetch('/auth/signup', {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify(inputValue)
+      body: JSON.stringify(inputValue),
+      mode: 'cors'
     })
     const res = await req.json()
 

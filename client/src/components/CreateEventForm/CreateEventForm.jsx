@@ -1,23 +1,37 @@
+import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { createEventThunk } from "../../redux/action-creators/createEventThunk";
+import { SET_NEW_EVENT } from "../../redux/types/userEvents";
 const CreateEventForm = () => {
   const dispatch = useDispatch();
-  const createEventHandler = () => {
-    dispatch(createEventThunk());
-  };
+  const [form, setForm] = useState({
+    eventName: '',
+    eventTextArea: '',
+    eventPersons: 2,
+  });
+  const formHandler = (event) => {
+    setForm(prev => {
+      return { ...prev, [event.target.name]: event.target.value }
+    })
+  }
+  const createEventHandler = (event) => {
+    event.preventDefault()
+    dispatch(createEventThunk(form));
+  }
+
   return (
     <div>
-      <h1>Редактировать профиль</h1>
-      <Form>
+      <h1>Создание события</h1>
+      <Form onChange={formHandler} onSubmit={createEventHandler}>
         <Form.Group>
           <Form.Label>Название события</Form.Label>
-          <Form.Control type="text" placeholder="Введите  название" />
+          <Form.Control name="eventName" type="text" placeholder="Введите  название" />
         </Form.Group>
         <br />
         <Form.Group>
           <Form.Label>Описание события</Form.Label>
-          <Form.Control as="textarea" placeholder="Что планируете?" rows={3} />
+          <Form.Control name="eventTextArea" as="textarea" placeholder="Что планируете?" rows={3} />
         </Form.Group>
         <br />
         <Form.Group>
@@ -33,6 +47,7 @@ const CreateEventForm = () => {
         <Form.Group>
           <Form.Label>Ожидаемое кол-во участников</Form.Label>
           <Form.Control
+            name="eventPersons"
             min="2"
             type="number"
             placeholder="Введите количество участников"
@@ -42,7 +57,7 @@ const CreateEventForm = () => {
         <Form.Group>
           <Form.Label>Приглашаю...</Form.Label>
           <Form.Check
-            key={`custom-checkbox`}
+            key={`custom-checkbox1`}
             className="mb-3"
             custom
             type="checkbox"
@@ -50,7 +65,8 @@ const CreateEventForm = () => {
             label={`начинающих игроков`}
           />
           <Form.Check
-            key={`custom-checkbox`}
+            name="begginer"
+            key={`custom-checkbox2`}
             className="mb-3"
             custom
             type="checkbox"
@@ -59,7 +75,7 @@ const CreateEventForm = () => {
           />
         </Form.Group>
         <br />
-        <Button variant="primary" type="submit" onSubmit={createEventHandler}>
+        <Button variant="primary" type="submit">
           Добавить событие
         </Button>
       </Form>

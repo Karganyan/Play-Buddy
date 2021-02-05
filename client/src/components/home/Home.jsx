@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react"
 
 const Home = () => {
-  const [ user, setUser ] = useState({})
+  const [user, setUser] = useState({})
   useEffect(() => {
     (async () => {
-      const req = await fetch('http://localhost:3001/auth/in-session', {
+      const req = await fetch('/auth/in-session', {
         method: 'GET',
         credentials: 'include',
         headers: {
           'Content-type': 'application/json',
-        }
+        },
+        mode: 'cors'
       })
-      const res = await req.json()
-      setUser(res)
+      const res = await req.json();
+      if (res.user) {
+        setUser(res.user)
+      }
     })()
   }, [])
   return (

@@ -8,9 +8,9 @@ const eventSchema = new mongoose.Schema({
   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   level: { type: mongoose.Schema.Types.ObjectId, ref: "Level" },
-  chat_ref: { type: mongoose.Schema.GameTypes.ObjectId, ref: "Event" },
+  chat: { type: mongoose.Schema.Types.ObjectId},
   visible: { type: Boolean, default: true },
-  private: { type: Boolean, default: true },
+  private: { type: Boolean, default: false },
 });
 
 module.exports = mongoose.model("Event", eventSchema);
