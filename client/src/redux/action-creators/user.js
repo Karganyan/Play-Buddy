@@ -56,6 +56,18 @@ export const signUpThunk = (inputValue, history) => {
   }
 }
 
-
+export const userInSession = () => {
+  return async (dispatch) => {
+    const req = await fetch('http://localhost:3001/auth/in-session', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-type': 'application/json',
+      }
+    })
+    const res = await req.json()
+    dispatch(getUser(res))
+  }
+}
 
 
