@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { userInSession } from "../../redux/action-creators/user"
 
 const Home = () => {
-  const [ user, setUser ] = useState({})
+  const dispatch = useDispatch()
+  const user = useSelector(store => store.user)
   useEffect(() => {
-    (async () => {
-      const req = await fetch('http://localhost:3001/auth/in-session', {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          'Content-type': 'application/json',
-        }
-      })
-      const res = await req.json()
-      setUser(res)
-    })()
+    dispatch(userInSession())
   }, [])
 
   return (
     <div className='container mt-5'>
-      {user?.id && user?.id ? user.name : 'home'}
+      {user.id
+        ?
+        <h1>Привет {user.name}</h1>
+        :
+        <h1>Нужно зарегестрироваться</h1>
+      }
     </div>
   )
 }
