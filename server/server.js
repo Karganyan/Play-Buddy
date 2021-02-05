@@ -8,6 +8,8 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const indexRoutes = require('./routes/indexRoutes')
 const authRoutes = require('./routes/authRoutes')
+const eventRoutes = require('./routes/eventRoutes')
+
 require('./config/passport-sutup')
 
 const app = express()
@@ -50,6 +52,7 @@ app.use(session({
 //Routes
 app.use('/', indexRoutes)
 app.use('/auth', authRoutes)
+app.use('/event', eventRoutes)
 
 
 
