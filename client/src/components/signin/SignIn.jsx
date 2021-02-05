@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom"
 import { useState } from 'react'
 import { useHistory } from "react-router"
+import { useDispatch, useSelector } from "react-redux"
+import { signInThunk } from "../../redux/action-creators/user"
+
 
 const SignIn = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const [ inputValue, setInputValue ] = useState()
 
   const inputHandler = (event) => {
@@ -14,19 +18,7 @@ const SignIn = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault()
-    const req = await fetch('http://localhost:3001/auth/signin', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(inputValue)
-    })
-    const res = await req.json()
-    console.log(res)
-    if (res.status === 200) {
-      history.push('/')
-    }
+    dispatch(signInThunk(inputValue, history))
   }
 
   return (

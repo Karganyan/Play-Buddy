@@ -1,5 +1,6 @@
 import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
+import { app } from '../../base';
 
 const EditProfile = () => {
   const [name, setName] = useState('');
@@ -8,40 +9,46 @@ const EditProfile = () => {
   const [phone, setPhone] = useState('');
   const [game, setGame] = useState('');
 
-  const nameHandler = (event) => {
-    console.log(event.target.value);
-    
-  }
+  const nameHandler = event => {
+    // console.log(event.target.value);
+  };
+
+  const onFileChange = async e => {
+    const file = e.target.files[0];
+    const storageRef = app.storage().ref();
+    const fileRef = storageRef.child(file.name);
+    await fileRef.put(file).then(() => {
+      console.log('Uploaded file', file.name);
+    });
+  };
+
+  const onSubmit = event => {
+    event.preventDefault();
+  };
 
   return (
     <div>
       <h1>Редактировать профиль</h1>
-      <Form>
+      <Form onSubmit={onSubmit}>
         <Form.Group>
           <Form.Label>Имя</Form.Label>
-          <Form.Control onChange={nameHandler} type='text' placeholder='Введи имя'/>
+          <Form.Control onChange={nameHandler} type='text' placeholder='Введи имя' />
         </Form.Group>
         <br />
         <Form.Group>
           <Form.Label>Информация</Form.Label>
-          <Form.Control type='text' placeholder='Расскажи немножко о себе'/>
+          <Form.Control type='text' placeholder='Расскажи немножко о себе' />
         </Form.Group>
         <br />
         <Form.Group>
           <Form.Label>Выбрать фото</Form.Label>
           <br />
-          <Form.Control type='file' accept='image/*' placeholder='Выбрать фото' />
+          <Form.Control type='file' onChange={onFileChange} placeholder='Выбрать фото' />
         </Form.Group>
         <br />
         <Form.Group>
           <Form.Label>Телефон</Form.Label>
-          <Form.Control
-            type='tel'
-            pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}'
-            placeholder='Введи номер телефона для связи'
-        
-            required
-          />
+          <Form.Control type='tel' placeholder='Введи номер телефона для связи' required />
         </Form.Group>
         <br />
         <Form.Group>

@@ -1,8 +1,11 @@
 import { useState } from "react"
 import { useHistory } from "react-router"
+import { signUpThunk} from "../../redux/action-creators/user"
+import { useDispatch } from "react-redux"
 
 const SignUp = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const [ inputValue, setInputValue ] = useState({
     name: '',
     email: '',
@@ -18,19 +21,7 @@ const SignUp = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault()
-    const req = await fetch('http://localhost:3001/auth/signup', {
-      method: 'POST',
-      credentials: 'include',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify(inputValue)
-    })
-    const res = await req.json()
-    console.log(res)
-    if (res.status === 200) {
-      history.push('/')
-    }
+    dispatch(signUpThunk(inputValue, history))
   }
 
   return (
