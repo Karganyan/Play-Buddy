@@ -20,7 +20,7 @@ export const logoutUser = (user) => {
 
 export const signInThunk = (inputValue, history) => {
   return async (dispatch) => {
-    const req = await fetch('http://localhost:3001/auth/signin', {
+    const req = await fetch('http://localhost:3001/user/signin', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -39,7 +39,7 @@ export const signInThunk = (inputValue, history) => {
 
 export const signUpThunk = (inputValue, history) => {
   return async (dispatch) => {
-    const req = await fetch('http://localhost:3001/auth/signup', {
+    const req = await fetch('http://localhost:3001/user/signup', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -58,7 +58,7 @@ export const signUpThunk = (inputValue, history) => {
 
 export const userInSession = () => {
   return async (dispatch) => {
-    const req = await fetch('http://localhost:3001/auth/in-session', {
+    const req = await fetch('http://localhost:3001/user/in-session', {
       method: 'GET',
       credentials: 'include',
       headers: {

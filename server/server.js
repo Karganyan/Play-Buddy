@@ -7,8 +7,9 @@ const MongoDBStore = require('connect-mongodb-session')(session)
 const mongoose = require('mongoose')
 const cors = require('cors')
 const indexRoutes = require('./routes/indexRoutes')
-const authRoutes = require('./routes/authRoutes')
+const userRoutes = require('./routes/userRoutes')
 require('./config/passport-sutup')
+require('./config/passport-setup-google')
 
 const app = express()
 
@@ -28,8 +29,7 @@ app.use(express.json())
 // app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('sessionName', 'sid')
-app.use(passport.initialize())
-app.use(passport.session())
+
 
 // Mongo Session Store
 const store = new MongoDBStore({
@@ -47,9 +47,13 @@ app.use(session({
   cookie: { secure: false }
 }))
 
+// MiddleWare Passport
+app.use(passport.initialize())
+app.use(passport.session())
+
 //Routes
 app.use('/', indexRoutes)
-app.use('/auth', authRoutes)
+app.use('/user', userRoutes)
 
 
 

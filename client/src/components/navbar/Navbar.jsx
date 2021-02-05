@@ -23,7 +23,7 @@ const Navbar = () => {
   }, [])
 
   const logoutHandler = async () => {
-    const req = await fetch('http://localhost:3001/auth/logout', {
+    const req = await fetch('http://localhost:3001/user/logout', {
       method: 'GET',
       credentials: 'include',
       headers: {
@@ -35,6 +35,12 @@ const Navbar = () => {
       history.push('/')
     }
   }
+
+  // const googleHandler = async () => {
+  //   console.log('3232')
+  //   const req = await fetch('http://localhost:3001/auth/google')
+  // }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light px-3">
       <div className="container-fluid ">
@@ -56,6 +62,9 @@ const Navbar = () => {
               <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/signin">Sign In</Link>
+                </li>
+                <li className="nav-item">
+                  <a href='http://localhost:3001/user/google' className="nav-link" >Sign In With Google</a>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/signup">Sign Up</Link>

@@ -18,6 +18,17 @@ router.get('/in-session', async (req, res) => {
   }
 })
 
+router.get('/google', passport.authenticate('google', {
+  scope: ['profile']
+}), (req, res) => {
+
+})
+
+router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+  req.session.user = {id: req.user._id, name: req.user.name}
+  res.redirect('http://localhost:3000')
+})
+
 router.get('/logout', async (req, res) => {
   req.session.destroy();
   res.clearCookie('sid')
