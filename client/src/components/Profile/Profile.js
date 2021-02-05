@@ -4,8 +4,6 @@ import EditProfile from './EditProfile';
 import Events from '../Events/Events';
 import { useState } from 'react';
 
-
-
 const Chats = () => {
   return (
     <div>
@@ -16,7 +14,7 @@ const Chats = () => {
 
 function User() {
   const [edit, setEdit] = useState(false);
-  
+
   return (
     <Router>
       <div className='Profile'>

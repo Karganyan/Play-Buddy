@@ -1,4 +1,4 @@
-import { GET_USER } from "../types/user"
+import { GET_USER, UPDATE_USER_DATA, LOGOUT_USER } from "../types/user"
 
 export const getUser = (user) => {
   return {
@@ -9,7 +9,14 @@ export const getUser = (user) => {
 
 export const logoutUser = (user) => {
   return {
-    type: GET_USER,
+    type: LOGOUT_USER,
+    payload: user
+  }
+}
+
+export const updateUser = (user) => {
+  return {
+    type: UPDATE_USER_DATA,
     payload: user
   }
 }
@@ -19,6 +26,7 @@ export const logoutUser = (user) => {
 
 
 export const signInThunk = (inputValue, history) => {
+  console.log('signInThunk')
   return async (dispatch) => {
     const req = await fetch('http://localhost:3001/auth/signin', {
       method: 'POST',
@@ -57,6 +65,7 @@ export const signUpThunk = (inputValue, history) => {
 }
 
 export const userInSession = () => {
+  console.log('userInSession')
   return async (dispatch) => {
     const req = await fetch('http://localhost:3001/auth/in-session', {
       method: 'GET',
@@ -71,3 +80,21 @@ export const userInSession = () => {
 }
 
 
+export const updateUserThunk = (inputs, userId, history) => {
+  console.log(inputs);
+
+  return async (dispatch) => {
+    const ftch = await fetch('http://localhost:3001/edit', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ inputs, userId }),
+    });
+    const response = await ftch.json();
+    console.log(response);
+    dispatch(updateUser(response))
+    // history.push('/')
+  }
+}
