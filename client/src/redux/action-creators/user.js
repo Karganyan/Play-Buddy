@@ -116,13 +116,7 @@ export const updateUserThunk = (inputs, userId, history) => {
       body: JSON.stringify({ inputs, userId })
     })
     const res = await req.json()
-<<<<<<< HEAD
       dispatch(updateUser(res))
       history.push('/')
-=======
-    console.log(res)
-    dispatch(updateUser(res))
-    history.push('/')
->>>>>>> events
   }
 }
