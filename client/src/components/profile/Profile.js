@@ -4,14 +4,8 @@ import EditProfile from "./EditProfile";
 import Events from "../events/Events";
 import CreateEventForm from "../create-event-form/CreateEventForm";
 import { useState } from "react"
+import UserChats from "../chat/UserChats";
 
-// const Chats = () => {
-//   return (
-//     <div>
-//       <h1>Chats</h1>
-//     </div>
-//   );
-// };
 
 function User() {
   const [edit, setEdit] = useState(false);
@@ -21,7 +15,7 @@ function User() {
       <div className="Profile">
         <Route path="/profile" exact component={Profile} />
         <Route path="/events" component={Events} />
-        {/* <Route path="/chats" component={Chats} /> */}
+        <Route path="/chats" component={UserChats} />
         <Route path="/edit" component={EditProfile} />
         <Route path="/create-event" component={CreateEventForm} />
       </div>

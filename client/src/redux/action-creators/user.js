@@ -1,4 +1,6 @@
 import { GET_USER, UPDATE_USER_DATA, LOGOUT_USER } from "../types/user"
+import { GET_DB_USER_CHATS, OUT_USER_CHATS } from "../types/userChats"
+import { GET_DB_USER_EVENTS, OUT_USER_EVENTS } from "../types/userEvents"
 
 export const getUser = (user) => {
   return {
@@ -78,6 +80,8 @@ export const userInSessionThunk = () => {
     const res = await req.json()
     if (res.user) {
       dispatch(getUser(res.user))
+      dispatch({ type: GET_DB_USER_EVENTS, payload: res.userEvents })
+      dispatch({ type: GET_DB_USER_CHATS, payload: res.userChats })
     }
   }
 }
@@ -94,6 +98,8 @@ export const userLogoutThunk = (history) => {
     })
     if (req.status === 200) {
       dispatch(logoutUser({}))
+      dispatch({ type: OUT_USER_EVENTS })
+      dispatch({ type: OUT_USER_CHATS })
       history.push('/')
     }
   }
@@ -107,10 +113,16 @@ export const updateUserThunk = (inputs, userId, history) => {
         'Content-type': 'application/json',
       },
       mode: 'cors',
-      body: JSON.stringify({inputs, userId})
+      body: JSON.stringify({ inputs, userId })
     })
     const res = await req.json()
+<<<<<<< HEAD
       dispatch(updateUser(res))
       history.push('/')
+=======
+    console.log(res)
+    dispatch(updateUser(res))
+    history.push('/')
+>>>>>>> events
   }
 }

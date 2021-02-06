@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { createEventThunk } from "../../redux/action-creators/createEventThunk";
-import { SET_NEW_EVENT } from "../../redux/types/userEvents";
+
 const CreateEventForm = () => {
   const dispatch = useDispatch();
   const [form, setForm] = useState({
