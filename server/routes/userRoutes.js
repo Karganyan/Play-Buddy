@@ -14,7 +14,6 @@ router.post('/signup', passport.authenticate('local'), async (req, res) => {
 
 router.get('/in-session', async (req, res) => {
   if (req.session) {
-    console.log(req.session)
     res.json( {user: req.session.user})
   } else {
     res.json( {user: null})

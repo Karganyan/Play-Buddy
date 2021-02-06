@@ -3,7 +3,7 @@ import Navbar from "./components/navbar/Navbar"
 import Home from "./components/home/Home"
 import SignIn from "./components/signin/SignIn"
 import SignUp from "./components/signup/SignUp"
-import User from './components/Profile/Profile'
+import User from './components/profile/Profile'
 
 function App() {
   return (

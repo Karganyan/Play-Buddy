@@ -21,7 +21,7 @@ const CreateEventForm = () => {
   }
 
   return (
-    <div>
+    <div className='container'>
       <h1>Создание события</h1>
       <Form onChange={formHandler} onSubmit={createEventHandler}>
         <Form.Group>

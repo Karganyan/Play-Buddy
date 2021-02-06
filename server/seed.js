@@ -45,6 +45,7 @@ const games = [
     title: "Взрывные котята",
     rules: "https://www.mosigra.ru/Face/Show/vzryvnye_kotyata/",
     min_players: 2,
+    coordinates: [55.684758, 37.738521],
     max_players: 5,
     min_playtime: 15,
     min_age: 10,
@@ -60,6 +61,7 @@ const games = [
     rules: "https://tashkent.mosigra.ru/Face/Show/uno/",
     min_players: 2,
     max_players: 10,
+    coordinates: [55.736173, 37.611518],
     min_playtime: 25,
     min_age: 7,
     description:

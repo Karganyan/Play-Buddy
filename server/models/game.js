@@ -5,12 +5,13 @@ const gameSchema = new mongoose.Schema({
   rules: String,
   min_players: Number,
   max_players: Number,
+  coordinates: Array,
   min_playtime: Number,
   min_age: Number,
   description: String,
   img: String,
   thumbnail: String,
-  tags: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }], 
+  tags: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }],
 });
 
 module.exports = mongoose.model("Game", gameSchema);

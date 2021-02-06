@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styles from "./Profile.module.css";
 import EditProfile from "./EditProfile";
-import Events from "../Events/Events";
-import CreateEventForm from "../CreateEventForm/CreateEventForm";
+import Events from "../events/Events";
+import CreateEventForm from "../create-event-form/CreateEventForm";
 import { useState } from "react"
 
 // const Chats = () => {

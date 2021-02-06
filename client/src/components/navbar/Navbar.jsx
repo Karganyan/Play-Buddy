@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useHistory } from "react-router"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { userInSession, userLogoutThunk } from "../../redux/action-creators/user"
+import { userInSessionThunk, userLogoutThunk } from "../../redux/action-creators/user"
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const history = useHistory();
   useEffect(() => {
-    dispatch(userInSession())
+    dispatch(userInSessionThunk())
   }, [])
 
   const logoutHandler = async () => {

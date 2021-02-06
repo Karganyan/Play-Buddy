@@ -18,7 +18,6 @@ const SignIn = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault()
-    // console.log('gfgfgfgfg')
     dispatch(signInThunk(inputValue, history))
   }
 
