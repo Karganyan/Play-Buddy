@@ -3,14 +3,7 @@ import styles from "./Profile.module.css";
 import EditProfile from "./EditProfile";
 import Events from "../Events/Events";
 import CreateEventForm from "../CreateEventForm/CreateEventForm";
-
-// const Chats = () => {
-//   return (
-//     <div>
-//       <h1>Chats</h1>
-//     </div>
-//   );
-// };
+import UserChats from '../chat/UserChats'
 
 function User() {
   return (
@@ -18,7 +11,7 @@ function User() {
       <div className="Profile">
         <Route path="/profile" exact component={Profile} />
         <Route path="/events" component={Events} />
-        {/* <Route path="/chats" component={Chats} /> */}
+        <Route path="/chats" component={UserChats} />
         <Route path="/edit" component={EditProfile} />
         <Route path="/create-event" component={CreateEventForm} />
       </div>
