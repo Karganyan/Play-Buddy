@@ -1,53 +1,23 @@
-import { useState } from "react";
-import ReactDOM from "react-dom";
-const wsClient = new WebSocket('ws://localhost:8080')
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import ModalCHat from "../ModalChat/ModalChat";
 
-
-function ModalCHat({ chat, setEvents }) {
-  const [input, setInput] = useState('');
-
-
-  const inputHandler = ({ target }) => {
-    setInput(target.value)
-  }
-
-  wsClient.onopen = () => {
-    console.log('open');
-  }
-
-  const wsPost = () => {
-    wsClient.send(JSON.stringify({ mess: input, chatId: chat.id }))
-    setInput('');
-  }
-
-  wsClient.onmessage = (message) => {
-    const myMessage = JSON.parse(message.data);
-    setEvents(pre =>{
-      return (
-        pre.map((event) => {
-          return (
-            event.chat.id === myMessage.chatId ?
-              { ...event, chat: { ...chat, messages: [...chat.messages, { id: Math.random(), author: 'wsdfwef', message: myMessage.mess }] } } :
-              event
-          )
-        })
-      )
-    })
-  }
+function UserChats() {
+  const userChats = useSelector(state => state.userChats)
 
   return (
-    ReactDOM.createPortal(
-      <>
-        <div className='sdfw'>
-          <input onChange={inputHandler} value={input} />
-          <button onClick={wsPost}>send</button>
-          {chat.messages && chat.messages.map(mess => (
-            <div key={mess.id}>{mess.message}</div>
-          ))}
-        </div>
-      </>
-      , document.getElementById('portal')
-    )
+    <div>
+      <h1>This is chats!</h1>
+      {userChats
+        ?
+        userChats.map(item => (
+          <div key={item._id}>
+            {item.eventTitle}
+          </div>
+        ))
+        :
+        'there are no chats here yet'}
+    </div>
   )
 }
-export default ModalCHat;
+export default UserChats;

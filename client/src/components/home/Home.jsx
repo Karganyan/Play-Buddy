@@ -8,6 +8,7 @@ const Home = () => {
   useEffect(() => {
     dispatch(userInSession())
   }, [])
+
   return (
     <div className='container mt-5'>
       {user.id

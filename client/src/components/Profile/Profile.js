@@ -4,8 +4,11 @@ import EditProfile from "./EditProfile";
 import Events from "../Events/Events";
 import CreateEventForm from "../CreateEventForm/CreateEventForm";
 import UserChats from '../chat/UserChats'
+import { useState } from "react";
 
 function User() {
+  const [edit, setEdit] = useState(false);
+
   return (
     <Router>
       <div className="Profile">
@@ -62,6 +65,9 @@ const Profile = () => {
           <div className={styles.card}></div>
           <div className={styles.card}></div>
         </div>
+        <Link to='/edit'>
+          <button className='btn btn-danger'>Редактировать профиль</button>
+        </Link>
       </div>
     </div>
   );

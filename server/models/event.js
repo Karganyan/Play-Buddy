@@ -9,7 +9,7 @@ const eventSchema = new mongoose.Schema({
   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   level: { type: mongoose.Schema.Types.ObjectId, ref: "Level" },
-  chat: { type: mongoose.Schema.Types.ObjectId},
+  chat: { type: mongoose.Schema.Types.ObjectId, ref: 'Chat' },
   visible: { type: Boolean, default: true },
   private: { type: Boolean, default: false },
 });

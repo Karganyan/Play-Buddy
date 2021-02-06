@@ -12,6 +12,7 @@ export function createEventThunk({ eventName, eventTextArea, eventPersons }) {
       mode: 'cors'
     });
     const res = await req.json();
+    console.log(res);
     dispatch({ type: SET_NEW_CHAT, payload: res[0] })
     dispatch({ type: SET_NEW_EVENT, payload: res[1] })
   };
