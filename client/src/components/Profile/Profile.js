@@ -3,6 +3,9 @@ import styles from "./Profile.module.css";
 import EditProfile from "./EditProfile";
 import Events from "../Events/Events";
 import CreateEventForm from "../CreateEventForm/CreateEventForm";
+import { useState } from "react"
+import ProfileInfo from "./ProfileInfo";
+import ProfileFavGames from './ProfileFavGames';
 
 // const Chats = () => {
 //   return (
@@ -13,6 +16,8 @@ import CreateEventForm from "../CreateEventForm/CreateEventForm";
 // };
 
 function User() {
+  const [edit, setEdit] = useState(false);
+
   return (
     <Router>
       <div className="Profile">
@@ -58,17 +63,14 @@ const Profile = () => {
       </div>
       <div className={styles.bottom}>
         <h1>INFO</h1>
-        <br />
+        <ProfileInfo/>
         <br />
         <br />
         <h1>FAVORITE GAMES</h1>
-        <div className={styles.cards}>
-          <div className={styles.card}>
-            {/* <img className='card-img-top' src='...' alt='Card' /> */}
-          </div>
-          <div className={styles.card}></div>
-          <div className={styles.card}></div>
-        </div>
+    <ProfileFavGames/>
+        <Link to='/edit'>
+          <button className='btn btn-danger'>Редактировать профиль</button>
+        </Link>
       </div>
     </div>
   );

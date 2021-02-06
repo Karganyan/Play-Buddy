@@ -4,6 +4,8 @@ const userSchema = new mongoose.Schema({
   name: String,
   password: String,
   email: String,
+  information: String,
+  phone: String, 
   fav_games: [{ type: mongoose.Schema.Types.ObjectId, ref: "Game" }],
   googleID: String,
   userEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],

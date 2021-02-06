@@ -1,1 +1,0 @@
-export const GET_DB_USER_EVENTS = 'GET_DB_USER_EVENTS';
