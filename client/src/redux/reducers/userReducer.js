@@ -9,7 +9,6 @@ const userReducer = (state = {}, action) => {
       return action.payload
     case UPDATE_USER_DATA:
       const { name, phone, information: info, _id:id } = action.payload
-      console.log(id)
       return {
         name,
         phone,

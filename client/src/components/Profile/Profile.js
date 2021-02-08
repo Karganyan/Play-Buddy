@@ -2,18 +2,12 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styles from "./Profile.module.css";
 import EditProfile from "./EditProfile";
 import Events from "../Events/Events";
-import CreateEventForm from "../CreateEventForm/CreateEventForm";
+import CreateEventForm from "../Create-event-form/CreateEventForm";
 import { useState } from "react"
 import ProfileInfo from "./ProfileInfo";
 import ProfileFavGames from './ProfileFavGames';
+import UserChats from '../Chat/UserChats';
 
-// const Chats = () => {
-//   return (
-//     <div>
-//       <h1>Chats</h1>
-//     </div>
-//   );
-// };
 
 function User() {
   const [edit, setEdit] = useState(false);
@@ -23,7 +17,7 @@ function User() {
       <div className="Profile">
         <Route path="/profile" exact component={Profile} />
         <Route path="/events" component={Events} />
-        {/* <Route path="/chats" component={Chats} /> */}
+        <Route path="/chats" component={UserChats} />
         <Route path="/edit" component={EditProfile} />
         <Route path="/create-event" component={CreateEventForm} />
       </div>

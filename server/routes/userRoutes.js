@@ -1,6 +1,10 @@
 const { Router } = require('express')
 const router = Router()
 const passport = require('passport')
+const Event = require('../models/event')
+const User = require('../models/user')
+const Chat = require('../models/chat')
+
 
 router.post('/signin', passport.authenticate('local'), async (req, res) => {
   req.session.user = { id: req.user._id, name: req.user.name }
@@ -13,11 +17,12 @@ router.post('/signup', passport.authenticate('local'), async (req, res) => {
 })
 
 router.get('/in-session', async (req, res) => {
-  if (req.session) {
-    console.log(req.session)
-    res.json( {user: req.session.user})
+  if (req.session.user) {
+    const user = await User.findById(req.session.user.id).populate('userEvents')
+    const chats = await Chat.find({ '_id': { $in: user.userChats } }).populate('messages');
+    res.json({ user: req.session.user, userEvents: user.userEvents, userChats: chats })
   } else {
-    res.json( {user: null})
+    res.json({ user: null })
   }
 })
 
@@ -28,7 +33,7 @@ router.get('/google', passport.authenticate('google', {
 })
 
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
-  req.session.user = {id: req.user._id, name: req.user.name}
+  req.session.user = { id: req.user._id, name: req.user.name }
   res.redirect('http://localhost:3000')
 })
 

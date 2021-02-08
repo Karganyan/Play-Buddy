@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userInSession } from "../../redux/action-creators/user";
+import { userInSessionThunk } from "../../redux/action-creators/user";
 import styles from "./Profile.module.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -10,7 +10,7 @@ const ProfileFavGames = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
   useEffect(() => {
-    dispatch(userInSession());
+    dispatch(userInSessionThunk());
   }, []);
 
   const images = [
@@ -48,6 +48,7 @@ const ProfileFavGames = () => {
             className={styles.favGameImage}
             draggable={false}
             src={image}
+            key={Math.random()}  // тут будет id игры
           />
         );
       })}

@@ -1,4 +1,6 @@
 import { GET_USER, UPDATE_USER_DATA, LOGOUT_USER } from "../types/user"
+import { GET_DB_USER_CHATS, OUT_USER_CHATS } from "../types/userChats"
+import { GET_DB_USER_EVENTS, OUT_USER_EVENTS } from "../types/userEvents"
 
 export const getUser = (user) => {
   return {
@@ -21,6 +23,20 @@ export const updateUser = (user) => {
   }
 }
 
+const getDbUserEventsActionCreator = (userEvents) => {
+  return { type: GET_DB_USER_EVENTS, payload: userEvents }
+}
+
+const getDbUserChatsActionCreator = (userChats) => {
+  return { type: GET_DB_USER_CHATS, payload: userChats }
+}
+const outUserEventsActionCreators = () => {
+  return { type: OUT_USER_EVENTS }
+}
+
+const outUserChatsActionCreator = () => {
+  return { type: OUT_USER_CHATS }
+}
 
 //----------------------------THUNK---------------------------------
 
@@ -67,12 +83,11 @@ export const signUpThunk = (inputValue, history) => {
   }
 }
 
-export const userInSession = () => {
-  console.log('userInSession')
+export const userInSessionThunk = () => {
   return async (dispatch) => {
     const req = await fetch('/user/in-session', {
       method: 'GET',
-      credentials: 'include',
+      // credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
@@ -82,6 +97,8 @@ export const userInSession = () => {
     console.log(res.user)
     if (res.user) {
       dispatch(getUser(res.user))
+      dispatch(getDbUserEventsActionCreator(res.userEvents))
+      dispatch(getDbUserChatsActionCreator(res.userChats))
     }
   }
 }
@@ -98,6 +115,8 @@ export const userLogoutThunk = (history) => {
     })
     if (req.status === 200) {
       dispatch(logoutUser({}))
+      dispatch(outUserEventsActionCreators())
+      dispatch(outUserChatsActionCreator())
       history.push('/')
     }
   }
@@ -111,11 +130,10 @@ export const updateUserThunk = (inputs, userId, history) => {
         'Content-type': 'application/json',
       },
       mode: 'cors',
-      body: JSON.stringify({inputs, userId})
+      body: JSON.stringify({ inputs, userId })
     })
     const res = await req.json()
-    console.log(res)
-      dispatch(updateUser(res))
-      history.push('/')
+    dispatch(updateUser(res))
+    history.push('/')
   }
 }
