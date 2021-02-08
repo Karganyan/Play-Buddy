@@ -6,6 +6,7 @@ import SignUp from "./components/Signup/SignUp"
 import User from './components/Profile/Profile'
 import Main from './components/Main/Main'
 import Profile from './components/Profile/Profile'
+import EventPage from "./components/Events/EventPage"
 
 function App() {
   return (
@@ -35,6 +36,10 @@ function App() {
 
         <Route exact path='/main'>
           <Main />
+        </Route>
+
+        <Route exact path='/event-page/:id'>
+          <EventPage/>
         </Route>
 
       </Switch>

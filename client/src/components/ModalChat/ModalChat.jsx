@@ -38,13 +38,15 @@ function ModalCHat() {
             (chat.messages.length
               ?
               <>
-                {chat.eventTitle}
-                <br />
-                <input onChange={inputHandler} value={input} />
-                <button onClick={wsPost}>send</button>
-                {(chat.messages.map(mess => (
-                  <div key={mess._id}>{mess.text}</div>
-                )))}
+                <div>
+                  {chat.eventTitle}
+                  <br />
+                  {(chat.messages.map(mess => (
+                    <div key={mess._id}>{mess.text}</div>
+                  )))}
+                  <input onChange={inputHandler} value={input} />
+                  <button onClick={wsPost}>send</button>
+                </div>
               </>
               :
               (

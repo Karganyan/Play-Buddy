@@ -14,10 +14,10 @@ function User() {
     <Router>
       <div className="Profile">
         <Route path="/profile" exact component={Profile} />
-        <Route path="/events" component={Events} />
-        <Route path="/chats" component={UserChats} />
-        <Route path="/edit" component={EditProfile} />
-        <Route path="/create-event" component={CreateEventForm} />
+        <Route path="/events" exact component={Events} />
+        <Route path="/chats" exact component={UserChats} />
+        <Route path="/edit" exact component={EditProfile} />
+        <Route path="/create-event" exact component={CreateEventForm} />
       </div>
     </Router>
   );
