@@ -50,7 +50,7 @@ const CreateEventForm = () => {
   const createEventHandler = async (e) => {
     e.preventDefault()
     await dispatch(createEventThunk(form));
-    const event = event.find(event => event)
+    // const event = event.find(event => event)
     // history.push(`/event-page/${}`) доделаю позже
   }
   return (
