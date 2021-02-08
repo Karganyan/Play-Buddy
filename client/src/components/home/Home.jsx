@@ -13,9 +13,9 @@ const Home = () => {
     <div className='container mt-5'>
       {user.id
         ?
-        <h1>Привет {user.name}</h1>
+        <h1 style={{fontSize: '30px', textAlign: 'center'}}>Привет, {user.name}</h1>
         :
-        <h1>Нужно зарегестрироваться</h1>
+        <h1>Нужно зарегистрироваться</h1>
       }
     </div>
   )

@@ -12,7 +12,7 @@ function ModalCHat({ chat, setEvents }) {
   }
 
   wsClient.onopen = () => {
-    console.log('open');
+    // console.log('open');
   }
 
   const wsPost = () => {
