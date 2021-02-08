@@ -14,6 +14,9 @@ const Home = () => {
   const history = useHistory()
   const { user, events } = useSelector(store => store)
   const currentEvent = useSelector(store => store.currentEvent)
+  const redirectOnEventPage = (id) => {
+    history.push(`/event-page/${id}`)
+  }
   useEffect(() => {
     (async () => {
       await dispatch(userInSessionThunk());
@@ -65,6 +68,15 @@ const Home = () => {
           </Clusterer>
           </Map>
       </YMaps>
+      <div>
+        <ul>
+          {events.event && events.event.map(event => (
+            <li key={event._id} onClick={() => redirectOnEventPage(event._id)}>
+              {event.title}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }
