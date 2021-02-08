@@ -26,13 +26,13 @@
 //     dispatch(userLogoutThunk(history))
 //   }
 //   return (
-//     <nav className="navbar navbar-expand-lg navbar-light bg-light px-3">
+//     <nav className="Navbar Navbar-expand-lg Navbar-light bg-light px-3">
 //       <div className="container-fluid ">
-//         <Link className="navbar-brand" to="/">
+//         <Link className="Navbar-brand" to="/">
 //           ABBA
 //         </Link>
-//         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
-//           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+//         <div className="collapse Navbar-collapse" id="navbarTogglerDemo03">
+//           <ul className="Navbar-nav me-auto mb-2 mb-lg-0">
 //             {user.id
 //               ?
 //                 <>
@@ -45,7 +45,7 @@
 //                     </Link>
 //                   </li>
 //                   <li className="nav-item">
-//                     <Link className="nav-link" to="/profile">
+//                     <Link className="nav-link" to="/Profile">
 //                       Profile
 //                     </Link>
 //                   </li>

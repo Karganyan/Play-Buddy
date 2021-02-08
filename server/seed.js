@@ -42,7 +42,7 @@ const place = {
 
 const games = [
   {
-    title: "Взрывные котята",
+    title: "DND",
     rules: "https://www.mosigra.ru/Face/Show/vzryvnye_kotyata/",
     min_players: 2,
     coordinates: [55.684758, 37.738521],
@@ -57,7 +57,7 @@ const games = [
       "https://sun9-71.userapi.com/c850720/v850720894/10d47c/NU0_158reys.jpg", // 200x200
   },
   {
-    title: "Уно",
+    title: "Манчкин",
     rules: "https://tashkent.mosigra.ru/Face/Show/uno/",
     min_players: 2,
     max_players: 10,
@@ -81,17 +81,17 @@ const user = {
 
 
 async function seed() {
-  titles.forEach(async (title) => await Level.create({title}));
-
-  tags.forEach(async (title, i) => {
-   await Tag.create({title, description: tagDescr[i]})
-  })
-
-  await Place.create(place);
+  // titles.forEach(async (title) => await Level.create({title}));
+  //
+  // tags.forEach(async (title, i) => {
+  //  await Tag.create({title, description: tagDescr[i]})
+  // })
+  //
+  // await Place.create(place);
 
   games.forEach(async (game) => {
    const currGame = await Game.create(game);
-   currGame.tags = [await findTag("Карточная"), await findTag("Подходит для детей")];
+   currGame.tags = [await findTag("Ролевая")];
    await currGame.save()
   })
 
