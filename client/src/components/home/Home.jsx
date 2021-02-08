@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { userInSessionThunk } from "../../redux/action-creators/user"
-// import {userInSessionThunk} from '../../redux/'
 import YandexMap from "../Yandex-map/YandexMap"
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps'
 import './home.css'
@@ -16,7 +15,7 @@ const Home = () => {
   const events = useSelector(store => store.events)
   const currentEvent = useSelector(store => store.currentEvent)
   useEffect(() => {
-    dispatch(userInSessionThunk())
+    dispatch(userInSessionThunk());
     // dispatch(getEventsThunk()); Тимур раскоментит
   }, [])
 
