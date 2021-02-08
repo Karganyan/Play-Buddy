@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Navbar from "./components/navbar/Navbar"
-import Home from "./components/home/Home"
-import SignIn from "./components/signin/SignIn"
-import SignUp from "./components/signup/SignUp"
-import User from './components/profile/Profile'
+import Navbar from "./components/Navbar/Navbar"
+import Home from "./components/Home/Home"
+import SignIn from "./components/Signin/SignIn"
+import SignUp from "./components/Signup/SignUp"
+import User from './components/Profile/Profile'
 
 function App() {
   return (

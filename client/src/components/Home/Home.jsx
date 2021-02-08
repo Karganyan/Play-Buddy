@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { userInSessionThunk } from "../../redux/action-creators/user"
-import YandexMap from "../yandex-map/YandexMap"
+import YandexMap from "../Yandex-map/YandexMap"
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps'
-import '../home/home.css'
+import './home.css'
 import { getCurrentEventThunk, getEventsThunk} from "../../redux/action-creators/events"
 
 
@@ -15,7 +15,7 @@ const Home = () => {
   const currentEvent = useSelector(store => store.currentEvent)
   useEffect(() => {
     dispatch(userInSessionThunk())
-    dispatch(getEventsThunk())
+    // dispatch(getEventsThunk())
   }, [])
 
   const clickHandler = (id) => {
