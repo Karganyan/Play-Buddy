@@ -5,38 +5,19 @@
     text-align: center;
 }
 
-
-/*body {*/
-
-
-/*  display: flex;*/
-
-
-/*  align-items: center;*/
-
-
-/*  justify-content: center;*/
-
-
-/*  background-color: #fcf8e8;*/
-
-
-/*}*/
-
-.avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 1px solid black;
-    margin: 10px;
-}
-
 .header {
     display: inline-block;
     width: 40%;
     height: 40%;
     /* border: 1px black solid;  */
     vertical-align: top;
+}
+
+.settings {
+    height: 20px;
+    width: 20px;
+    right: 0px;
+    align-self: flex-end;
 }
 
 .card {

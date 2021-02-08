@@ -42,7 +42,7 @@ const outUserChatsActionCreator = () => {
 
 
 export const signInThunk = (inputValue, history) => {
-  console.log('signInThunk')
+  // console.log('signInThunk')
   return async (dispatch) => {
     const req = await fetch('/user/signin', {
       method: 'POST',
@@ -63,7 +63,7 @@ export const signInThunk = (inputValue, history) => {
 }
 
 export const signUpThunk = (inputValue, history) => {
-  console.log('asdadsa')
+  // console.log('asdadsa')
   return async (dispatch) => {
     const req = await fetch('/user/signup', {
       method: 'POST',
@@ -84,6 +84,7 @@ export const signUpThunk = (inputValue, history) => {
 }
 
 export const userInSessionThunk = () => {
+  // console.log('userInSession')
   return async (dispatch) => {
     const req = await fetch('/user/in-session', {
       method: 'GET',
@@ -94,7 +95,7 @@ export const userInSessionThunk = () => {
       mode: 'cors'
     })
     const res = await req.json()
-    console.log(res.user)
+    // console.log(res.user)
     if (res.user) {
       dispatch(getUser(res.user))
       dispatch(getDbUserEventsActionCreator(res.userEvents))
@@ -133,7 +134,8 @@ export const updateUserThunk = (inputs, userId, history) => {
       body: JSON.stringify({ inputs, userId })
     })
     const res = await req.json()
-    dispatch(updateUser(res))
-    history.push('/')
+    // console.log(res)
+      dispatch(updateUser(res))
+      history.push('/')
   }
 }

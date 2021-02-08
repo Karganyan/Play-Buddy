@@ -81,5 +81,5 @@ wsSerever.on('close', () => {
   console.log('good bye');
 });
 app.listen(process.env.PORT ?? 3001, () => {
-  console.log(`Server has been started on port ${process.env.PORT}`)
+  // console.log(`Server has been started on port ${process.env.PORT}`)
 })

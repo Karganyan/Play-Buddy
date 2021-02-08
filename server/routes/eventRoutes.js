@@ -6,6 +6,8 @@ const Game = require('../models/game')
 const User = require('../models/user');
 
 router.post('/', async (req, res) => {
+  // console.log(req.user._id);
+  // console.log(req.body);
   const { title, description, max_participants } = req.body
   const newChat = new Chat({ messages: [], eventTitle: title });
   const newEvent = new Event({ title, description, max_participants, chat: newChat._id, creator: req.user._id, participants: [req.user._id] });
