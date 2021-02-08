@@ -9,6 +9,7 @@ const CreateEventForm = () => {
     eventTextArea: '',
     address: '',
     category: '',
+    coordinates: '',
     game: '',
     eventPersons: 2,
   })
@@ -24,16 +25,26 @@ const CreateEventForm = () => {
     inputHandler(event)
     setGameValue(event.target.value)
   }
-  const inputHandler = (event) => {
-    setForm(prev => {
-      return { ...prev, [event.target.name]: event.target.value }
-    })
+  const inputHandler = async (event) => {
+    let street
+    if (event.target.name === 'address') {
+      street = event.target.value
+      const req = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-138a17d2a225&format=json&geocode=${street}`)
+      const res = await req.json()
+      const coordinates = res?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.Point?.pos
+      setForm(prev => {
+        return { ...prev, coordinates, [event.target.name]: event.target.value }
+      })
+    } else {
+      setForm(prev => {
+        return { ...prev, [event.target.name]: event.target.value }
+      })
+    }
   }
   const createEventHandler = (event) => {
     event.preventDefault()
     dispatch(createEventThunk(form));
   }
-  console.log(tags)
   return (
     <div className='container'>
       <h1 className='mb-4'>Создание события</h1>
@@ -50,7 +61,7 @@ const CreateEventForm = () => {
           <option selected>Категория игры</option>
           {tags && tags.map(tag => {
             return (
-              <option value={tag._id}>{tag.title}</option>
+              <option key={tags._id} value={tag._id}>{tag.title}</option>
             )
           })}
         </select>
@@ -58,7 +69,7 @@ const CreateEventForm = () => {
           <option selected>Название игры</option>
           {games && games.map(game => {
             return (
-              <option value="2">{game.title}</option>
+              <option key={game._id} value="2">{game.title}</option>
             )
           })}
         </select>
