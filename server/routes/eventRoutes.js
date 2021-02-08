@@ -4,8 +4,8 @@ const Chat = require('../models/chat');
 const Event = require('../models/event');
 
 router.post('/', async (req, res) => {
-  console.log(req.user._id);
-  console.log(req.body);
+  // console.log(req.user._id);
+  // console.log(req.body);
   const { title, description, max_participants } = req.body
   // req.body
   const newChat = new Chat({ messages: [] });
