@@ -1,7 +1,25 @@
+import { useState } from 'react';
 import { Button } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router';
+import { joinEventThunk } from '../../redux/action-creators/events';
 import styles from "./Events.module.css";
 
 const EventPage = () => {
+  const dispatch = useDispatch()
+  const { user, userEvents } = useSelector(store => store);
+  const param = useParams();
+  const [wasAdded, setWasAdded] = useState(false);
+  const joinEvent = () => {
+    const event = userEvents.find(event => event._id === param.id)
+    if (event) {
+      console.log(userEvents);
+      setWasAdded(true)
+      setTimeout(()=>{setWasAdded(false)},3000)
+    } else {
+      dispatch(joinEventThunk({ userId: user.id, eventId: param.id }))
+    }
+  }
 
   return (
     <div>
@@ -31,7 +49,8 @@ const EventPage = () => {
         Labore, animi!
       </div>
 
-      <Button>Записаться на игротеку</Button>
+      <Button onClick={joinEvent}>Записаться на игротеку</Button>
+      {wasAdded && 'ALE TI EZHE ZPISAN'}
     </div>
   );
 };

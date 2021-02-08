@@ -1,29 +1,30 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { userInSessionThunk } from "../../redux/action-creators/user"
-import YandexMap from "../yandex-map/yandex-map"
+// import YandexMap from "../yandex-map/yandex-map"
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps'
 import './home.css'
-import { getCurrentEventThunk, getEventsThunk} from "../../redux/action-creators/events"
-// import EventPage from "../Events/eventPage"
+import { getCurrentEventThunk, getEventsThunk } from "../../redux/action-creators/events"
+import { useHistory } from "react-router"
+// import EventPage from "../Events/EventPage"
 
 const Home = () => {
   const dispatch = useDispatch()
-  const user = useSelector(store => store.user)
-  const events = useSelector(store => store.events.event)
+  const history = useHistory()
+  const { user, events } = useSelector(store => store)
   const currentEvent = useSelector(store => store.currentEvent)
   useEffect(() => {
-    dispatch(userInSessionThunk())
-    dispatch(getEventsThunk())
+    (async () => {
+      await dispatch(userInSessionThunk());
+      await dispatch(getEventsThunk());
+    })()
   }, [])
-
+  console.log(events);
   const clickHandler = (id) => {
     dispatch(getCurrentEventThunk(id))
   }
-  console.log('======>>',events)
 
   const geocode = (ymaps, address) => {
-
     let myGeocoder = ymaps.geocode(address)
     console.log('======>>', address)
     console.log(events)
@@ -37,47 +38,49 @@ const Home = () => {
       }
     )
 
-      let myCoords = [55.830897,37.971041]
-      let myGeocoder2 = ymaps.geocode(myCoords)
-      myGeocoder2.then(
-        function (res) {
-          let nearest = res.geoObjects.get(0);
-          // let name = nearest.properties.get('name')
-          let name = nearest.properties._data.text  // Россия, Москва, улица Вавилова, 1
-          console.log(name)
-        },
-        function (err) {
-          console.log('error')
-        }
-      )
+    let myCoords = [55.830897, 37.971041]
+    let myGeocoder2 = ymaps.geocode(myCoords)
+    myGeocoder2.then(
+      function (res) {
+        let nearest = res.geoObjects.get(0);
+        let name = nearest.properties._data.text  // Россия, Москва, улица Вавилова, 1
+        console.log(name)
+      },
+      function (err) {
+        console.log('error')
+      }
+    )
   }
 
 
-const url = 'https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-138a17d2a225&geocode=37.611347,55.760241'
+  const url = 'https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-138a17d2a225&geocode=37.611347,55.760241'
   const key = '51ad9d93-9100-4ffa-8ebf-138a17d2a225'
+  const redirectOnEventPage = (id) => {
+    history.push(`/event-page/${id}`)
+  }
   return (
     <div className='container mt-5'>
       {user.id
         ?
         <>
           <h1>Привет {user.name}</h1>
-            {currentEvent._id
-              ?
-              <>
-                <h4>{currentEvent.title}</h4>
-                <p>{currentEvent.description}</p>
-                <span>Адрес: {currentEvent.address}(пока это координаты)</span>
-                <button className='btn btn-primary'>записаться на событие</button>
-              </>
-              :
-               <p>Выбери событие</p>
-            }
+          {currentEvent._id
+            ?
+            <>
+              <h4>{currentEvent.title}</h4>
+              <p>{currentEvent.description}</p>
+              <span>Адрес: {currentEvent.address}(пока это координаты)</span>
+              <button className='btn btn-primary'>записаться на событие</button>
+            </>
+            :
+            <p>Выбери событие</p>
+          }
         </>
         :
         <h1>Нужно зарегестрироваться</h1>
       }
-      <YandexMap />
-      <YMaps query={{
+      {/* <YandexMap /> */}
+      {/* <YMaps query={{
         ns: "use-load-option",
         apikey: key,
       }} >
@@ -106,7 +109,16 @@ const url = 'https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-
             </Map>
           })}
         </div>
-      </YMaps>
+      </YMaps>  */}
+      <div>
+        <ul>
+          {events.event && events.event.map(event => (
+              <li key={event._id} onClick={() => redirectOnEventPage(event._id)}>
+                {event.title}
+              </li>
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }

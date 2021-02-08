@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import SignIn from "./components/signin/signIn"
-import SignUp from "./components/signup/signUp"
+import SignIn from "./components/Signin/SignIn"
+import SignUp from "./components/Signup/SignUp"
 import Main from './components/Main/Main'
 import Profile from './components/Profile/Profile'
 import Home from "./components/Home/Home"
+import EventPage from "./components/Events/EventPage"
 
 function App() {
   return (
@@ -32,6 +33,10 @@ function App() {
 
         <Route exact path='/main'>
           <Main />
+        </Route>
+
+        <Route exact path='/event-page/:id'>
+          <EventPage/>
         </Route>
 
       </Switch>

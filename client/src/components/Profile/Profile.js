@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styles from "./Profile.module.css";
 import EditProfile from "./EditProfile";
-import Events from "../events/events";
+import Events from "../Events/Events";
 import CreateEventForm from "../Create-event-form/create-event-form";
 import { useState } from "react"
 import ProfileInfo from "./ProfileInfo";
 import ProfileFavGames from './ProfileFavGames';
-import Chat from '../chat/chat';
+import Chat from "../Chat/chat";
 
 
 function User() {
@@ -16,10 +16,10 @@ function User() {
     <Router>
       <div className="Profile">
         <Route path="/profile" exact component={Profile} />
-        <Route path="/events" component={Events} />
-        <Route path="/chats" component={Chat} />
-        <Route path="/edit" component={EditProfile} />
-        <Route path="/create-event" component={CreateEventForm} />
+        <Route path="/events" exact component={Events} />
+        <Route path="/chats" exact component={Chat} />
+        <Route path="/edit" exact component={EditProfile} />
+        <Route path="/create-event" exact component={CreateEventForm} />
       </div>
     </Router>
   );
@@ -62,11 +62,11 @@ const Profile = () => {
       </div>
       <div className={styles.bottom}>
         <h1>INFO</h1>
-        <ProfileInfo/>
+        <ProfileInfo />
         <br />
         <br />
         <h1>FAVORITE GAMES</h1>
-    <ProfileFavGames/>
+        <ProfileFavGames />
         <Link to='/edit'>
           <button className='btn btn-danger'>Редактировать профиль</button>
         </Link>
