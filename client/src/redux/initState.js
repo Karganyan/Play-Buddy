@@ -2,6 +2,7 @@ export const initState = {
   userChats: [],
   userEvents: [],
   user: {},
-  events: [],
-  currentEvent: {}
+  events: {},
+  currentEvent: {},
+  modalChat: '',
 }

@@ -1,8 +1,38 @@
-import { SET_NEW_CHAT } from "../types/userChats";
+import {ADD_MESSAGE, SET_NEW_CHAT} from "../types/userChats";
 import { SET_NEW_EVENT } from "../types/userEvents";
+import {GET_EVENTS, GET_GAMES, GET_TAGS} from "../types/events"
+//
+// export function createEventThunk(formValue) {
+//   const { eventName, eventTextArea, eventPersons, address, game } = formValue
+//   const setNewChatActionCreator = (chat) => {
+//   return { type: SET_NEW_CHAT, payload: chat }
+// }}
 
-export function createEventThunk(formValue) {
-  const { eventName, eventTextArea, eventPersons, address, game } = formValue
+
+export const getTags = (tags) => {
+  return {
+    type: GET_TAGS,
+    payload: tags
+  }
+}
+export const getGames = (games) => {
+  return {
+    type: GET_GAMES,
+    payload: games
+  }
+}
+
+const setNewEventActionCreator = (event) => {
+  return { type: SET_NEW_EVENT, payload: event }
+}
+
+export const addMessageActionCreator = (data) => {
+  return { type: ADD_MESSAGE, payload: data }
+}
+
+
+export function createEventThunk(formInput) {
+  const { eventName, eventTextArea, eventPersons, address, game } = formInput
   return async (dispatch) => {
     const req = await fetch("/event", {
       method: "POST",
@@ -16,5 +46,41 @@ export function createEventThunk(formValue) {
     console.log('======>>',res);
     dispatch({ type: SET_NEW_CHAT, payload: res[0] })
     dispatch({ type: SET_NEW_EVENT, payload: res[1] })
-  };
+  }
 }
+
+export const getTagsThunk = () => {
+  return async (dispatch) => {
+    const req = await fetch("/event/tags", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: 'cors'
+    })
+    const res = await req.json()
+    if (res.status === 200) {
+
+      // console.log('TAGS', res.tags)
+      dispatch(getTags(res.tags))
+    }
+  }
+}
+
+export const getGamesThunk = (title) => {
+  return async (dispatch) => {
+    const req = await fetch(`/event/games/${title}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    mode: 'cors'
+    })
+    const res = await req.json()
+    if (res.status === 200) {
+      // console.log('GAMES',res.games)
+      dispatch(getGames(res.games))
+    }
+  }
+}
+

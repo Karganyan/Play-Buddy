@@ -5,13 +5,12 @@ import YandexMap from "../yandex-map/YandexMap"
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps'
 import '../home/home.css'
 import { getCurrentEventThunk, getEventsThunk} from "../../redux/action-creators/events"
-
-
+import EventPage from "../events/EventPage"
 
 const Home = () => {
   const dispatch = useDispatch()
   const user = useSelector(store => store.user)
-  const events = useSelector(store => store.events)
+  const events = useSelector(store => store.events.event)
   const currentEvent = useSelector(store => store.currentEvent)
   useEffect(() => {
     dispatch(userInSessionThunk())
@@ -21,6 +20,7 @@ const Home = () => {
   const clickHandler = (id) => {
     dispatch(getCurrentEventThunk(id))
   }
+  console.log('======>>',events)
 
   const geocode = (ymaps, address) => {
 
@@ -55,7 +55,6 @@ const Home = () => {
 
 const url = 'https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-138a17d2a225&geocode=37.611347,55.760241'
   const key = '51ad9d93-9100-4ffa-8ebf-138a17d2a225'
-  // console.log(currentEvent)
   return (
     <div className='container mt-5'>
       {user.id
@@ -85,7 +84,7 @@ const url = 'https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-
         <div >
           <img src="" alt=""/>
 
-          {events.map(event => {
+          {events && events.map(event => {
             return <Map onLoad={(ymaps) => geocode(ymaps, event.address)} defaultState={{ center: [55.75, 37.57], zoom: 10, controls: ['zoomControl', 'fullscreenControl'] }}
                         modules={['control.ZoomControl', 'control.FullscreenControl', 'geocode']}
                         className='map'

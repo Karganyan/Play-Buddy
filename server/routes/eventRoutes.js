@@ -4,6 +4,7 @@ const Chat = require('../models/chat');
 const Event = require('../models/event');
 const Game = require('../models/game')
 const User = require('../models/user');
+const Tags = require('../models/tag')
 
 router.post('/', async (req, res) => {
   const { title, description, max_participants, address, game } = req.body
@@ -18,15 +19,26 @@ router.post('/', async (req, res) => {
   res.json([newChat, newEvent]);
 })
 
-router.get('/get-event', async (req, res) => {
-  const allEvent = await Event.find()
+router.get('/', async (req, res) => {
+  const allEvent = await Event.find({ visible: true })
   res.json(allEvent)
 })
 
-router.get('/get-current-event/:id', async (req, res) => {
+router.get('/tags', async (req, res) => {
+  const tags = await Tags.find()
+  res.json({status: 200, tags})
+})
+
+router.get('/games/:title', async (req, res) => {
+  const { title } = req.params
+  const games = await Game.find({'tags' : {$in: title}}).populate()
+  console.log('BACK', games)
+  res.json({status: 200, games})
+})
+
+router.get('/:id', async (req, res) => {
   const { id } = req.params
   const currentEvent = await Event.findById(id)
-  // console.log('=======>', currentEvent)
   res.json(currentEvent)
 })
 
