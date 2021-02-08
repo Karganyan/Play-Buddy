@@ -3,11 +3,10 @@ import styles from "./Profile.module.css";
 import EditProfile from "./EditProfile";
 import Events from "../Events/Events";
 import CreateEventForm from "../Create-event-form/CreateEventForm";
-import { useState } from "react"
+import { useState } from "react";
 import ProfileInfo from "./ProfileInfo";
-import ProfileFavGames from './ProfileFavGames';
-import UserChats from '../Chat/UserChats';
-
+import ProfileFavGames from "./ProfileFavGames";
+import UserChats from "../Chat/UserChats";
 
 function User() {
   const [edit, setEdit] = useState(false);
@@ -31,10 +30,11 @@ const Profile = () => {
       <div className={styles.header}>
         <div>
           <img src="dog.jpg" alt="dog" className={styles.avatar} />
-          <Link to='/edit'>
-
-            <img src="https://img.icons8.com/ios-filled/64/000000/settings.png" className={styles.settings} />
-
+          <Link to="/edit">
+            <img
+              src="https://img.icons8.com/ios-filled/64/000000/settings.png"
+              className={styles.settings}
+            />
           </Link>
           <div>
             {/* <Link to='/info'>
@@ -62,16 +62,16 @@ const Profile = () => {
       </div>
       <div className={styles.bottom}>
         <h1>INFO</h1>
-        <ProfileInfo/>
+        <ProfileInfo />
         <br />
         <br />
         <h1>FAVORITE GAMES</h1>
-    <ProfileFavGames/>
-        <Link to='/edit'>
-          <button className='btn btn-danger'>Редактировать профиль</button>
+        <ProfileFavGames />
+        <Link to="/edit">
+          <button className="btn btn-danger">Редактировать профиль</button>
         </Link>
       </div>
-    </div >
+    </div>
   );
 };
 
