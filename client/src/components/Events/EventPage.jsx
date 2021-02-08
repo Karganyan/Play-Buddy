@@ -1,23 +1,28 @@
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { joinEventThunk } from '../../redux/action-creators/events';
 import styles from "./Events.module.css";
 
 const EventPage = () => {
   const dispatch = useDispatch()
+  const history = useHistory()
   const { user, userEvents } = useSelector(store => store);
   const param = useParams();
-  const [wasAdded, setWasAdded] = useState(false);
+  const [wasAdded, setWasAdded] = useState('');
   const joinEvent = () => {
     const event = userEvents.find(event => event._id === param.id)
     if (event) {
-      console.log(userEvents);
-      setWasAdded(true)
-      setTimeout(()=>{setWasAdded(false)},3000)
+      setWasAdded('notok')
+      setTimeout(() => { setWasAdded('') }, 3000)
     } else {
-      dispatch(joinEventThunk({ userId: user.id, eventId: param.id }))
+      (async () => {
+        await setWasAdded('ok')
+        await setTimeout(() => { setWasAdded('') }, 3000)
+        await dispatch(joinEventThunk({ userId: user.id, eventId: param.id }))
+      })()
+      history.push('/chats')
     }
   }
 
@@ -50,7 +55,15 @@ const EventPage = () => {
       </div>
 
       <Button onClick={joinEvent}>Записаться на игротеку</Button>
-      {wasAdded && 'ALE TI EZHE ZPISAN'}
+      {wasAdded
+        ?
+        (wasAdded === 'notok'
+          ?
+          'ALE TI UZHE ZPISAN'
+          :
+          'BRAT TI ZAPISAN OT DUSHI')
+        :
+        ''}
     </div>
   );
 };

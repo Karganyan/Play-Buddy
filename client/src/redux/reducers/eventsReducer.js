@@ -9,7 +9,14 @@ const eventsReducer = (state = {}, action) => {
     case GET_GAMES:
       return { ...state, games: action.payload }
     case UPDATE_EVENT:
-      return state.map(event => event._id === action.payload._id ? { ...event, participants: [...event.participants, action.payload] } : event)
+      return {
+        ...state,
+        event: state.event.map(event => event._id === action.payload._id
+          ?
+          { ...event, participants: [...event.participants, action.payload] }
+          :
+          event)
+      }
     default:
       return state
   }
