@@ -6,9 +6,9 @@ const Game = require('../models/game')
 const User = require('../models/user');
 
 router.post('/', async (req, res) => {
-  const { title, description, max_participants } = req.body
+  const { title, description, max_participants, address, game } = req.body
   const newChat = new Chat({ messages: [], eventTitle: title });
-  const newEvent = new Event({ title, description, max_participants, chat: newChat._id, creator: req.user._id, participants: [req.user._id] });
+  const newEvent = new Event({ title, description, max_participants, chat: newChat._id, creator: req.user._id, participants: [req.user._id], address, game });
   const user = await User.findById(req.user._id)
   await newChat.save();
   await newEvent.save();
@@ -19,13 +19,13 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/get-event', async (req, res) => {
-  const allEvent = await Game.find()
+  const allEvent = await Event.find()
   res.json(allEvent)
 })
 
 router.get('/get-current-event/:id', async (req, res) => {
   const { id } = req.params
-  const currentEvent = await Game.findById(id)
+  const currentEvent = await Event.findById(id)
   // console.log('=======>', currentEvent)
   res.json(currentEvent)
 })
