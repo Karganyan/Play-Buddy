@@ -5,6 +5,7 @@ import YandexMap from "../Yandex-map/YandexMap"
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps'
 import './home.css'
 import { getCurrentEventThunk, getEventsThunk} from "../../redux/action-creators/events"
+import EventPage from "../Events/EventPage"
 
 
 
@@ -14,8 +15,8 @@ const Home = () => {
   const events = useSelector(store => store.events)
   const currentEvent = useSelector(store => store.currentEvent)
   useEffect(() => {
-    dispatch(userInSessionThunk())
-    // dispatch(getEventsThunk())
+    dispatch(userInSessionThunk());
+    // dispatch(getEventsThunk()); Тимур раскоментит
   }, [])
 
   const clickHandler = (id) => {

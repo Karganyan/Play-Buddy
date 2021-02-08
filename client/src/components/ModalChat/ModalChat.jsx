@@ -1,12 +1,16 @@
 import { useState } from "react";
 import ReactDOM from "react-dom";
-const wsClient = new WebSocket('ws://localhost:8080')
+import { useDispatch, useSelector } from "react-redux";
+import { addMessageActionCreator } from "../../redux/action-creators/createEventThunk";
+import { ADD_MESSAGE } from "../../redux/types/userChats";
+const wsClient = new WebSocket('ws://localhost:1234')
 
 
-function ModalCHat({ chat, setEvents }) {
+function ModalCHat() {
+  const { userChats, modalChat, user } = useSelector(store => store)
+  const dispatch = useDispatch()
+  const chat = userChats.find(chat => chat._id === modalChat)
   const [input, setInput] = useState('');
-
-
   const inputHandler = ({ target }) => {
     setInput(target.value)
   }
@@ -16,34 +20,52 @@ function ModalCHat({ chat, setEvents }) {
   }
 
   const wsPost = () => {
-    wsClient.send(JSON.stringify({ mess: input, chatId: chat.id }))
+    wsClient.send(JSON.stringify({ mess: input, chatId: chat._id, userId: user.id }))
     setInput('');
   }
 
   wsClient.onmessage = (message) => {
-    const myMessage = JSON.parse(message.data);
-    setEvents(pre =>{
-      return (
-        pre.map((event) => {
-          return (
-            event.chat.id === myMessage.chatId ?
-              { ...event, chat: { ...chat, messages: [...chat.messages, { id: Math.random(), author: 'wsdfwef', message: myMessage.mess }] } } :
-              event
-          )
-        })
-      )
-    })
+    const { newMess, chatId } = JSON.parse(message.data);
+    dispatch(addMessageActionCreator({ newMess, chatId }))
   }
 
   return (
     ReactDOM.createPortal(
       <>
-        <div className='sdfw'>
-          <input onChange={inputHandler} value={input} />
-          <button onClick={wsPost}>send</button>
-          {chat.messages && chat.messages.map(mess => (
-            <div key={mess.id}>{mess.message}</div>
-          ))}
+        <div style={{ border: '1px solid black', width: 400, height: 500, margin: 'auto', padding: '10px' }}>
+          {chat
+            ?
+            (chat.messages.length
+              ?
+              <>
+                {chat.eventTitle}
+                <br />
+                <input onChange={inputHandler} value={input} />
+                <button onClick={wsPost}>send</button>
+                {(chat.messages.map(mess => (
+                  <div key={mess._id}>{mess.text}</div>
+                )))}
+              </>
+              :
+              (
+                <>
+                  {chat.eventTitle}
+                  <br />
+                  <input onChange={inputHandler} value={input} />
+                  <button onClick={wsPost}>send</button>
+                  <div>
+                    <br />
+                    {'there are no messages here yet'}
+                  </div>
+                </>
+              ))
+            :
+            (
+              <div>
+                {'select chat'}
+              </div>
+            )
+          }
         </div>
       </>
       , document.getElementById('portal')

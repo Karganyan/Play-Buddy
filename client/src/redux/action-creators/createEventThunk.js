@@ -1,6 +1,17 @@
-import { SET_NEW_CHAT } from "../types/userChats";
+import { ADD_MESSAGE, SET_NEW_CHAT } from "../types/userChats";
 import { SET_NEW_EVENT } from "../types/userEvents";
 
+const setNewChatActionCreator = (chat) => {
+  return { type: SET_NEW_CHAT, payload: chat }
+}
+
+const setNewEventActionCreator = (event) => {
+  return { type: SET_NEW_EVENT, payload: event }
+}
+
+export const addMessageActionCreator = (data) => {
+  return { type: ADD_MESSAGE, payload: data }
+}
 export function createEventThunk({ eventName, eventTextArea, eventPersons }) {
   return async (dispatch) => {
     const req = await fetch("/event", {
@@ -13,7 +24,7 @@ export function createEventThunk({ eventName, eventTextArea, eventPersons }) {
     });
     const res = await req.json();
     console.log(res);
-    dispatch({ type: SET_NEW_CHAT, payload: res[0] })
-    dispatch({ type: SET_NEW_EVENT, payload: res[1] })
+    dispatch(setNewChatActionCreator(res[0]))
+    dispatch(setNewEventActionCreator(res[1]))
   };
 }
