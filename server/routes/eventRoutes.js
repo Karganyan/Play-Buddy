@@ -18,15 +18,14 @@ router.post('/', async (req, res) => {
   res.json([newChat, newEvent]);
 })
 
-router.get('/get-event', async (req, res) => {
-  const allEvent = await Game.find()
+router.get('/', async (req, res) => {
+  const allEvent = await Event.find({ visible: true })
   res.json(allEvent)
 })
 
-router.get('/get-current-event/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   const { id } = req.params
-  const currentEvent = await Game.findById(id)
-  // console.log('=======>', currentEvent)
+  const currentEvent = await Event.findById(id)
   res.json(currentEvent)
 })
 

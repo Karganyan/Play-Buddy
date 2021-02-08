@@ -17,14 +17,12 @@ export const getCurrentEvent = (event) => {
 
 export const getEventsThunk = () => {
   return async (dispatch) => {
-    console.log('here')
-    const req = await fetch('/event/get-event', {
+    const req = await fetch('/event', {
       method: 'GET',
-      credentials: 'include',
       headers: {
-        'Content-type': 'application/json',
+        'Content-Type': 'application/json',
       },
-      mode: 'cors'
+      mode: 'cors',
     })
     const res = await req.json()
     if (res) {
@@ -35,11 +33,12 @@ export const getEventsThunk = () => {
 
 export const getCurrentEventThunk = (id) => {
   return async (dispatch) => {
-    const req = await fetch(`/event/get-current-event/${id}`, {
+    const req = await fetch(`/event/${id}`, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json',
       },
+      mode: 'cors'
     })
     const res = await req.json()
     if (res) {

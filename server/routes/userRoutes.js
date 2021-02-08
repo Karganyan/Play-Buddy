@@ -18,10 +18,8 @@ router.post('/signup', passport.authenticate('local'), async (req, res) => {
 
 router.get('/in-session', async (req, res) => {
   if (req.session.user) {
-    // console.log(req.session.user);
     const user = await User.findById(req.session.user.id).populate('userEvents')
-    const chats = await Chat.find({ '_id': { $in: user.userChats } });
-    console.log(chats);
+    const chats = await Chat.find({ '_id': { $in: user.userChats } }).populate('messages');
     res.json({ user: req.session.user, userEvents: user.userEvents, userChats: chats })
   } else {
     res.json({ user: null })

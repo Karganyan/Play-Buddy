@@ -23,6 +23,20 @@ export const updateUser = (user) => {
   }
 }
 
+const getDbUserEventsActionCreator = (userEvents) => {
+  return { type: GET_DB_USER_EVENTS, payload: userEvents }
+}
+
+const getDbUserChatsActionCreator = (userChats) => {
+  return { type: GET_DB_USER_CHATS, payload: userChats }
+}
+const outUserEventsActionCreators = () => {
+  return { type: OUT_USER_EVENTS }
+}
+
+const outUserChatsActionCreator = () => {
+  return { type: OUT_USER_CHATS }
+}
 
 //----------------------------THUNK---------------------------------
 
@@ -71,7 +85,7 @@ export const userInSessionThunk = () => {
   return async (dispatch) => {
     const req = await fetch('/user/in-session', {
       method: 'GET',
-      credentials: 'include',
+      // credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
@@ -80,8 +94,8 @@ export const userInSessionThunk = () => {
     const res = await req.json()
     if (res.user) {
       dispatch(getUser(res.user))
-      dispatch({ type: GET_DB_USER_EVENTS, payload: res.userEvents })
-      dispatch({ type: GET_DB_USER_CHATS, payload: res.userChats })
+      dispatch(getDbUserEventsActionCreator(res.userEvents))
+      dispatch(getDbUserChatsActionCreator(res.userChats))
     }
   }
 }
@@ -98,8 +112,8 @@ export const userLogoutThunk = (history) => {
     })
     if (req.status === 200) {
       dispatch(logoutUser({}))
-      dispatch({ type: OUT_USER_EVENTS })
-      dispatch({ type: OUT_USER_CHATS })
+      dispatch(outUserEventsActionCreators())
+      dispatch(outUserChatsActionCreator())
       history.push('/')
     }
   }
@@ -116,7 +130,7 @@ export const updateUserThunk = (inputs, userId, history) => {
       body: JSON.stringify({ inputs, userId })
     })
     const res = await req.json()
-      dispatch(updateUser(res))
-      history.push('/')
+    dispatch(updateUser(res))
+    history.push('/')
   }
 }
