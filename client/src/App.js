@@ -1,21 +1,21 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Navbar from "./components/navbar/Navbar"
-import Home from "./components/home/Home"
-import SignIn from "./components/signin/SignIn"
-import SignUp from "./components/signup/SignUp"
-import User from './components/profile/Profile'
+import SignIn from "./components/signin/signIn"
+import SignUp from "./components/signup/signUp"
+import Main from './components/Main/Main'
+import Profile from './components/Profile/Profile'
+import Home from "./components/Home/Home"
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
+        <Home />
       </div>
 
       <Switch>
 
         <Route exact path='/'>
-          <Home />
+          <Main />
         </Route>
 
         <Route exact path='/signin'>
@@ -27,7 +27,11 @@ function App() {
         </Route>
 
         <Route exact path='/profile'>
-          <User />
+          <Profile />
+        </Route>
+
+        <Route exact path='/main'>
+          <Main />
         </Route>
 
       </Switch>

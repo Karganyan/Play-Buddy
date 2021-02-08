@@ -1,0 +1,48 @@
+.profile {
+    border: 1px black solid;
+    width: 700px;
+    height: 700px;
+    text-align: center;
+}
+
+.header {
+    display: inline-block;
+    width: 40%;
+    height: 40%;
+    /* border: 1px black solid;  */
+    vertical-align: top;
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.settings {
+    height: 20px;
+    width: 20px;
+    right: 0px;
+    align-self: flex-end;
+}
+
+.card {
+    width: 10rem;
+    height: 10rem;
+    margin: 10px;
+    border: 1px black solid;
+}
+
+.cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.favGameImage {
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 50%
+}

@@ -1,10 +1,12 @@
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styles from "./Profile.module.css";
 import EditProfile from "./EditProfile";
-import Events from "../events/Events";
-import CreateEventForm from "../create-event-form/CreateEventForm";
+import Events from "../events/events";
+import CreateEventForm from "../Create-event-form/create-event-form";
 import { useState } from "react"
-import UserChats from "../chat/UserChats";
+import ProfileInfo from "./ProfileInfo";
+import ProfileFavGames from './ProfileFavGames';
+import Chat from '../chat/chat';
 
 
 function User() {
@@ -15,7 +17,7 @@ function User() {
       <div className="Profile">
         <Route path="/profile" exact component={Profile} />
         <Route path="/events" component={Events} />
-        <Route path="/chats" component={UserChats} />
+        <Route path="/chats" component={Chat} />
         <Route path="/edit" component={EditProfile} />
         <Route path="/create-event" component={CreateEventForm} />
       </div>
@@ -29,6 +31,11 @@ const Profile = () => {
       <div className={styles.header}>
         <div>
           <img src="dog.jpg" alt="dog" className={styles.avatar} />
+          <Link to='/edit'>
+
+            <img src="https://img.icons8.com/ios-filled/64/000000/settings.png" className={styles.settings} />
+
+          </Link>
           <div>
             {/* <Link to='/info'>
               <button className='btn btn-outline-success' type='button'>
@@ -55,22 +62,16 @@ const Profile = () => {
       </div>
       <div className={styles.bottom}>
         <h1>INFO</h1>
-        <br />
+        <ProfileInfo/>
         <br />
         <br />
         <h1>FAVORITE GAMES</h1>
-        <div className={styles.cards}>
-          <div className={styles.card}>
-            {/* <img className='card-img-top' src='...' alt='Card' /> */}
-          </div>
-          <div className={styles.card}></div>
-          <div className={styles.card}></div>
-        </div>
+    <ProfileFavGames/>
         <Link to='/edit'>
           <button className='btn btn-danger'>Редактировать профиль</button>
         </Link>
       </div>
-    </div>
+    </div >
   );
 };
 

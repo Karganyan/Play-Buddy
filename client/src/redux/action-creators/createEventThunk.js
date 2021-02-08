@@ -42,11 +42,11 @@ export function createEventThunk(formInput) {
       body: JSON.stringify({ title: eventName, description: eventTextArea, max_participants: eventPersons, address, game }), // body data type must match "Content-Type" header
       mode: 'cors'
     });
-    const res = await req.json();
-    console.log('======>>',res);
-    dispatch({ type: SET_NEW_CHAT, payload: res[0] })
-    dispatch({ type: SET_NEW_EVENT, payload: res[1] })
-  }
+    const res = await req.text();
+    console.log(res);
+    dispatch(setNewChatActionCreator(res[0]))
+    dispatch(setNewEventActionCreator(res[1]))
+  };
 }
 
 export const getTagsThunk = () => {

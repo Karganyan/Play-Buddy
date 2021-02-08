@@ -1,0 +1,29 @@
+.gameInfo,
+.gameLeft,
+.gameRight,
+.gameDetailes,
+.gameTags {
+    display: flex;
+}
+
+.gameDetailes,
+.gameTags {
+    justify-content: space-around;
+}
+
+.gameDetailes .span,
+.gameTags .span {
+    height: 2em;
+    background-color: rgba(170, 132, 132, 0.712);
+    box-shadow: 1px 1px 3px rgb(144, 55, 22);
+    padding: 2px;
+    margin: 5px 0;
+}
+
+.gameLeft,
+.gameRight {
+    flex-direction: column;
+    border: 1px solid black;
+    max-width: 50vw;
+    padding: 20px;
+}

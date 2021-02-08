@@ -1,11 +1,11 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { userInSessionThunk } from "../../redux/action-creators/user"
-import YandexMap from "../yandex-map/YandexMap"
+import YandexMap from "../yandex-map/yandex-map"
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps'
-import '../home/home.css'
+import './home.css'
 import { getCurrentEventThunk, getEventsThunk} from "../../redux/action-creators/events"
-import EventPage from "../events/EventPage"
+// import EventPage from "../Events/eventPage"
 
 const Home = () => {
   const dispatch = useDispatch()

@@ -11,7 +11,6 @@ const EditProfile = () => {
   const username = useSelector(store => store.user.name);
   const userId = useSelector(store => store.user.id);
 
-
   const [inputs, setInputs] = useState({
     name: username,
     info: '',
@@ -33,7 +32,7 @@ const EditProfile = () => {
     const storageRef = app.storage().ref();
     const fileRef = storageRef.child(file.name);
     await fileRef.put(file).then(() => {
-      console.log('Uploaded file', file.name);
+      // console.log('Uploaded file', file.name);
     });
   };
 
