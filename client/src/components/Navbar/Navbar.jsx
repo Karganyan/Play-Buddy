@@ -53,7 +53,7 @@
 //               :
 //                 <>
 //                   <li className="nav-item">
-//                     <Link className="nav-link" to="/signin">Sign In</Link>
+//                     <Link className="nav-link" to="/Signin">Sign In</Link>
 //                   </li>
 //                   <li className="nav-item">
 //                     <a href='http://localhost:3001/user/google' className="nav-link" >Sign In With Google</a>
