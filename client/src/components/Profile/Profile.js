@@ -1,40 +1,26 @@
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import styles from "./Profile.module.css";
-import EditProfile from "./EditProfile";
-import Events from "../Events/Events";
-import CreateEventForm from "../Create-event-form/create-event-form";
-import { useState } from "react"
+// import EditProfile from "./EditProfile";
+// import Events from "../events/events";
+// import CreateEventForm from "../Create-event-form/create-event-form";
+// import { useState } from "react"
 import ProfileInfo from "./ProfileInfo";
 import ProfileFavGames from './ProfileFavGames';
-import Chat from "../Chat/chat";
+// import UserChats from '../Chat/UserChats';
+// import Main from '../Main/Main';
 
-
-function User() {
-  const [edit, setEdit] = useState(false);
-
-  return (
-    <Router>
-      <div className="Profile">
-        <Route path="/profile" exact component={Profile} />
-        <Route path="/events" exact component={Events} />
-        <Route path="/chats" exact component={Chat} />
-        <Route path="/edit" exact component={EditProfile} />
-        <Route path="/create-event" exact component={CreateEventForm} />
-      </div>
-    </Router>
-  );
-}
 
 const Profile = () => {
   return (
     <div className={styles.profile}>
       <div className={styles.header}>
         <div>
+          <Link to='/'>
+            <img src='board-game.png' />
+          </Link>
           <img src="dog.jpg" alt="dog" className={styles.avatar} />
           <Link to='/edit'>
-
             <img src="https://img.icons8.com/ios-filled/64/000000/settings.png" className={styles.settings} />
-
           </Link>
           <div>
             {/* <Link to='/info'>
@@ -44,19 +30,15 @@ const Profile = () => {
             </Link> */}
             <Link to="/events">
               <button className="btn btn-outline-success" type="button">
-                EVENTS
+                События
               </button>
             </Link>
             <Link to="/chats">
               <button className="btn btn-outline-success" type="button">
-                CHATS
+                Чаты
               </button>
             </Link>
-            <Link to="/create-event">
-              <button className="btn btn-outline-success" type="button">
-                Create Event
-              </button>
-            </Link>
+
           </div>
         </div>
       </div>
@@ -75,4 +57,4 @@ const Profile = () => {
   );
 };
 
-export default User;
+export default Profile;

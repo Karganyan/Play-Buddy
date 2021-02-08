@@ -3,37 +3,28 @@ import SignIn from "./components/Signin/SignIn"
 import SignUp from "./components/Signup/SignUp"
 import Main from './components/Main/Main'
 import Profile from './components/Profile/Profile'
+// import MainPage from './components/Main/Main'
+import EditProfile from "./components/Profile/EditProfile"
+import CreateEventForm from "./components/Create-event-form/create-event-form"
+import Events from "./components/Events/Events"
+import Chat from "./components/Chat/chat"
 import Home from "./components/Home/Home"
 import EventPage from "./components/Events/EventPage"
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Home />
-      </div>
-
       <Switch>
-
-        <Route exact path='/'>
-          <Main />
-        </Route>
-
-        <Route exact path='/signin'>
-          <SignIn />
-        </Route>
-
-        <Route exact path='/signup'>
-          <SignUp />
-        </Route>
-
-        <Route exact path='/profile'>
-          <Profile />
-        </Route>
-
-        <Route exact path='/main'>
-          <Main />
-        </Route>
+      
+        <Route path="/" exact component={Main} />
+        <Route path="/events" exact component={Events} />
+        <Route path="/chats" exact component={Chat} />
+        <Route path="/profile" exact component={Profile} />
+        <Route path="/edit" exact component={EditProfile} />
+        <Route path="/create-event" exact component={CreateEventForm} />
+        <Route path="/signin" exact component={SignIn} />
+        <Route path="/signup" exact component={SignUp} />
+        <Route path="/home" exact component={Home} />
 
         <Route exact path='/event-page/:id'>
           <EventPage/>
