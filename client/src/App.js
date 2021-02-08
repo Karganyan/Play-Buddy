@@ -1,46 +1,37 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import Navbar from "./components/Navbar/Navbar"
-import Home from "./components/Home/Home"
-import SignIn from "./components/Signin/SignIn"
-import SignUp from "./components/Signup/SignUp"
-import User from './components/Profile/Profile'
 import Main from './components/Main/Main'
 import Profile from './components/Profile/Profile'
+import EditProfile from "./components/Profile/EditProfile"
+import CreateEventForm from "./components/Create-event-form/create-event-form"
+import Events from "./components/events/events"
+import Home from "./components/Home/Home"
+import EventPage from "./components/events/EventPage"
+import Signin from "./components/Signin/SignIn"
+import SignUp from "./components/signup/SignUp"
+import Chat from "./components/chat/chat"
+import Game from './components/Game/Game';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        {/* <Navbar /> */}
-        <Home />
-      </div>
-
       <Switch>
+        <Route path="/" exact component={Main} />
+        <Route path="/events" exact component={Events} />
+        <Route path="/chats" exact component={Chat} />
+        <Route path="/profile" exact component={Profile} />
+        <Route path="/edit" exact component={EditProfile} />
+        <Route path="/create-event" exact component={CreateEventForm} />
+        <Route path="/signin" exact component={Signin} />
+        <Route path="/signup" exact component={SignUp} />
+        <Route path="/home" exact component={Home} />
+        <Route path="/game" exact component={Game} />
 
-        <Route exact path='/'>
-          <Main />
+        <Route exact path="/event-page/:id">
+          <EventPage />
         </Route>
-
-        <Route exact path='/signin'>
-          <SignIn />
-        </Route>
-
-        <Route exact path='/signup'>
-          <SignUp />
-        </Route>
-
-        <Route exact path='/profile'>
-          <Profile />
-        </Route>
-
-        <Route exact path='/main'>
-          <Main />
-        </Route>
-
       </Switch>
-
     </Router>
-  )
+  );
 }
 
 export default App;

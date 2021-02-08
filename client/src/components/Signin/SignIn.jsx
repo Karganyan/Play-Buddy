@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { signInThunk } from "../../redux/action-creators/user"
 
 
-const SignIn = () => {
+const Signin = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const [ inputValue, setInputValue ] = useState()
@@ -39,4 +39,4 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default Signin

@@ -24,8 +24,12 @@ const wsSerever = new WebSocket.Server({ port: 1234 });
 
 
 // Mongo DB
-mongoose.connect('mongodb://localhost:27017/abba', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
-  .then((connect) => console.log("Success connect mongo"))
+mongoose
+  .connect(
+    "mongodb+srv://Tim:vIxGjX0g290J9TeR@abba.he1uc.mongodb.net/abba?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
+  )
+  .then((connect) => console.log("Success connect mongo"));
 
 // MiddleWare
 app.use(express.urlencoded({ extended: false }))

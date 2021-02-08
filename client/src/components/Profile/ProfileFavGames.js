@@ -43,7 +43,7 @@ const ProfileFavGames = () => {
 
   return (
     <div >
-      <Route path="/game" exact component={Game} />
+      
 
       <Carousel
         responsive={responsive}
