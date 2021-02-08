@@ -29,6 +29,11 @@ const Profile = () => {
       <div className={styles.header}>
         <div>
           <img src="dog.jpg" alt="dog" className={styles.avatar} />
+          <Link to='/edit'>
+
+            <img src="https://img.icons8.com/ios-filled/64/000000/settings.png" className={styles.settings} />
+
+          </Link>
           <div>
             {/* <Link to='/info'>
               <button className='btn btn-outline-success' type='button'>
@@ -66,11 +71,8 @@ const Profile = () => {
           <div className={styles.card}></div>
           <div className={styles.card}></div>
         </div>
-        <Link to='/edit'>
-          <button className='btn btn-danger'>Редактировать профиль</button>
-        </Link>
       </div>
-    </div>
+    </div >
   );
 };
 

@@ -99,7 +99,7 @@ async function seed() {
   myUser.fav_games = [await findGames("Взрывные котята"), await findGames("Уно")];
   await myUser.save();
 
-  console.log("ready");
+  // console.log("ready");
   mongoose.disconnect()
 }
 
