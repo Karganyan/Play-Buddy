@@ -20,7 +20,6 @@ const CreateEventForm = () => {
     dispatch(getTagsThunk())
     dispatch(getGamesThunk(gameValue))
   }, [form.category])
-  console.log('games', games);
   const tagHandler = (event) => {
     inputHandler(event)
     setGameValue(event.target.value)
@@ -46,121 +45,53 @@ const CreateEventForm = () => {
     dispatch(createEventThunk(form));
   }
   return (
-    <div className="container">
-      <h1 className="mb-4">Создание события</h1>
+    <div className='container'>
+      <h1 className='mb-4'>Создание события</h1>
       <form onSubmit={createEventHandler}>
         <div className="mb-3">
-          <label htmlFor="event" className="form-label">
-            Название события
-          </label>
-          <input
-            onChange={inputHandler}
-            name="eventName"
-            type="text"
-            className="form-control"
-            id="event"
-            aria-describedby="emailHelp"
-          />
+          <label htmlFor="event" className="form-label">Название события</label>
+          <input onChange={inputHandler} name='eventName' type="text" className="form-control" id="event" aria-describedby="emailHelp" />
         </div>
         <div className="mb-3">
-          <label htmlFor="address" className="form-label">
-            Адрес
-          </label>
-          <input
-            onChange={inputHandler}
-            name="address"
-            type="text"
-            className="form-control"
-            id="address"
-          />
+          <label htmlFor="address" className="form-label">Адрес</label>
+          <input onChange={inputHandler} name='address' type="text" className="form-control" id="address" />
         </div>
-        <select
-          onChange={tagHandler}
-          name="category"
-          className="mb-3 form-select"
-        >
+        <select onChange={tagHandler} name='category' className="mb-3 form-select">
           <option selected>Категория игры</option>
-          {tags &&
-            tags.map((tag) => {
-              return (
-                <option key={tags._id} value={tag._id}>
-                  {tag.title}
-                </option>
-              );
-            })}
+          {tags && tags.map(tag => {
+            return (
+              <option key={tags._id} value={tag._id}>{tag.title}</option>
+            )
+          })}
         </select>
         <select onChange={inputHandler} className="mb-3 form-select">
           <option selected>Название игры</option>
-          {games &&
-            games.map((game) => {
-              return (
-                <option key={game._id} value="2">
-                  {game.title}
-                </option>
-              );
-            })}
-
-               </select>
+          {games && games.map(game => {
+            return (
+              <option key={game._id} value="2">{game.title}</option>
+            )
+          })}
+        </select>
         <div className="mb-3">
           <label htmlFor="desc">Описание события</label>
-          <textarea
-            onChange={inputHandler}
-            name="eventTextArea"
-            className="form-control"
-            id="desc"
-          />
+          <textarea onChange={inputHandler} name='eventTextArea' className="form-control" id="desc" />
         </div>
         <div className="mb-3">
-          <label htmlFor="amount" className="form-label">
-            Колличество игроков
-          </label>
-          <input
-            onChange={inputHandler}
-            name="eventPersons"
-            type="number"
-            className="form-control"
-            id="amount"
-          />
+          <label htmlFor="amount" className="form-label">Колличество игроков</label>
+          <input onChange={inputHandler} name='eventPersons' type="number" className="form-control" id="amount" />
         </div>
         <div className="mb-3 form-check">
-          <label className="form-check-label" htmlFor="beginner">
-            Начинащий игрок
-          </label>
-          <input
-            onChange={inputHandler}
-            name="beginner"
-            className="form-check-input"
-            type="checkbox"
-            value=""
-            id="beginner"
-          />
+          <label className="form-check-label" htmlFor="beginner">Начинащий игрок</label>
+          <input onChange={inputHandler} name='beginner' className="form-check-input" type="checkbox" value="" id="beginner" />
         </div>
         <div className="mb-3 form-check">
-          <label className="form-check-label" htmlFor="advanced">
-            Продвинутый игрок
-          </label>
-          <input
-            onChange={inputHandler}
-            name="advanced"
-            className="form-check-input"
-            type="checkbox"
-            value=""
-            id="advanced"
-          />
+          <label className="form-check-label" htmlFor="advanced">Продвинутый игрок</label>
+          <input onChange={inputHandler} name='advanced' className="form-check-input" type="checkbox" value="" id="advanced" />
         </div>
-        {games &&
-          games.map((game) => {
-            return (
-              <option key={game._id} value="2">
-                {game.title}
-              </option>
-            );
-          })}
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
+
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
-      </div>
+    </div>
   );
 };
 

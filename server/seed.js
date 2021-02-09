@@ -47,9 +47,15 @@ const tagDescr = [
 }; */
 
 const games = [
+<<<<<<< HEAD
   /*   {
     title: "Взрывные котята",
     rules: "https://www.mosigra.ru/Face/Show/vzryvnye_kotyata/rules",
+=======
+  {
+    title: "DND",
+    rules: "https://www.mosigra.ru/Face/Show/vzryvnye_kotyata/",
+>>>>>>> dev
     min_players: 2,
     max_players: 5,
     min_playtime: 15,
@@ -58,9 +64,20 @@ const games = [
     thumbnail: "/gameThumbs/Взрывные котята_.jpg",
     description:
       "Взрывные котята» — это карточная игра, дико популярная на «Кикстартере». Она там собрала почти девять миллионов долларов — для настольных игр это рекорд. Все в неё просто влюбились. Кому-то эта игра напоминает «Уно», кому-то русскую рулетку. Вы тянете карты из колоды, в которой среди прочих карт замешаны взрывные котята — они сразу выкидывают вас из игры. Все остальные карты помогают избежать встречи с опасными котятами и подставить под удар друзей. Вам нужно остаться в игре последним выжившим",
+<<<<<<< HEAD
   }, {
     title: "Uno",
     rules: "https://tashkent.mosigra.ru/Face/Show/uno/rules",
+=======
+    img:
+      "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcSOrpsATVPW8EyBCMVwIHuHeEAHfKswO97KUJrb67_XOeABO9HIZxE&usqp=CAc", //4658x3434
+    thumbnail:
+      "https://sun9-71.userapi.com/c850720/v850720894/10d47c/NU0_158reys.jpg", // 200x200
+  },
+  {
+    title: "Манчкин",
+    rules: "https://tashkent.mosigra.ru/Face/Show/uno/",
+>>>>>>> dev
     min_players: 2,
     max_players: 10,
     min_playtime: 10,
@@ -187,6 +204,7 @@ const games = [
     password: '123',
   }; */
 
+<<<<<<< HEAD
 
   async function seed() {
   // titles.forEach(async (title) => await Level.create({title}));
@@ -195,10 +213,20 @@ const games = [
   //  await Tag.create({title, description: tagDescr[i]})
   // })
   
+=======
+async function seed() {
+  // titles.forEach(async (title) => await Level.create({title}));
+  //
+  // tags.forEach(async (title, i) => {
+  //  await Tag.create({title, description: tagDescr[i]})
+  // })
+  //
+>>>>>>> dev
   // await Place.create(place);
 
   games.forEach(async (game) => {
    const currGame = await Game.create(game);
+<<<<<<< HEAD
   
    currGame.tags = [
      await findTag("На целый день"),
@@ -207,6 +235,9 @@ const games = [
      await findTag("С полем и фишками"),
      await findTag("Классика"),
    ];
+=======
+   currGame.tags = [await findTag("Ролевая")];
+>>>>>>> dev
    await currGame.save()
   })
 
