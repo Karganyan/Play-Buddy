@@ -26,7 +26,6 @@ const CreateEventForm = () => {
       }
     })()
   }, [form.category])
-
   const tagHandler = (event) => {
     inputHandler(event)
     setGameValue(event.target.value)

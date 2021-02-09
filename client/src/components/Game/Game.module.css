@@ -27,3 +27,18 @@
     max-width: 50vw;
     padding: 20px;
 }
+
+
+/* .span {
+    position: relative;
+    display: inline-block;
+    margin-top: 20px;
+}
+
+.span[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background-color: blue;
+} */
