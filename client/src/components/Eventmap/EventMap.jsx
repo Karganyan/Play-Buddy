@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { userInSessionThunk } from "../../redux/action-creators/user"
 // import YandexMap from "../yandex-map/yandex-map"
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps'
-import './home.css'
+import './eventMap.css'
 import { getCurrentEventThunk, getEventsThunk } from "../../redux/action-creators/events"
 import { useHistory } from "react-router"
 

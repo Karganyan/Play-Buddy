@@ -14,7 +14,7 @@ const userReducer = (state = {}, action) => {
         name,
         phone,
         info,
-        id
+        id, 
       }
     default:
       return state

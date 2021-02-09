@@ -6,20 +6,26 @@ import EditProfile from "./EditProfile";
 // import { useState } from "react"
 import ProfileInfo from "./ProfileInfo";
 import ProfileFavGames from './ProfileFavGames';
+
 // import UserChats from '../Chat/UserChats';
 // import Main from '../Main/Main';
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
+    const avatar = useSelector((store) => store.user.avatar);
   return (
     <div className={styles.profile}>
       <div className={styles.header}>
         <div>
-          <Link to='/'>
-            <img src='board-game.png' />
+          <Link to="/">
+            <img src="board-game.png" />
           </Link>
-          <img src="dog.jpg" alt="dog" className={styles.avatar} />
-          <Link to='/edit'>
-            <img src="https://img.icons8.com/ios-filled/64/000000/settings.png" className={styles.settings} />
+          <img src="avatar.png" alt="avatar" className={styles.avatar} />
+          <Link to="/edit">
+            <img
+              src="https://img.icons8.com/ios-filled/64/000000/settings.png"
+              className={styles.settings}
+            />
           </Link>
           <div>
             {/* <Link to='/info'>
@@ -37,7 +43,6 @@ const Profile = () => {
                 Чаты
               </button>
             </Link>
-
           </div>
         </div>
       </div>
@@ -48,9 +53,6 @@ const Profile = () => {
         <br />
         <h1>FAVORITE GAMES</h1>
         <ProfileFavGames />
-        <Link to='/edit'>
-          <button className='btn btn-danger'>Редактировать профиль</button>
-        </Link>
       </div>
     </div>
   );

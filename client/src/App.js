@@ -3,7 +3,7 @@ import Main from './components/Main/Main'
 import Profile from './components/Profile/Profile'
 import EditProfile from "./components/Profile/EditProfile"
 import CreateEventForm from "./components/Create-event-form/CreateEventForm"
-import Home from "./components/Home/Home"
+import Home from "./components/Eventmap/EventMap"
 import Signin from "./components/Signin/SignIn"
 import SignUp from "./components/signup/SignUp"
 import Events from "./components/events/Events"

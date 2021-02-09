@@ -24,17 +24,19 @@ const EditProfile = () => {
     info: '',
     phone: '',
   });
+  const [file, setFile] = useState('');
 
   const nameHandler = event => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
   };
 
   const handleInfo = async () => {
-    dispatch(updateUserThunk(inputs, userId, history))
+    dispatch(updateUserThunk(inputs, userId, history));
+    
     // console.log(response);
   };
 
-  // сохранение картинки в firebase
+ /*  // сохранение картинки в firebase
   const onFileChange = async e => {
     const file = e.target.files[0];
     const storageRef = app.storage().ref();
@@ -42,7 +44,13 @@ const EditProfile = () => {
     await fileRef.put(file).then(() => {
       // console.log('Uploaded file', file.name);
     });
-  };
+  }; */
+// сохранение картинки в локальное хранилице
+ const onFileChange = e => {
+ console.log(e.target.files[0].name);
+ setFile(e.target.files[0].name);
+}
+console.log(file);
 
 
   const onSubmit = event => {
