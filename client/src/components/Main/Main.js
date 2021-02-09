@@ -33,7 +33,7 @@ function MainPage() {
   }
 
   return (
-    <>пше ф
+    <>
 
       <ThemeProvider theme={theme}>
         <>
