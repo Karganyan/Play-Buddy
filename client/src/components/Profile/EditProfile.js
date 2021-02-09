@@ -61,8 +61,9 @@ const EditProfile = () => {
   };
 
     const selectHandler = (event) => {
-      console.log(event);
+      console.log(inputs.fav_games);
       setInputs({ ...inputs, fav_games: event.map(e => e = e._id) });
+
     };
 console.log('inputs', inputs);
   return (

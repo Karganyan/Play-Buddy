@@ -143,7 +143,7 @@ export const updateUserThunk = (inputs, userId, history) => {
     })
     const res = await req.json()
     console.log(res)
-      // dispatch(updateUser(res))
+      dispatch(updateUser(res))
       history.push('/profile')
   }
 }

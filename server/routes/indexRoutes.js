@@ -8,7 +8,8 @@ router.get('/', (req, res) => {
 })
 
 router.post('/edit', async (req, res) => {
-  const { name, info, phone, fav_games } = req.body.inputs;
+  const { name, info, phone, fav_games  } = req.body.inputs;
+  let games = fav_games
   const { userId } = req.body;
   req.session.user = { ...req.session.user, name, userId, fav_games };
   const user = await User.findByIdAndUpdate(userId, {
@@ -16,9 +17,10 @@ router.post('/edit', async (req, res) => {
       name,
       information: info,
       phone, 
-      fav_games
+      fav_games: fav_games.concat(games),
     }
   }, null, () => {});
+  // console.log(user);
   res.json(user)
 })
 
