@@ -7,7 +7,7 @@ import { GET_EVENTS } from '../../redux/types/events'
 const Checkbox = () => {
   const items = useSelector(items => items.events.event)
 
-  const sort = items.map(event => {
+  const sort = items?.map(event => {
     if (event.category.length) { 
       // console.log(event.category[0]);
     }   
@@ -20,7 +20,7 @@ const Checkbox = () => {
       )
     })
     // console.log('====================================');
-    // console.log(smth);
+    console.log(smth);
     // console.log('====================================');
   }
 
@@ -34,57 +34,57 @@ const Checkbox = () => {
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bea' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bea' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Подходит для детей
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999beb' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999beb' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Карточная
         </label>
       </div>
       <br/>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bec' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bec' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         ККИ
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bed' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bed' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Словесная
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bee' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bee' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         На целый день
         </label>
       </div>
       <br/>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bef' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bef' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Ролевая
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf0' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf0' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         На скорость
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf1' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf1' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Детективная
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf2' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf2' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Мафия
         </label>

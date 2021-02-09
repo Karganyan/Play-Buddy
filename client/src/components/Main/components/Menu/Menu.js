@@ -30,10 +30,7 @@ const Menu = ({ open }) => {
           <span role="img" aria-label="Карта Игр"><img src="https://img.icons8.com/doodle/48/000000/dice.png" /></span>
         Карта Игр
         </Link>
-        {/* <Link to="/">
-          <span role="img" aria-label="Категории"><img src="https://img.icons8.com/doodle/48/000000/board-game.png" /></span>
-        Категории
-        </Link> */}
+
       </StyledMenu>
 
   )
