@@ -33,6 +33,7 @@ export const addMessageActionCreator = (data) => {
 
 export function createEventThunk(formInput, history) {
   const { title, address, category, game, description, max_participants, coordinates, thumbnail } = formInput
+  console.log(title, address, category, game, description, max_participants, coordinates, thumbnail)
   return async (dispatch) => {
     const req = await fetch("/event", {
       method: "POST",

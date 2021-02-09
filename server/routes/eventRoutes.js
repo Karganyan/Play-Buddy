@@ -9,6 +9,7 @@ const Tags = require('../models/tag')
 
 router.post('/', async (req, res) => {
   const { title, description, max_participants, address, game, coordinates,category, thumbnail } = req.body
+  console.log('>>>>>>>', title, description, max_participants, address, game, coordinates,category, thumbnail )
   const newCoordinates = coordinates.split(' ').map(el => +el).reverse()
 
   const newChat = new Chat({ messages: [], eventTitle: title });

@@ -35,9 +35,7 @@ router.get('/google/callback', passport.authenticate('google'), (req, res) => {
   res.redirect('http://localhost:3000/')
 })
 
-router.get('/auth/vkontakte', passport.authenticate('vkontakte'), (req, res) => {
-
-});
+router.get('/auth/vkontakte', passport.authenticate('vkontakte'))
 
 router.get('/vk/callback',
   passport.authenticate('vkontakte'), (req, res) => {
