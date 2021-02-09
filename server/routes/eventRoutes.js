@@ -37,7 +37,6 @@ router.get('/tags', async (req, res) => {
 router.get('/games/:title', async (req, res) => {
   const { title } = req.params
   const games = await Game.find({'tags' : {$in: title}}).populate()
-  // console.log('BACK', games)
   res.json({status: 200, games})
 })
 

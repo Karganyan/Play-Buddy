@@ -1,12 +1,12 @@
-import {ADD_MESSAGE, SET_NEW_CHAT} from "../types/userChats";
+import { ADD_MESSAGE, SET_NEW_CHAT } from "../types/userChats";
 import { SET_NEW_EVENT } from "../types/userEvents";
-import {GET_EVENTS, GET_GAMES, GET_TAGS} from "../types/events"
+import { GET_EVENTS, GET_GAMES, GET_TAGS } from "../types/events"
 //
 // export function createEventThunk(formValue) {
 //   const { eventName, eventTextArea, eventPersons, address, game } = formValue
-//   const setNewChatActionCreator = (chat) => {
-//   return { type: SET_NEW_CHAT, payload: chat }
-// }}
+const setNewChatActionCreator = (chat) => {
+  return { type: SET_NEW_CHAT, payload: chat }
+}
 
 
 export const getTags = (tags) => {
@@ -42,10 +42,10 @@ export function createEventThunk(formInput) {
       body: JSON.stringify({ title: eventName, description: eventTextArea, max_participants: eventPersons, address, game, category, coordinates }), // body data type must match "Content-Type" header
       mode: 'cors'
     });
-    const res = await req.text();
+    const res = await req.json();
     console.log(res);
-    // dispatch(setNewChatActionCreator(res[0]))
-    // dispatch(setNewEventActionCreator(res[1]))
+    dispatch(setNewChatActionCreator(res[0]))
+    dispatch(setNewEventActionCreator(res[1]))
   };
 }
 
@@ -60,8 +60,6 @@ export const getTagsThunk = () => {
     })
     const res = await req.json()
     if (res.status === 200) {
-
-      // console.log('TAGS', res.tags)
       dispatch(getTags(res.tags))
     }
   }
@@ -70,15 +68,14 @@ export const getTagsThunk = () => {
 export const getGamesThunk = (title) => {
   return async (dispatch) => {
     const req = await fetch(`/event/games/${title}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    mode: 'cors'
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: 'cors'
     })
     const res = await req.json()
     if (res.status === 200) {
-      // console.log('GAMES',res.games)
       dispatch(getGames(res.games))
     }
   }

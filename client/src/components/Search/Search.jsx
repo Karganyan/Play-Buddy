@@ -1,4 +1,15 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getEventsThunk } from '../../redux/action-creators/events';
+import { userInSessionThunk } from '../../redux/action-creators/user';
+import { GET_EVENTS } from '../../redux/types/events'
+
 const Search = () => {
+  const dispatch = useDispatch();
+  const events = dispatch.events;
+
+  console.log(events);
+
   return (
     <div>
       <h3>Найти игру</h3>

@@ -42,7 +42,7 @@ const place = {
 
 const games = [
   {
-    title: "DND",
+    title: "дота 2",
     rules: "https://www.mosigra.ru/Face/Show/vzryvnye_kotyata/",
     min_players: 2,
     coordinates: [55.684758, 37.738521],
@@ -57,7 +57,7 @@ const games = [
       "https://sun9-71.userapi.com/c850720/v850720894/10d47c/NU0_158reys.jpg", // 200x200
   },
   {
-    title: "Манчкин",
+    title: "хартстоун",
     rules: "https://tashkent.mosigra.ru/Face/Show/uno/",
     min_players: 2,
     max_players: 10,
@@ -82,29 +82,30 @@ const user = {
 
 async function seed() {
   // titles.forEach(async (title) => await Level.create({title}));
-  //
+  
   // tags.forEach(async (title, i) => {
   //  await Tag.create({title, description: tagDescr[i]})
   // })
-  //
+  
   // await Place.create(place);
 
   games.forEach(async (game) => {
    const currGame = await Game.create(game);
-   currGame.tags = [await findTag("Ролевая")];
+   currGame.tags = [await findTag("Карточная")];
    await currGame.save()
   })
 
   const myUser = await User.create(user);
-  myUser.fav_games = [await findGames("Взрывные котята"), await findGames("Уно")];
+  myUser.fav_games = [await findGames('дота 2'), await findGames("хартстоун")];
   await myUser.save();
-
-  // console.log("ready");
+  
+  console.log("ready");
   mongoose.disconnect()
 }
 
 async function findTag(title) {
   const item = await Tag.findOne({ title});
+  console.log(item);
   return item._id;
 }
 

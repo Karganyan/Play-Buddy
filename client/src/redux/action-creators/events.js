@@ -28,7 +28,6 @@ export const getEventsThunk = () => {
     })
     const res = await req.json()
     if (res) {
-      console.log(res);
       dispatch(getEvents(res))
     }
   }

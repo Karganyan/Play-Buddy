@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userInSessionThunk } from '../../redux/action-creators/user';
 // import YandexMap from "../yandex-map/yandex-map"
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps';
-import './home.css';
+import './eventMap.css';
 import { getCurrentEventThunk, getEventsThunk } from '../../redux/action-creators/events';
 import { useHistory } from 'react-router';
 import Search from '../Search/Search';
 import Checkbox from '../Search/Checkbox';
 
-const Home = () => {
+const EventMap = () => {
   const key = '51ad9d93-9100-4ffa-8ebf-138a17d2a225';
   const dispatch = useDispatch();
   const history = useHistory();
@@ -18,22 +18,23 @@ const Home = () => {
   const redirectOnEventPage = id => {
     history.push(`/event-page/${id}`);
   };
+
   useEffect(() => {
     (async () => {
       await dispatch(userInSessionThunk());
       await dispatch(getEventsThunk());
     })();
   }, []);
+  
   const clickHandler = id => {
     dispatch(getCurrentEventThunk(id));
   };
   return (
-    <>
-
+    <div className='eventMap'>
       <div className='container mt-5'>
         {user.id ? (
           <>
-            <h1>Привет {user.name}</h1>
+            <h1>Привет, {user.name}</h1>
             {currentEvent._id ? (
               <>
                 <h4>{currentEvent.title}</h4>
@@ -46,8 +47,10 @@ const Home = () => {
             )}
           </>
         ) : (
-          <h1>Нужно зарегестрироваться</h1>
+          <h1>Давай зарегистрируемся?</h1>
         )}
+        <Search />
+        <Checkbox />
         <YMaps query={{ ns: 'use-load-option', apikey: key }}>
           <Map
             defaultState={{
@@ -92,8 +95,8 @@ const Home = () => {
           </ul>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-export default Home;
+export default EventMap;

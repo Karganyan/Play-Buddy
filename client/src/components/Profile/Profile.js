@@ -49,6 +49,7 @@ const Profile = () => {
         <br />
         <h1>FAVORITE GAMES</h1>
         <ProfileFavGames />
+        <br/>
         <Link to='/edit'>
           <button className='btn btn-danger'>Редактировать профиль</button>
         </Link>
