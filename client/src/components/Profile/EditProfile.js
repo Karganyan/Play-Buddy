@@ -2,10 +2,7 @@ import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom'
-import { app } from '../../base';
 import { updateUserThunk } from '../../redux/action-creators/user';
-import firebase from 'firebase';
-import 'firebase/storage';
 
 const EditProfile = () => {
   const dispatch = useDispatch();
@@ -28,20 +25,8 @@ const EditProfile = () => {
     // console.log(response);
   };
 
-  // сохранение картинки в firebase
-  const onFileChange = async e => {
-    const file = e.target.files[0];
-    const storageRef = app.storage().ref();
-    const fileRef = storageRef.child(file.name);
-    await fileRef.put(file).then(() => {
-      // console.log('Uploaded file', file.name);
-    });
-  };
 
-  const listRef = storage.ref().child('games')
-  console.log(listRef)
 
-  
 
   const onSubmit = event => {
     event.preventDefault();

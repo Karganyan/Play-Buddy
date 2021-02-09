@@ -12,11 +12,14 @@ const CreateEventForm = () => {
     category: '',
     coordinates: '',
     game: '',
+    thumbnail: '',
     eventPersons: 2,
   })
   const history = useHistory()
   const dispatch = useDispatch()
   const { tags, games, event } = useSelector(store => store.events)
+
+
   useEffect(() => {
     (async () => {
       await dispatch(getTagsThunk())
@@ -40,7 +43,15 @@ const CreateEventForm = () => {
       setForm(prev => {
         return { ...prev, coordinates, [event.target.name]: event.target.value }
       })
+
     } else {
+      setForm(prev => {
+        let currentThumbnail
+        if (event.target.name === 'game') {
+          currentThumbnail = games && games.find(el => el._id === event.target.value)?.thumbnail
+        }
+        return { ...prev, thumbnail : currentThumbnail, [event.target.name]: event.target.value }
+      })
       setForm(prev => {
         return { ...prev, [event.target.name]: event.target.value }
       })
@@ -52,6 +63,8 @@ const CreateEventForm = () => {
     // const event = event.find(event => event)
     // history.push(`/event-page/${}`) доделаю позже
   }
+  // console.log('======>', games)
+  console.log('FORM', form)
   return (
     <div className='container'>
       <h1 className='mb-4'>Создание события</h1>
@@ -65,15 +78,15 @@ const CreateEventForm = () => {
           <input onChange={inputHandler} name='address' type="text" className="form-control" id="address" />
         </div>
         <select onChange={tagHandler} name='category' className="mb-3 form-select">
-          <option selected>Категория игры</option>
+          <option >Категория игры</option>
           {tags && tags.map(tag => {
             return (
-              <option key={tags._id} value={tag._id}>{tag.title}</option>
+              <option key={tag._id} value={tag._id}>{tag.title}</option>
             )
           })}
         </select>
         <select onChange={inputHandler} name='game' className="mb-3 form-select" >
-          <option selected>Название игры</option>
+          <option>Название игры</option>
           {games && games.map(game => {
             return (
               <option key={game._id} value={game._id}>{game.title}</option>

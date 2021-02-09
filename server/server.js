@@ -21,11 +21,10 @@ const app = express()
 const wsSerever = new WebSocket.Server({ port: 1234 });
 
 
-//vIxGjX0g290J9TeR
 
-// mongodb+srv://Tim:vIxGjX0g290J9TeR@abba.he1uc.mongodb.net/abba?retryWrites=true&w=majority
+
 // Mongo DB
-mongoose.connect('mongodb+srv://Tim:vIxGjX0g290J9TeR@abba.he1uc.mongodb.net/abba?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+mongoose.connect(process.env.MONGO_DB, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
   .then((connect) => console.log("Success connect mongo"))
 
 // MiddleWare
@@ -39,7 +38,7 @@ app.set('sessionName', 'sid')
 
 // Mongo Session Store
 const store = new MongoDBStore({
-  uri: 'mongodb+srv://Tim:vIxGjX0g290J9TeR@abba.he1uc.mongodb.net/abba?retryWrites=true&w=majority',
+  uri: process.env.MONGO_DB,
   collection: 'mySessions'
 })
 

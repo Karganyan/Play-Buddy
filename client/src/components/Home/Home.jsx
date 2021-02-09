@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { userInSessionThunk } from "../../redux/action-creators/user"
-// import YandexMap from "../Yandex-map/Yandex-map"
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps'
 import './home.css'
 import { getCurrentEventThunk, getEventsThunk } from "../../redux/action-creators/events"
@@ -56,16 +55,11 @@ const Home = () => {
           <Clusterer options={{ groupByCoordinates: false }}>
             {events.event && events.event.map(event => {
               return (
-                <div key={event._id}>
-                  <Placemark onClick={() => clickHandler(event._id)}  geometry={event.coordinates} options={{
-                     iconLayout: 'default#image',
-                     iconImageHref: event.thumbnail,
-                     iconImageSize: [40, 40],
-                      // iconShape: {
-                        // type: 'Circle',
-                        // coordinates: [0, 0],
-                        // radius: 20
-                      // },
+                <div key={event._id} >
+                  <Placemark onClick={() => clickHandler(event._id)} geometry={event.coordinates} options={{
+                    iconLayout: 'default#image',
+                    iconImageHref: `http://localhost:3001${event.thumbnail}`,
+                    iconImageSize: [45, 45],
                   }}/>
                 </div>
               )
