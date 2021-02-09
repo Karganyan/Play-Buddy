@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { userInSessionThunk } from "../../redux/action-creators/user"
-// import YandexMap from "../yandex-map/yandex-map"
+// import YandexMap from "../Yandex-map/Yandex-map"
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps'
 import './home.css'
 import { getCurrentEventThunk, getEventsThunk } from "../../redux/action-creators/events"
@@ -61,6 +61,11 @@ const Home = () => {
                      iconLayout: 'default#image',
                      iconImageHref: event.thumbnail,
                      iconImageSize: [40, 40],
+                      iconShape: {
+                        // type: 'Circle',
+                        coordinates: [0, 0],
+                        // radius: 20
+                      },
                   }}/>
                 </div>
               )

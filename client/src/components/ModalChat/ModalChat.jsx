@@ -64,7 +64,7 @@ function ModalCHat() {
             :
             (
               <div>
-                {'select chat'}
+                {'select Сhat'}
               </div>
             )
           }

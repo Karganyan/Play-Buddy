@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { createEventThunk, getGamesThunk, getTagsThunk } from "../../redux/action-creators/createEventThunk"
 
 const CreateEventForm = () => {
+  const tags = useSelector(store => store.events.tags)
+  const games = useSelector(store => store.events.games)
   const [gameValue, setGameValue] = useState('')
   const [form, setForm] = useState({
     eventName: '',
@@ -10,17 +12,19 @@ const CreateEventForm = () => {
     address: '',
     category: '',
     coordinates: '',
+    thumbnail: '',
     game: '',
     eventPersons: 2,
   })
   const dispatch = useDispatch()
-  const tags = useSelector(store => store.events.tags)
-  const games = useSelector(store => store.events.games)
+
   useEffect(() => {
     dispatch(getTagsThunk())
     dispatch(getGamesThunk(gameValue))
   }, [form.category])
 
+  console.log(form)
+  console.log(games)
   const tagHandler = (event) => {
     inputHandler(event)
     setGameValue(event.target.value)
@@ -33,7 +37,7 @@ const CreateEventForm = () => {
       const res = await req.json()
       const coordinates = res?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.Point?.pos
       setForm(prev => {
-        return { ...prev, coordinates, [event.target.name]: event.target.value }
+        return { ...prev, coordinates, thumbnail: games[0]?.thumbnail, [event.target.name]: event.target.value }
       })
     } else {
       setForm(prev => {
@@ -65,14 +69,20 @@ const CreateEventForm = () => {
             )
           })}
         </select>
-        <select onChange={inputHandler} className="mb-3 form-select">
+        <select name='game' onChange={inputHandler} className="mb-3 form-select">
           <option selected>Название игры</option>
           {games && games.map(game => {
             return (
-              <option key={game._id} value="2">{game.title}</option>
+              <option key={game._id} value={game.title}>{game.title}</option>
             )
           })}
         </select>
+        {/*{games && games.map(game => {*/}
+        {/*  return (*/}
+        {/*    <input type='hidden' value={game?.thumbnail} name='hiddenValue'/>*/}
+        {/*  )*/}
+        {/*})}*/}
+
         <div className="mb-3">
           <label htmlFor="desc">Описание события</label>
           <textarea onChange={inputHandler} name='eventTextArea' className="form-control" id="desc" />

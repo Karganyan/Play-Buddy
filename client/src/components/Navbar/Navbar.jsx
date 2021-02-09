@@ -59,7 +59,7 @@
 //                     <a href='http://localhost:3001/user/google' className="nav-link" >Sign In With Google</a>
 //                   </li>
 //                   <li className="nav-item">
-//                     <Link className="nav-link" to="/signup">Sign Up</Link>
+//                     <Link className="nav-link" to="/Signup">Sign Up</Link>
 //                   </li>
 //                 </>
 //               }

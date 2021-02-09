@@ -4,8 +4,8 @@ import {GET_EVENTS, GET_GAMES, GET_TAGS} from "../types/events"
 //
 // export function createEventThunk(formValue) {
 //   const { eventName, eventTextArea, eventPersons, address, game } = formValue
-//   const setNewChatActionCreator = (chat) => {
-//   return { type: SET_NEW_CHAT, payload: chat }
+//   const setNewChatActionCreator = (Сhat) => {
+//   return { type: SET_NEW_CHAT, payload: Сhat }
 // }}
 
 
