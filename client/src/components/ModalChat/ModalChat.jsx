@@ -2,7 +2,8 @@ import { useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessageActionCreator } from "../../redux/action-creators/createEventThunk";
-import styles from "./ModalChat.module.css";
+import styles from './ModalChat.module.css'
+
 const wsClient = new WebSocket('ws://localhost:1234')
 
 
@@ -32,7 +33,7 @@ function ModalCHat() {
   return (
     ReactDOM.createPortal(
       <>
-        <div style={{ border: '1px solid black', width: 400, height: 500, margin: 'auto', padding: '10px' }}>
+        <div className={styles.chatModule}>
           {chat
             ?
             (chat.messages.length
@@ -40,12 +41,21 @@ function ModalCHat() {
               <>
                 <div>
                   {chat.eventTitle}
-                  <br />
-                  {(chat.messages.map(mess => (
-                    <div key={mess._id}>{mess.text}</div>
-                  )))}
-                  <input onChange={inputHandler} value={input} />
-                  <button onClick={wsPost}>send</button>
+                  <div className={styles.chatInModule}>
+                    {chat.messages.map(mess => {
+                      return (
+                        user.id === mess.user_ref
+                          ?
+                          <div className={styles.userRight} key={mess._id}>{mess.text}</div>
+                          :
+                          <div key={mess._id}>{mess.text}</div>
+                      )
+                    })}
+                  </div>
+                  <div className={styles.chatInput}>
+                    <input onChange={inputHandler} value={input} />
+                    <button onClick={wsPost}>send</button>
+                  </div>
                 </div>
               </>
               :
@@ -53,8 +63,10 @@ function ModalCHat() {
                 <>
                   {chat.eventTitle}
                   <br />
-                  <input onChange={inputHandler} value={input} />
-                  <button onClick={wsPost}>send</button>
+                  <div className={styles.chatInput}>
+                    <input onChange={inputHandler} value={input} />
+                    <button onClick={wsPost}>send</button>
+                  </div>
                   <div>
                     <br />
                     {'there are no messages here yet'}

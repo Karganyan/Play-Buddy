@@ -13,18 +13,20 @@ function Chat() {
   return (
     <>
       <div className={styles.chatConteiner}>
-        <h1>This is chats!</h1>
-        {store.userChats.length
-          ?
-          store.userChats.map(item => (
-            <div key={item._id} onClick={() => chatHandler(item._id)}>
-              {item.eventTitle}
-            </div>
-          ))
-          :
-          'there are no chats here yet'}
+        <div className={styles.headConteiner}>ЧАТЫ СОБЫТИЙ</div>
+        <div className={styles.chatsConteiner}>
+          {store.userChats.length
+            ?
+            store.userChats.map(item => (
+              <div className={styles.currentChat} key={item._id} onClick={() => chatHandler(item._id)}>
+                {item.eventTitle}
+              </div>
+            ))
+            :
+            'there are no chats here yet'}
+        </div>
+          {store.userChats.length ? <ModalCHat /> : null}
       </div>
-      {store.userChats.length ? <ModalCHat /> : null}
     </>
   )
 }
