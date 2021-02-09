@@ -44,7 +44,7 @@
 .favGameImage {
     max-width: 120px;
     max-height: 120px;
-    border-radius: 50%
+    border-radius: 5px;
 }
 
 .formControl {
