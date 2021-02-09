@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useState } from 'react'
 import { useHistory } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
-import { signInThunk } from "../../redux/action-creators/user"
+import {signInGoogleThunk, signInThunk, signInVkThunk} from "../../redux/action-creators/user"
 
 
 const Signin = () => {
@@ -20,6 +20,12 @@ const Signin = () => {
     event.preventDefault()
     dispatch(signInThunk(inputValue, history))
   }
+  const googleHandler = () => {
+    dispatch(signInGoogleThunk(history))
+  }
+  const vkHandler = () => {
+    dispatch(signInVkThunk(history))
+  }
 
   return (
     <div className='container mt-5'>
@@ -33,9 +39,9 @@ const Signin = () => {
           <input onChange={inputHandler} name='password' type="password" className="form-control" id="exampleInputPassword13" />
         </div>
         <button onClick={submitHandler} type="submit" className="btn btn-primary col-md-2 offset-md-5 mb-2">Sign In</button>
-        <Link to='/signup' className="form-text col-md-2 offset-md-5 mb-2 ">Create account</Link>
-        <Link to='/user/google' className="form-text col-md-2 offset-md-5 mb-2 ">Google</Link>
-        <Link to='/user/auth/vkontakte' className="form-text col-md-2 offset-md-5 mb-2 ">VK</Link>
+        <Link to='/signup' className="form-text col-md-2 offset-md-5 mb-2">Create account</Link>
+        <a href='http://localhost:3001/user/google' className="form-text col-md-2 offset-md-5 mb-2">Google</a>
+        <a href='http://localhost:3001/user/auth/vkontakte' className="form-text col-md-2 offset-md-5 mb-2">VK</a>
       </form>
     </div>
   )

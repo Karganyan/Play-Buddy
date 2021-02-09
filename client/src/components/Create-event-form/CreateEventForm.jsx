@@ -6,13 +6,14 @@ import { createEventThunk, getGamesThunk, getTagsThunk } from "../../redux/actio
 const CreateEventForm = () => {
 
   const [form, setForm] = useState({
-    eventName: '',
-    eventTextArea: '',
+    title: '',
     address: '',
     category: '',
-    coordinates: '',
     game: '',
-    eventPersons: 2,
+    description: '',
+    max_participants: 1,
+    coordinates: '',
+    thumbnail: '',
   })
   const history = useHistory()
   const dispatch = useDispatch()
@@ -26,6 +27,22 @@ const CreateEventForm = () => {
     inputHandler(event)
     setGameValue(pre => games.filter(game=>game.tags.includes(event.target.value)))
   }
+  // const inputHandler = async (event) => {
+  //   let street
+  //   if (event.target.name === 'address') {
+  //     street = event.target.value
+  //     const req = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-138a17d2a225&format=json&geocode=${street}`)
+  //     const res = await req.json()
+  //     const coordinates = res?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.Point?.pos
+  //     setForm(prev => {
+  //       return { ...prev, coordinates, [event.target.name]: event.target.value }
+  //     })
+  //   } else {
+  //     setForm(prev => {
+  //       return { ...prev, [event.target.name]: event.target.value }
+  //     })
+  //   }
+  // }
   const inputHandler = async (event) => {
     let street
     if (event.target.name === 'address') {
@@ -36,7 +53,15 @@ const CreateEventForm = () => {
       setForm(prev => {
         return { ...prev, coordinates, [event.target.name]: event.target.value }
       })
-    } else {
+    }
+    else if (event.target.name === 'game') {
+      setForm(prev => {
+        let currentThumbnail
+        currentThumbnail = games && games.find(el => el._id === event.target.value)?.thumbnail
+        return { ...prev, thumbnail : currentThumbnail, [event.target.name]: event.target.value }
+      })
+    }
+    else {
       setForm(prev => {
         return { ...prev, [event.target.name]: event.target.value }
       })
@@ -44,7 +69,7 @@ const CreateEventForm = () => {
   }
   const createEventHandler = async (e) => {
     e.preventDefault()
-    await dispatch(createEventThunk(form));
+    await dispatch(createEventThunk(form, history));
     // const event = event.find(event => event)
     // history.push(`/event-page/${}`) доделаю позже
   }
@@ -54,7 +79,7 @@ const CreateEventForm = () => {
       <form onSubmit={createEventHandler}>
         <div className="mb-3">
           <label htmlFor="event" className="form-label">Название события</label>
-          <input onChange={inputHandler} name='eventName' type="text" className="form-control" id="event" aria-describedby="emailHelp" />
+          <input onChange={inputHandler} name='title' type="text" className="form-control" id="event" aria-describedby="emailHelp" />
         </div>
         <div className="mb-3">
           <label htmlFor="address" className="form-label">Адрес</label>
