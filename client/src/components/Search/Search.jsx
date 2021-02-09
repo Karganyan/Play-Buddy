@@ -5,9 +5,9 @@ import { userInSessionThunk } from '../../redux/action-creators/user';
 import { GET_EVENTS } from '../../redux/types/events'
 
 const Search = () => {
-  const dispatch = useDispatch();
-  const events = useSelector(event => event.events);
-  console.log(events);
+  // const dispatch = useDispatch();
+  // const events = useSelector(event => event.events);
+  // console.log(events);
 
   return (
     <div>

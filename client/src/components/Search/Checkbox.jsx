@@ -1,66 +1,91 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { getEventsThunk } from '../../redux/action-creators/events';
+import { userInSessionThunk } from '../../redux/action-creators/user';
+import { GET_EVENTS } from '../../redux/types/events'
+
+
 const Checkbox = () => {
+  const items = useSelector(items => items.events.event)
+
+  const sort = items.map(event => {
+    if (event.category.length) { 
+      // console.log(event.category[0]);
+    }   
+  })
+  
+  function sortByCheckbox(e) {
+    let smth = items.filter((event) => {
+      return (
+        event.category[0] === e.target.value
+      )
+    })
+    // console.log('====================================');
+    // console.log(smth);
+    // console.log('====================================');
+  }
+
   return (
     <div>
       <h3>Выбери категорию</h3>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='option1' />
-        <label className='form-check-label' for='inlineCheckbox1'>
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999be9' onChange={sortByCheckbox}/>
+        <label className='form-check-label' >
         Классика
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='option2' />
-        <label className='form-check-label' for='inlineCheckbox2'>
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bea' />
+        <label className='form-check-label' >
         Подходит для детей
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='option3' />
-        <label className='form-check-label' for='inlineCheckbox3'>
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999beb' />
+        <label className='form-check-label' >
         Карточная
         </label>
       </div>
       <br/>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='option4' />
-        <label className='form-check-label' for='inlineCheckbox4'>
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bec' />
+        <label className='form-check-label' >
         ККИ
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='option5' />
-        <label className='form-check-label' for='inlineCheckbox5'>
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bed' />
+        <label className='form-check-label' >
         Словесная
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='option6' />
-        <label className='form-check-label' for='inlineCheckbox6'>
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bee' />
+        <label className='form-check-label' >
         На целый день
         </label>
       </div>
       <br/>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='option7' />
-        <label className='form-check-label' for='inlineCheckbox7'>
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bef' />
+        <label className='form-check-label' >
         Ролевая
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='option8' />
-        <label className='form-check-label' for='inlineCheckbox8'>
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf0' />
+        <label className='form-check-label' >
         На скорость
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='option9' />
-        <label className='form-check-label' for='inlineCheckbox9'>
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf1' />
+        <label className='form-check-label' >
         Детективная
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='option10' />
-        <label className='form-check-label' for='inlineCheckbox10'>
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf2' />
+        <label className='form-check-label' >
         Мафия
         </label>
       </div>
