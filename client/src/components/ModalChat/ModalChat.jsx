@@ -2,7 +2,7 @@ import { useState } from "react";
 import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessageActionCreator } from "../../redux/action-creators/createEventThunk";
-import { ADD_MESSAGE } from "../../redux/types/userChats";
+import styles from "./ModalChat.module.css";
 const wsClient = new WebSocket('ws://localhost:1234')
 
 

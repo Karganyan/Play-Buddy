@@ -1,0 +1,6 @@
+.chatConteiner {
+  max-width: 80%;
+  border: solid 1px black;
+  margin: 20px auto ;
+  padding: 20px;
+}
