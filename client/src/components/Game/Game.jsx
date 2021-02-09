@@ -33,7 +33,7 @@ function Game() {
             остаться в игре последним выжившим.
           </div>
           <div className={styles.gameTags}>
-            <div className={styles.span}>Подходит для детей</div>
+            <div className={styles.span} title='Blablabla'>Подходит для детей</div>
             <div className={styles.span}>Карточная</div>
             <div className={styles.span}>33333</div>
             <div className={styles.span}>44444</div>
