@@ -1,10 +1,9 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import { createEventThunk, getGamesThunk, getTagsThunk } from "../../redux/action-creators/createEventThunk"
 
 const CreateEventForm = () => {
-  const tags = useSelector(store => store.events.tags)
-  const games = useSelector(store => store.events.games)
   const [gameValue, setGameValue] = useState('')
   const [form, setForm] = useState({
     eventName: '',
@@ -12,19 +11,21 @@ const CreateEventForm = () => {
     address: '',
     category: '',
     coordinates: '',
-    thumbnail: '',
     game: '',
     eventPersons: 2,
   })
+  const history = useHistory()
   const dispatch = useDispatch()
-
+  const { tags, games, event } = useSelector(store => store.events)
   useEffect(() => {
-    dispatch(getTagsThunk())
-    dispatch(getGamesThunk(gameValue))
+    (async () => {
+      await dispatch(getTagsThunk())
+      if (gameValue) {
+        await dispatch(getGamesThunk(gameValue))
+      }
+    })()
   }, [form.category])
 
-  console.log(form)
-  console.log(games)
   const tagHandler = (event) => {
     inputHandler(event)
     setGameValue(event.target.value)
@@ -37,7 +38,7 @@ const CreateEventForm = () => {
       const res = await req.json()
       const coordinates = res?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.Point?.pos
       setForm(prev => {
-        return { ...prev, coordinates, thumbnail: games[0]?.thumbnail, [event.target.name]: event.target.value }
+        return { ...prev, coordinates, [event.target.name]: event.target.value }
       })
     } else {
       setForm(prev => {
@@ -45,9 +46,11 @@ const CreateEventForm = () => {
       })
     }
   }
-  const createEventHandler = (event) => {
-    event.preventDefault()
-    dispatch(createEventThunk(form));
+  const createEventHandler = async (e) => {
+    e.preventDefault()
+    await dispatch(createEventThunk(form));
+    // const event = event.find(event => event)
+    // history.push(`/event-page/${}`) доделаю позже
   }
   return (
     <div className='container'>
@@ -69,20 +72,14 @@ const CreateEventForm = () => {
             )
           })}
         </select>
-        <select name='game' onChange={inputHandler} className="mb-3 form-select">
+        <select onChange={inputHandler} name='game' className="mb-3 form-select" >
           <option selected>Название игры</option>
           {games && games.map(game => {
             return (
-              <option key={game._id} value={game.title}>{game.title}</option>
+              <option key={game._id} value={game._id}>{game.title}</option>
             )
           })}
         </select>
-        {/*{games && games.map(game => {*/}
-        {/*  return (*/}
-        {/*    <input type='hidden' value={game?.thumbnail} name='hiddenValue'/>*/}
-        {/*  )*/}
-        {/*})}*/}
-
         <div className="mb-3">
           <label htmlFor="desc">Описание события</label>
           <textarea onChange={inputHandler} name='eventTextArea' className="form-control" id="desc" />
@@ -99,7 +96,6 @@ const CreateEventForm = () => {
           <label className="form-check-label" htmlFor="advanced">Продвинутый игрок</label>
           <input onChange={inputHandler} name='advanced' className="form-check-input" type="checkbox" value="" id="advanced" />
         </div>
-
         <button type="submit" className="btn btn-primary">Submit</button>
       </form>
     </div>

@@ -61,11 +61,11 @@ const Home = () => {
                      iconLayout: 'default#image',
                      iconImageHref: event.thumbnail,
                      iconImageSize: [40, 40],
-                      iconShape: {
+                      // iconShape: {
                         // type: 'Circle',
-                        coordinates: [0, 0],
+                        // coordinates: [0, 0],
                         // radius: 20
-                      },
+                      // },
                   }}/>
                 </div>
               )

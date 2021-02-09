@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SET_MODAL_CHAT } from "../../redux/types/modalChat";
 import ModalCHat from "../ModalChat/ModalChat";
 
-function Hat() {
+function Chat() {
   const store = useSelector(store => store)
   const dispatch = useDispatch()
   const chatHandler = (id) => {
@@ -26,4 +26,4 @@ function Hat() {
     </>
   )
 }
-// export default Hat;
+export default Chat;
