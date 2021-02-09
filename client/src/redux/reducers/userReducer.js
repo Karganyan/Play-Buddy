@@ -3,7 +3,6 @@ import { GET_USER, LOGOUT_USER, UPDATE_USER_DATA } from "../types/user"
 const userReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_USER:
-      // console.log(action)
       return action.payload
     case LOGOUT_USER:
       return action.payload
