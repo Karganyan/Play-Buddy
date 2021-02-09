@@ -9,7 +9,6 @@ import ProfileFavGames from './ProfileFavGames';
 // import UserChats from '../Chat/UserChats';
 // import Main from '../Main/Main';
 
-
 const Profile = () => {
   return (
     <div className={styles.profile}>

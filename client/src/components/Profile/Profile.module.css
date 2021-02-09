@@ -46,3 +46,18 @@
     max-height: 120px;
     border-radius: 50%
 }
+
+.formControl {
+    width: 100%;
+    padding: .375rem .75rem;
+    font-weight: 400;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+}
+
+.formControl input,
+.formControl input:focus {
+    border: 0px;
+}
