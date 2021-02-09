@@ -1,0 +1,40 @@
+.chatConteiner {
+  min-width: 94%;
+  padding: 20px;
+  position:fixed;
+  min-height: 94%;
+  bottom: 3%;
+  top: 3%;
+  left: 3%;
+  right: 3%;
+}
+
+.chatsConteiner {
+  min-width: 30%;
+  padding: 20px;
+  position:fixed;
+  min-height: 87%;
+  bottom: 3%;
+  top: 8.6%;
+  left: 3%;
+  right: 70%;
+  overflow-y: scroll;
+}
+
+.headConteiner{
+  position: fixed;
+  min-width: 94%;
+  left: 3%;
+  right: 3%;
+  min-height: 3%;
+  top: 3%;
+  bottom: 91.3%;
+  padding: 1%;
+  text-align: center;
+}
+
+.currentChat {
+  border-bottom: black 1px solid;
+}
+
+

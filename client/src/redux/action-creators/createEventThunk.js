@@ -45,7 +45,6 @@ export function createEventThunk(formInput, history) {
     const res = await req.json();
     dispatch(setNewChatActionCreator(res[0]))
     dispatch(setNewEventActionCreator(res[1]))
-    history.push('/home')
   }
 }
 

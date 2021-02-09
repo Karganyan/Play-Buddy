@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { createEventThunk, getGamesThunk, getTagsThunk } from "../../redux/action-creators/createEventThunk"
+import { createEventThunk } from "../../redux/action-creators/createEventThunk"
 
 const CreateEventForm = () => {
 
@@ -18,13 +18,10 @@ const CreateEventForm = () => {
   const dispatch = useDispatch()
   const { tags, games, event } = useSelector(store => store.events)
   const [gameValue, setGameValue] = useState(games)
-  console.log('====================================');
-  console.log(form);
-  console.log('====================================');
 
   const tagHandler = (event) => {
     inputHandler(event)
-    setGameValue(pre => games.filter(game=>game.tags.includes(event.target.value)))
+    setGameValue(pre => games.filter(game => game.tags.includes(event.target.value)))
   }
   const inputHandler = async (event) => {
     let street
@@ -42,16 +39,14 @@ const CreateEventForm = () => {
       })
     }
   }
-  const createEventHandler = async (e) => {
+  const createEventHandler = async (e, event) => {
     e.preventDefault()
     await dispatch(createEventThunk(form));
-    // const event = event.find(event => event)
-    // history.push(`/event-page/${}`) доделаю позже
   }
   return (
     <div className='container'>
       <h1 className='mb-4'>Создание события</h1>
-      <form onSubmit={createEventHandler}>
+      <form onSubmit={(e) => createEventHandler(e, event)}>
         <div className="mb-3">
           <label htmlFor="event" className="form-label">Название события</label>
           <input onChange={inputHandler} name='eventName' type="text" className="form-control" id="event" aria-describedby="emailHelp" />
