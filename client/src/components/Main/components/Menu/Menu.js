@@ -26,7 +26,7 @@ const Menu = ({ open }) => {
         Войти
       </Link>
         }
-        <Link to="/home">
+        <Link to="/map">
           <span role="img" aria-label="Карта Игр"><img src="https://img.icons8.com/doodle/48/000000/dice.png" /></span>
         Карта Игр
         </Link>
