@@ -1,14 +1,13 @@
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import styles from "./Profile.module.css";
-// import EditProfile from "./EditProfile";
-// import Events from "../Events/Events";
+import EditProfile from "./EditProfile";
+// import Events from "../events/events";
 // import CreateEventForm from "../Create-event-form/create-event-form";
 // import { useState } from "react"
 import ProfileInfo from "./ProfileInfo";
 import ProfileFavGames from './ProfileFavGames';
-// import UserChats from '../Hat/UserChats';
+// import UserChats from '../Chat/UserChats';
 // import Main from '../Main/Main';
-
 
 const Profile = () => {
   return (

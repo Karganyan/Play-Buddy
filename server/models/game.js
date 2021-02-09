@@ -5,7 +5,6 @@ const gameSchema = new mongoose.Schema({
   rules: String,
   min_players: Number,
   max_players: Number,
-  coordinates: Array,
   min_playtime: Number,
   min_age: Number,
   description: String,
