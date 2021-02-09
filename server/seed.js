@@ -220,6 +220,7 @@ const games = [
 
 async function findTag(title) {
   const item = await Tag.findOne({ title});
+  console.log(item);
   return item._id;
 }
 

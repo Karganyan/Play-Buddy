@@ -2,13 +2,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Main from './components/Main/Main'
 import Profile from './components/Profile/Profile'
 import EditProfile from "./components/Profile/EditProfile"
-import CreateEventForm from "./components/Create-event-form/create-event-form"
-import Events from "./components/events/events"
+import CreateEventForm from "./components/Create-event-form/CreateEventForm"
 import Home from "./components/Home/Home"
-import EventPage from "./components/events/EventPage"
 import Signin from "./components/Signin/SignIn"
 import SignUp from "./components/signup/SignUp"
-import Chat from "./components/chat/chat"
+import Events from "./components/events/Events"
+import Chat from "./components/chat/Chat"
+import EventPage from "./components/events/EventPage"
 import Game from './components/Game/Game';
 
 function App() {
