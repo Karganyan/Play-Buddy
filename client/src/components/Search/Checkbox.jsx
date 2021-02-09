@@ -19,9 +19,6 @@ const Checkbox = () => {
         event.category[0] === e.target.value
       )
     })
-    // console.log('====================================');
-    // console.log(smth);
-    // console.log('====================================');
   }
 
   return (

@@ -6,23 +6,25 @@ import { createEventThunk } from "../../redux/action-creators/createEventThunk"
 const CreateEventForm = () => {
 
   const [form, setForm] = useState({
-    eventName: '',
-    eventTextArea: '',
+    title: '',
     address: '',
     category: '',
-    coordinates: '',
     game: '',
-    eventPersons: 2,
+    description: '',
+    max_participants: 1,
+    coordinates: '',
+    thumbnail: '',
   })
   const history = useHistory()
   const dispatch = useDispatch()
-  const { tags, games, event } = useSelector(store => store.events)
+  const { tags, games } = useSelector(store => store.events)
   const [gameValue, setGameValue] = useState(games)
 
   const tagHandler = (event) => {
     inputHandler(event)
     setGameValue(pre => games.filter(game => game.tags.includes(event.target.value)))
   }
+
   const inputHandler = async (event) => {
     let street
     if (event.target.name === 'address') {
@@ -33,23 +35,32 @@ const CreateEventForm = () => {
       setForm(prev => {
         return { ...prev, coordinates, [event.target.name]: event.target.value }
       })
-    } else {
+    }
+    else if (event.target.name === 'game') {
+      setForm(prev => {
+        let currentThumbnail
+        currentThumbnail = games && games.find(el => el._id === event.target.value)?.thumbnail
+        return { ...prev, thumbnail : currentThumbnail, [event.target.name]: event.target.value }
+      })
+    }
+    else {
       setForm(prev => {
         return { ...prev, [event.target.name]: event.target.value }
       })
     }
   }
-  const createEventHandler = async (e, event) => {
-    e.preventDefault()
-    await dispatch(createEventThunk(form));
+  const createEventHandler = async (event) => {
+    event.preventDefault()
+    await dispatch(createEventThunk(form, history));
+
   }
   return (
     <div className='container'>
       <h1 className='mb-4'>Создание события</h1>
-      <form onSubmit={(e) => createEventHandler(e, event)}>
+      <form onSubmit={createEventHandler}>
         <div className="mb-3">
           <label htmlFor="event" className="form-label">Название события</label>
-          <input onChange={inputHandler} name='eventName' type="text" className="form-control" id="event" aria-describedby="emailHelp" />
+          <input onChange={inputHandler} name='title' type="text" className="form-control" id="event" aria-describedby="emailHelp" />
         </div>
         <div className="mb-3">
           <label htmlFor="address" className="form-label">Адрес</label>

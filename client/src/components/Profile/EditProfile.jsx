@@ -71,7 +71,7 @@ const EditProfile = () => {
           <br />
           <Form.Control
             type="file"
-            onChange={onFileChange}
+            /* onChange={onFileChange} */
             placeholder="Выбрать фото"
           />
         </Form.Group>

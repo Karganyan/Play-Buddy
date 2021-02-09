@@ -66,6 +66,7 @@ const EventMap = () => {
             <Clusterer options={{ groupByCoordinates: false }}>
               {events.event &&
                 events.event.map(event => {
+                  console.log(event)
                   return (
                     <div key={event._id}>
                       <Placemark
@@ -73,7 +74,7 @@ const EventMap = () => {
                         geometry={event.coordinates}
                         options={{
                           iconLayout: 'default#image',
-                          iconImageHref: event.thumbnail,
+                          iconImageHref: `http://localhost:3001${event.thumbnail}`,
                           iconImageSize: [40, 40],
                         }}
                       />
