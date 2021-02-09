@@ -11,6 +11,7 @@ import { getCurrentEventThunk, getEventsThunk } from "../../redux/action-creator
 import { userInSessionThunk } from "../../redux/action-creators/user";
 import { Link } from "react-router-dom";
 import Checkbox from '../Search/Checkbox';
+import { getTagsThunk, getGamesThunk } from '../../redux/action-creators/createEventThunk';
 
 function MainPage() {
 
@@ -21,7 +22,13 @@ function MainPage() {
 
 
   useEffect(() => {
-    dispatch(userInSessionThunk());
+    (async () => {
+      // ЭТО НЕ ТРОГАТЬ!!!!!!!!!!!1
+      await dispatch(userInSessionThunk());
+      await dispatch(getTagsThunk())
+      await dispatch(getGamesThunk())
+        
+      })()
   }, [])
 
   const [open, setOpen] = useState(false);

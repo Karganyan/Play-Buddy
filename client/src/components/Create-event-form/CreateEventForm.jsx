@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { createEventThunk, getGamesThunk, getTagsThunk } from "../../redux/action-creators/createEventThunk"
 
 const CreateEventForm = () => {
-  const [gameValue, setGameValue] = useState('')
+  
   const [form, setForm] = useState({
     eventName: '',
     eventTextArea: '',
@@ -17,18 +17,14 @@ const CreateEventForm = () => {
   const history = useHistory()
   const dispatch = useDispatch()
   const { tags, games, event } = useSelector(store => store.events)
-  useEffect(() => {
-    (async () => {
-      // ЭТО НЕ ТРОГАТЬ!!!!!!!!!!!1
-      await dispatch(getTagsThunk())
-      if (gameValue) {
-        await dispatch(getGamesThunk(gameValue))
-      }
-    })()
-  }, [form.category])
+  const [gameValue, setGameValue] = useState(games)
+  console.log('====================================');
+  console.log(form);
+  console.log('====================================');
+
   const tagHandler = (event) => {
     inputHandler(event)
-    setGameValue(event.target.value)
+    setGameValue(pre => games.filter(game=>game.tags.includes(event.target.value)))
   }
   const inputHandler = async (event) => {
     let street
@@ -74,7 +70,7 @@ const CreateEventForm = () => {
         </select>
         <select onChange={inputHandler} name='game' className="mb-3 form-select" >
           <option selected>Название игры</option>
-          {games && games.map(game => {
+          {gameValue && gameValue.map(game => {
             return (
               <option key={game._id} value={game._id}>{game.title}</option>
             )
