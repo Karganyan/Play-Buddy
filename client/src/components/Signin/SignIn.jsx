@@ -34,6 +34,8 @@ const Signin = () => {
         </div>
         <button onClick={submitHandler} type="submit" className="btn btn-primary col-md-2 offset-md-5 mb-2">Sign In</button>
         <Link to='/signup' className="form-text col-md-2 offset-md-5 mb-2 ">Create account</Link>
+        <Link to='/user/google' className="form-text col-md-2 offset-md-5 mb-2 ">Google</Link>
+        <Link to='/user/auth/vkontakte' className="form-text col-md-2 offset-md-5 mb-2 ">VK</Link>
       </form>
     </div>
   )
