@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Main from './components/Main/Main'
 import CreateEventForm from "./components/Create-event-form/CreateEventForm"
-import Home from "./components/Home/Home"
+import EventMap from "./components/EventMap/EventMap"
 import Signin from "./components/Signin/SignIn"
 import SignUp from "./components/Signup/SignUp"
 import Events from "./components/Events/Events"
@@ -23,15 +23,14 @@ function App() {
         <Route path="/create-event" exact component={CreateEventForm} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/signup" exact component={SignUp} />
-        <Route path="/home" exact component={Home} />
-        <Route path="/game" exact component={Game} />
+        <Route path="/map" exact component={EventMap} />
+        <Route exact path='/event-page/:id' component={EventPage} />
 
-        <Route exact path="/event-page/:id">
-          <EventPage />
-        </Route>
       </Switch>
     </Router>
   );
 }
 
 export default App;
+
+
