@@ -102,7 +102,7 @@ export const userInSessionThunk = () => {
       mode: 'cors'
     })
     const res = await req.json()
-    // console.log(res.user)
+    console.log("res.user", res);
     if (res.user) {
       dispatch(getUser(res.user))
       dispatch(getDbUserEventsActionCreator(res.userEvents))
@@ -142,8 +142,8 @@ export const updateUserThunk = (inputs, userId, history) => {
       body: JSON.stringify({ inputs, userId })
     })
     const res = await req.json()
-    // console.log(res)
-      dispatch(updateUser(res))
+    console.log(res)
+      // dispatch(updateUser(res))
       history.push('/profile')
   }
 }

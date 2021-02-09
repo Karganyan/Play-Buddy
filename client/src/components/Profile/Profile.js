@@ -12,7 +12,10 @@ import ProfileFavGames from './ProfileFavGames';
 import { useSelector } from 'react-redux';
 
 const Profile = () => {
+  const user = useSelector((store) => store.user);
     const avatar = useSelector((store) => store.user.avatar);
+// console.log(user.fav_games);
+
   return (
     <div className={styles.profile}>
       <div className={styles.header}>
@@ -28,12 +31,7 @@ const Profile = () => {
             />
           </Link>
           <div>
-            {/* <Link to='/info'>
-              <button className='btn btn-outline-success' type='button'>
-                INFO
-              </button>
-            </Link> */}
-            <Link to="/events">
+             <Link to="/events">
               <button className="btn btn-outline-success" type="button">
                 События
               </button>
@@ -52,7 +50,7 @@ const Profile = () => {
         <br />
         <br />
         <h1>FAVORITE GAMES</h1>
-        <ProfileFavGames />
+        {user.fav_games ? <ProfileFavGames /> : <div>Пока не выбрано ни одной любимой игры</div>}
       </div>
     </div>
   );

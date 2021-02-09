@@ -8,14 +8,15 @@ router.get('/', (req, res) => {
 })
 
 router.post('/edit', async (req, res) => {
-  const { name, info, phone } = req.body.inputs;
-  const { userId } = req.body
-  req.session.user = { ...req.session.user, name, userId }
+  const { name, info, phone, fav_games } = req.body.inputs;
+  const { userId } = req.body;
+  req.session.user = { ...req.session.user, name, userId, fav_games };
   const user = await User.findByIdAndUpdate(userId, {
     $set: {
       name,
       information: info,
-      phone
+      phone, 
+      fav_games
     }
   }, null, () => {});
   res.json(user)

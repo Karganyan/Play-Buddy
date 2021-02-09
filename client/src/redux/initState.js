@@ -4,6 +4,9 @@ export const initState = {
   user: {},
   events: {},
   currentEvent: {},
-  modalChat: '',
-  avatar: "avatar.png"
-}
+  modalChat: "",
+  games: {
+    favGames: [],
+    games: [],
+  },
+};

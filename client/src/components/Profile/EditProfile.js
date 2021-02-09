@@ -1,42 +1,46 @@
-import { Form, Button } from 'react-bootstrap';
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom'
-import { app } from '../../base';
-import { updateUserThunk } from '../../redux/action-creators/user';
+import { Form, Button } from "react-bootstrap";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { app } from "../../base";
+import { updateUserThunk } from "../../redux/action-creators/user";
 import { Multiselect } from "multiselect-react-dropdown";
 import styles from "./Profile.module.css";
+import { useEffect } from "react";
+import { getAllGamesThunk } from '../../redux/action-creators/getGames';
 
 const EditProfile = () => {
-  const games = [{key: "Имаджинариум"},
-  {key: "Dungeons & Dragons"},
- {key: "Активити"},
-  {key: "Монополия"}];
-  
-
   const dispatch = useDispatch();
   const history = useHistory();
-  const username = useSelector(store => store.user.name);
-  const userId = useSelector(store => store.user.id);
+  const username = useSelector((store) => store.user.name);
+  const userId = useSelector((store) => store.user.id);
+  const games = useSelector((store) => store.games.games);
 
   const [inputs, setInputs] = useState({
     name: username,
-    info: '',
-    phone: '',
+    info: "",
+    phone: "",
+    fav_games: []
   });
-  const [file, setFile] = useState('');
 
-  const nameHandler = event => {
+  const [file, setFile] = useState("");
+
+  useEffect(() => {
+     dispatch(getAllGamesThunk());
+  }, []);
+
+  const nameHandler = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
+    console.log('inputs', inputs);
   };
 
   const handleInfo = async () => {
     dispatch(updateUserThunk(inputs, userId, history));
-    
+
     // console.log(response);
   };
 
- /*  // сохранение картинки в firebase
+  /*  // сохранение картинки в firebase
   const onFileChange = async e => {
     const file = e.target.files[0];
     const storageRef = app.storage().ref();
@@ -45,19 +49,22 @@ const EditProfile = () => {
       // console.log('Uploaded file', file.name);
     });
   }; */
-// сохранение картинки в локальное хранилице
- const onFileChange = e => {
- console.log(e.target.files[0].name);
- setFile(e.target.files[0].name);
-}
-console.log(file);
+  // сохранение картинки в локальное хранилице
+  const onFileChange = (e) => {
+    console.log(e.target.files[0].name);
+    setFile(e.target.files[0].name);
+  };
 
-
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
     handleInfo();
   };
 
+    const selectHandler = (event) => {
+      console.log(event);
+      setInputs({ ...inputs, fav_games: event.map(e => e = e._id) });
+    };
+console.log('inputs', inputs);
   return (
     <div>
       <h1>Редактировать профиль</h1>
@@ -107,7 +114,11 @@ console.log(file);
         <br />
         <Form.Group>
           <Form.Label>Любимые игры</Form.Label>
-          <Multiselect options={games} displayValue="key" />
+          <Multiselect
+            options={games}
+            displayValue="title"
+            onSelect={selectHandler}
+          />
         </Form.Group>
         <br />
         <Button variant="primary" type="submit">
