@@ -10,12 +10,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getCurrentEventThunk, getEventsThunk } from "../../redux/action-creators/events";
 import { userInSessionThunk } from "../../redux/action-creators/user";
 import { Link } from "react-router-dom";
+import { useHistory } from 'react-router';
+
 
 function MainPage() {
 
   const dispatch = useDispatch()
   const user = useSelector(store => store.user)
   const currentEvent = useSelector(store => store.currentEvent)
+    const history = useHistory();
 
 
   useEffect(() => {
