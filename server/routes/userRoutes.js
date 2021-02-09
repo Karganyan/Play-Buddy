@@ -37,6 +37,15 @@ router.get('/google/callback', passport.authenticate('google'), (req, res) => {
   res.redirect('http://localhost:3000')
 })
 
+router.get('/auth/vkontakte', passport.authenticate('vkontakte'));
+
+router.get('/vk/callback',
+  passport.authenticate('vkontakte'), (req, res) => {
+    req.session.user = { id: req.user._id, name: req.user.name }
+    res.redirect('http://localhost:3000')
+  }
+)
+
 router.get('/logout', async (req, res) => {
   req.session.destroy();
   res.clearCookie('sid')

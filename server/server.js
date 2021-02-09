@@ -16,6 +16,7 @@ const Chat = require('./models/chat')
 
 require('./config/passport-sutup')
 require('./config/passport-setup-google')
+require('./config/passport-setup-vk')
 
 const app = express()
 const wsSerever = new WebSocket.Server({ port: 1234 });
