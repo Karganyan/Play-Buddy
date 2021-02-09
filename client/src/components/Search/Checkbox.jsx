@@ -7,7 +7,7 @@ import { GET_EVENTS } from '../../redux/types/events'
 const Checkbox = () => {
   const items = useSelector(items => items.events.event)
 
-  const sort = items.map(event => {
+  const sort = items?.map(event => {
     if (event.category.length) { 
       // console.log(event.category[0]);
     }   
