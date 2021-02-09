@@ -9,7 +9,7 @@ const Checkbox = () => {
 
   const sort = items?.map(event => {
     if (event.category.length) { 
-      // console.log(event.category[0]);
+      console.log(event.category[0]);
     }   
   })
   

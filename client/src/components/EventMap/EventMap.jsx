@@ -66,7 +66,7 @@ const EventMap = () => {
             <Clusterer options={{ groupByCoordinates: false }}>
               {events.event &&
                 events.event.map(event => {
-                  console.log(event)
+                  // console.log(event)
                   return (
                     <div key={event._id}>
                       <Placemark
