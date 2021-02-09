@@ -16,11 +16,11 @@ const Profile = () => {
       <div className={styles.header}>
         <div>
           <Link to='/'>
-            <img src='board-game.png' />
+            <img src='hamburger.png'className={styles.hamburger}  />
           </Link>
           <img src="dog.jpg" alt="dog" className={styles.avatar} />
           <Link to='/edit'>
-            <img src="https://img.icons8.com/ios-filled/64/000000/settings.png" className={styles.settings} />
+            <img src="settings.png" className={styles.settings} />
           </Link>
           <div>
             {/* <Link to='/info'>

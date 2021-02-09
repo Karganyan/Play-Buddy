@@ -3,12 +3,12 @@ import Main from './components/Main/Main'
 import Profile from './components/Profile/Profile'
 import EditProfile from "./components/Profile/EditProfile"
 import CreateEventForm from "./components/Create-event-form/create-event-form"
-import Events from "./components/events/events"
+import Events from "./components/Events/Events"
 import Home from "./components/Home/Home"
-import EventPage from "./components/events/EventPage"
+import EventPage from "./components/Events/EventPage"
 import Signin from "./components/Signin/SignIn"
-import SignUp from "./components/signup/signUp"
-import Chat from "./components/chat/chat"
+import SignUp from "./components/Signup/SignUp"
+import Chat from "./components/Chat/chat"
 
 function App() {
   return (
@@ -24,10 +24,7 @@ function App() {
         <Route path="/signin" exact component={Signin} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/home" exact component={Home} />
-
-        <Route exact path='/event-page/:id'>
-          <EventPage/>
-        </Route>
+        <Route exact path='/event-page/:id' component={EventPage} />
 
       </Switch>
 
@@ -36,3 +33,5 @@ function App() {
 }
 
 export default App;
+
+
