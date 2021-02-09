@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "passport-vkontakte": "^0.5.0",
     "react-yandex-maps": "^4.6.0"
   }
 }

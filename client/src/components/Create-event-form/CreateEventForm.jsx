@@ -6,14 +6,14 @@ import { createEventThunk, getGamesThunk, getTagsThunk } from "../../redux/actio
 const CreateEventForm = () => {
   const [gameValue, setGameValue] = useState('')
   const [form, setForm] = useState({
-    eventName: '',
-    eventTextArea: '',
+    title: '',
     address: '',
     category: '',
-    coordinates: '',
     game: '',
+    description: '',
+    max_participants: 1,
+    coordinates: '',
     thumbnail: '',
-    eventPersons: 2,
   })
   const history = useHistory()
   const dispatch = useDispatch()
@@ -43,15 +43,15 @@ const CreateEventForm = () => {
       setForm(prev => {
         return { ...prev, coordinates, [event.target.name]: event.target.value }
       })
-
-    } else {
+    }
+    else if (event.target.name === 'game') {
       setForm(prev => {
         let currentThumbnail
-        if (event.target.name === 'game') {
-          currentThumbnail = games && games.find(el => el._id === event.target.value)?.thumbnail
-        }
+        currentThumbnail = games && games.find(el => el._id === event.target.value)?.thumbnail
         return { ...prev, thumbnail : currentThumbnail, [event.target.name]: event.target.value }
       })
+    }
+    else {
       setForm(prev => {
         return { ...prev, [event.target.name]: event.target.value }
       })
@@ -59,26 +59,26 @@ const CreateEventForm = () => {
   }
   const createEventHandler = async (e) => {
     e.preventDefault()
-    await dispatch(createEventThunk(form));
+    await dispatch(createEventThunk(form, history));
     // const event = event.find(event => event)
     // history.push(`/event-page/${}`) доделаю позже
   }
   // console.log('======>', games)
-  console.log('FORM', form)
+  // console.log('FORM', form)
   return (
     <div className='container'>
       <h1 className='mb-4'>Создание события</h1>
       <form onSubmit={createEventHandler}>
         <div className="mb-3">
           <label htmlFor="event" className="form-label">Название события</label>
-          <input onChange={inputHandler} name='eventName' type="text" className="form-control" id="event" aria-describedby="emailHelp" />
+          <input onChange={inputHandler} name='title' type="text" className="form-control" id="event" aria-describedby="emailHelp" />
         </div>
         <div className="mb-3">
           <label htmlFor="address" className="form-label">Адрес</label>
           <input onChange={inputHandler} name='address' type="text" className="form-control" id="address" />
         </div>
         <select onChange={tagHandler} name='category' className="mb-3 form-select">
-          <option >Категория игры</option>
+          <option value={'602169c62667f6c388999be9'}>Категория игры</option>
           {tags && tags.map(tag => {
             return (
               <option key={tag._id} value={tag._id}>{tag.title}</option>
@@ -95,11 +95,11 @@ const CreateEventForm = () => {
         </select>
         <div className="mb-3">
           <label htmlFor="desc">Описание события</label>
-          <textarea onChange={inputHandler} name='eventTextArea' className="form-control" id="desc" />
+          <textarea onChange={inputHandler} name='description' className="form-control" id="desc" />
         </div>
         <div className="mb-3">
           <label htmlFor="amount" className="form-label">Колличество игроков</label>
-          <input onChange={inputHandler} name='eventPersons' type="number" className="form-control" id="amount" />
+          <input onChange={inputHandler} name='max_participants' type="number" className="form-control" id="amount" />
         </div>
         <div className="mb-3 form-check">
           <label className="form-check-label" htmlFor="beginner">Начинащий игрок</label>

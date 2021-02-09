@@ -5,9 +5,10 @@ const userSchema = new mongoose.Schema({
   password: String,
   email: String,
   information: String,
-  phone: String, 
+  phone: String,
   fav_games: [{ type: mongoose.Schema.Types.ObjectId, ref: "Game" }],
   googleID: String,
+  vkId: String,
   userEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
   userChats: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chat" }],
 });

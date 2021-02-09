@@ -8,11 +8,10 @@ const Tags = require('../models/tag')
 
 
 router.post('/', async (req, res) => {
-  const { title, description, max_participants, address, game, coordinates, thumbnail } = req.body
-  console.log(thumbnail)
+  const { title, address, category, game, description, max_participants, coordinates, thumbnail } = req.body
   const newCoordinates = coordinates.split(' ').map(el => +el).reverse()
   const newChat = new Chat({ messages: [], eventTitle: title });
-  const newEvent = new Event({ title, description, max_participants, chat: newChat._id, creator: req.user._id, participants: [req.user._id], address, game, coordinates: newCoordinates, thumbnail });
+  const newEvent = new Event({ title, address, category, game, description, max_participants, coordinates: newCoordinates, thumbnail, chat: newChat._id, creator: req.user._id, participants: [req.user._id] });
   const user = await User.findById(req.user._id)
   await newChat.save();
   await newEvent.save();
@@ -34,8 +33,12 @@ router.get('/tags', async (req, res) => {
 
 router.get('/games/:title', async (req, res) => {
   const { title } = req.params
-  const games = await Game.find({'tags' : {$in: title}}).populate()
-  res.json({status: 200, games})
+  try {
+    const games = await Game.find({'tags' : {$in: title}}).populate()
+    res.json({status: 200, games});
+  } catch (err) {
+    console.log('>>>>>>', err)
+  }
 })
 
 router.get('/:id', async (req, res) => {
