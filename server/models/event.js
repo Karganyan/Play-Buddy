@@ -9,7 +9,7 @@ const eventSchema = new mongoose.Schema({
   coordinates: {type: Array},
   game: String,
   category: Array,
-  thumbnail: {type: String, default: 'https://sun9-71.userapi.com/c850720/v850720894/10d47c/NU0_158reys.jpg'},
+  thumbnail: {type: String},
   place: { type: mongoose.Schema.Types.ObjectId, ref: "Place" },
   creator: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
   participants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],

@@ -1,9 +1,9 @@
-import { Form, Button } from "react-bootstrap";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { app } from "../../base";
-import { updateUserThunk } from "../../redux/action-creators/user";
+import { Form, Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {useHistory} from 'react-router-dom'
+
+import { updateUserThunk } from '../../redux/action-creators/user';
 import { Multiselect } from "multiselect-react-dropdown";
 import styles from "./Profile.module.css";
 import { useEffect } from "react";
@@ -40,22 +40,7 @@ const EditProfile = () => {
     // console.log(response);
   };
 
-  /*  // сохранение картинки в firebase
-  const onFileChange = async e => {
-    const file = e.target.files[0];
-    const storageRef = app.storage().ref();
-    const fileRef = storageRef.child(file.name);
-    await fileRef.put(file).then(() => {
-      // console.log('Uploaded file', file.name);
-    });
-  }; */
-  // сохранение картинки в локальное хранилице
-  const onFileChange = (e) => {
-    console.log(e.target.files[0].name);
-    setFile(e.target.files[0].name);
-  };
-
-  const onSubmit = (event) => {
+  const onSubmit = event => {
     event.preventDefault();
     handleInfo();
   };
@@ -97,7 +82,7 @@ console.log('inputs', inputs);
           <br />
           <Form.Control
             type="file"
-            onChange={onFileChange}
+            /* onChange={onFileChange} */
             placeholder="Выбрать фото"
           />
         </Form.Group>

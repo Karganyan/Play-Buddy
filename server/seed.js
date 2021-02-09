@@ -70,7 +70,7 @@ const games = [
     min_age: 7,
     description:
       "У вас есть колода карт, из которой раздаётся по 7 каждому из игроков. Затем на стол кладётся ещё одна карта, с которой и начинается игра. Задача — сбросить все свои карты. В свой ход вы имеете право выкладывать на стол карту, которая по значению (картинке) или цвету совпадает с верхней на игровом столе (как в «американском дураке» или «101»). Есть и специальные карты, которые создают различные эффекты. Когда у вас на руке остаётся только одна карта, нужно обязательно крикнуть «Уно» — если же это крикнут ваши соперники, то вы будете вынуждены взять ещё карт.",
-      
+
       {
         title: "Шахматы",
         rules:
@@ -190,20 +190,20 @@ const games = [
 
   async function seed() {
   // titles.forEach(async (title) => await Level.create({title}));
-  
+
   // tags.forEach(async (title, i) => {
   //  await Tag.create({title, description: tagDescr[i]})
   // })
-  
+
   // await Place.create(place);
 
   games.forEach(async (game) => {
    const currGame = await Game.create(game);
-  
+
    currGame.tags = [
      await findTag("На целый день"),
      await findTag("Детективная"),
-     await findTag("Мафия"), 
+     await findTag("Мафия"),
      await findTag("С полем и фишками"),
      await findTag("Классика"),
    ];

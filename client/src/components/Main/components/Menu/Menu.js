@@ -21,12 +21,12 @@ const Menu = ({ open }) => {
         Профиль
       </Link>
           :
-          <Link to="/signup">
+          <Link to="/signin">
             <span role="img" aria-label="Профиль"><img src="https://img.icons8.com/doodle/48/000000/3-of-hearts.png" /></span>
         Войти
       </Link>
         }
-        <Link to="/home">
+        <Link to="/map">
           <span role="img" aria-label="Карта Игр"><img src="https://img.icons8.com/doodle/48/000000/dice.png" /></span>
         Карта Игр
         </Link>

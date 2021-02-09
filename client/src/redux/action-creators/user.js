@@ -49,7 +49,6 @@ const outUserChatsActionCreator = () => {
 
 
 export const signInThunk = (inputValue, history) => {
-  // console.log('signInThunk')
   return async (dispatch) => {
     const req = await fetch('/user/signin', {
       method: 'POST',
@@ -69,8 +68,45 @@ export const signInThunk = (inputValue, history) => {
   }
 }
 
+export const signInGoogleThunk = (history) => {
+  return async (dispatch) => {
+    const req = await fetch('/user/google', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      mode: 'cors'
+    })
+    const res = await req.json()
+    if (res.status === 200) {
+      dispatch(getUser(res.user))
+      history.push('/map')
+    }
+  }
+}
+
+export const signInVkThunk = (history) => {
+  return async (dispatch) => {
+    const req = await fetch('/user/auth/vkontakte', {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      mode: 'cors'
+    })
+    const res = await req.json()
+    console.log(res)
+    if (res.status === 200) {
+      dispatch(getUser(res.user))
+      history.push('/map')
+    }
+  }
+}
+
 export const signUpThunk = (inputValue, history) => {
-  // console.log('asdadsa')
+  console.log('asdadsa')
   return async (dispatch) => {
     const req = await fetch('/user/signup', {
       method: 'POST',

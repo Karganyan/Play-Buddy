@@ -6,7 +6,7 @@ const User = require('../models/user')
 const Chat = require('../models/chat')
 
 
-router.post('/Signin', passport.authenticate('local'), async (req, res) => {
+router.post('/signin', passport.authenticate('local'), async (req, res) => {
   req.session.user = { id: req.user._id, name: req.user.name }
   res.json({ status: 200, user: req.session.user })
 })
@@ -28,14 +28,24 @@ router.get('/in-session', async (req, res) => {
 
 router.get('/google', passport.authenticate('google', {
   scope: ['profile']
-}), (req, res) => {
-
-})
+}))
 
 router.get('/google/callback', passport.authenticate('google'), (req, res) => {
   req.session.user = { id: req.user._id, name: req.user.name }
-  res.redirect('http://localhost:3000')
+  res.redirect('http://localhost:3000/')
 })
+
+router.get('/auth/vkontakte', passport.authenticate('vkontakte'), (req, res) => {
+
+});
+
+router.get('/vk/callback',
+  passport.authenticate('vkontakte'), (req, res) => {
+    console.log('tut')
+    req.session.user = { id: req.user._id, name: req.user.name }
+    res.redirect('http://localhost:3000/')
+  }
+)
 
 router.get('/logout', async (req, res) => {
   req.session.destroy();

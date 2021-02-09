@@ -16,20 +16,15 @@ const Chat = require('./models/chat')
 
 require('./config/passport-sutup')
 require('./config/passport-setup-google')
+require('./config/passport-setup-vk')
 
 const app = express()
 const wsSerever = new WebSocket.Server({ port: 1234 });
 
 
-
-
 // Mongo DB
-mongoose
-  .connect(
-    "mongodb+srv://Tim:vIxGjX0g290J9TeR@abba.he1uc.mongodb.net/abba?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
-  )
-  .then((connect) => console.log("Success connect mongo"));
+mongoose.connect('mongodb+srv://Tim:vIxGjX0g290J9TeR@abba.he1uc.mongodb.net/abba?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+  .then((connect) => console.log("Success connect mongo"))
 
 // MiddleWare
 app.use(express.urlencoded({ extended: false }))
@@ -42,7 +37,7 @@ app.set('sessionName', 'sid')
 
 // Mongo Session Store
 const store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/abba',
+  uri: 'mongodb+srv://Tim:vIxGjX0g290J9TeR@abba.he1uc.mongodb.net/abba?retryWrites=true&w=majority',
   collection: 'mySessions'
 })
 
@@ -85,5 +80,5 @@ wsSerever.on('close', () => {
   console.log('good bye');
 });
 app.listen(process.env.PORT ?? 3001, () => {
-  // console.log(`Server has been started on port ${process.env.PORT}`)
+  console.log(`Server has been started on port ${process.env.PORT}`)
 })

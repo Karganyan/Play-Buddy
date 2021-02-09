@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema({
   avatar: {type: String, default: 'avatar.png'},
   fav_games: [{ type: mongoose.Schema.Types.ObjectId, ref: "Game" }],
   googleID: String,
+  vkId: String,
   userEvents: [{ type: mongoose.Schema.Types.ObjectId, ref: "Event" }],
   userChats: [{ type: mongoose.Schema.Types.ObjectId, ref: "Chat" }],
 });

@@ -31,22 +31,22 @@ export const addMessageActionCreator = (data) => {
 }
 
 
-export function createEventThunk(formInput) {
-  const { eventName, eventTextArea, eventPersons, address, game, category, coordinates } = formInput
+export function createEventThunk(formInput, history) {
+  const { title, address, category, game, description, max_participants, coordinates, thumbnail } = formInput
   return async (dispatch) => {
     const req = await fetch("/event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title: eventName, description: eventTextArea, max_participants: eventPersons, address, game, category, coordinates }), // body data type must match "Content-Type" header
+      body: JSON.stringify({ title, address, category, game, description, max_participants, coordinates, thumbnail }), // body data type must match "Content-Type" header
       mode: 'cors'
-    });
+    })
     const res = await req.json();
-    console.log(res);
     dispatch(setNewChatActionCreator(res[0]))
     dispatch(setNewEventActionCreator(res[1]))
-  };
+    history.push(`/event-page/${res[1]._id}`)
+  }
 }
 
 export const getTagsThunk = () => {
@@ -67,7 +67,7 @@ export const getTagsThunk = () => {
 
 export const getGamesThunk = (title) => {
   return async (dispatch) => {
-    const req = await fetch(`/event/games/${title}`, {
+    const req = await fetch(`/event/games/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

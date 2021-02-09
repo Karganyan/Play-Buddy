@@ -21,12 +21,12 @@ const Profile = () => {
       <div className={styles.header}>
         <div>
           <Link to="/">
-            <img src="board-game.png" />
+            <img src='hamburger.png'className={styles.hamburger}  />
           </Link>
           <img src="avatar.png" alt="avatar" className={styles.avatar} />
           <Link to="/edit">
             <img
-              src="https://img.icons8.com/ios-filled/64/000000/settings.png"
+              src="settings.png"
               className={styles.settings}
             />
           </Link>
@@ -52,7 +52,7 @@ const Profile = () => {
         <h1>FAVORITE GAMES</h1>
         {user.fav_games ? <ProfileFavGames /> : <div>Пока не выбрано ни одной любимой игры</div>}
       </div>
-    </div>
+    </div >
   );
 };
 
