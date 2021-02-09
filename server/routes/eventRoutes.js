@@ -8,10 +8,13 @@ const Tags = require('../models/tag')
 
 
 router.post('/', async (req, res) => {
-  const { title, address, category, game, description, max_participants, coordinates, thumbnail } = req.body
+  const { title, description, max_participants, address, game, coordinates,category, thumbnail } = req.body
   const newCoordinates = coordinates.split(' ').map(el => +el).reverse()
+
+  console.log('COORDINATES', newCoordinates)
+
   const newChat = new Chat({ messages: [], eventTitle: title });
-  const newEvent = new Event({ title, address, category, game, description, max_participants, coordinates: newCoordinates, thumbnail, chat: newChat._id, creator: req.user._id, participants: [req.user._id] });
+  const newEvent = new Event({ title, description,category, max_participants, chat: newChat._id, creator: req.user._id, participants: [req.user._id], address, game, coordinates: newCoordinates });
   const user = await User.findById(req.user._id)
   await newChat.save();
   await newEvent.save();
@@ -31,14 +34,11 @@ router.get('/tags', async (req, res) => {
   res.json({status: 200, tags})
 })
 
-router.get('/games/:title', async (req, res) => {
+router.get('/games/', async (req, res) => {
   const { title } = req.params
-  try {
-    const games = await Game.find({'tags' : {$in: title}}).populate()
-    res.json({status: 200, games});
-  } catch (err) {
-    console.log('>>>>>>', err)
-  }
+  // const games = await Game.find({'tags' : {$in: title}}).populate()
+  const games = await Game.find()
+  res.json({status: 200, games})
 })
 
 router.get('/:id', async (req, res) => {

@@ -6,12 +6,12 @@ const User = require('../models/user')
 const Chat = require('../models/chat')
 
 
-router.post('/Signin', passport.authenticate('local'), async (req, res) => {
+router.post('/signin', passport.authenticate('local'), async (req, res) => {
   req.session.user = { id: req.user._id, name: req.user.name }
   res.json({ status: 200, user: req.session.user })
 })
 
-router.post('/Signup', passport.authenticate('local'), async (req, res) => {
+router.post('/signup', passport.authenticate('local'), async (req, res) => {
   req.session.user = { id: req.user._id, name: req.user.name }
   res.json({ status: 200, user: req.session.user })
 })

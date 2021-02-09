@@ -14,6 +14,7 @@ passport.deserializeUser(async (id, done) => {
 })
 
 const authenticateUser = async (req, email, password, done) => {
+  console.log('>>>>>>>>>>>>>>>>>>>')
   if (/signin/.test(req.path)) {
     const user = await User.findOne({email})
     if (!user) return done(null, false)
@@ -24,7 +25,7 @@ const authenticateUser = async (req, email, password, done) => {
   const isEmail = User.find({email: email})
   if (isEmail.length > 1) return done(null, false)
   if (name && email && password && confirmPassword) {
-    // console.log('DATA----->',name, email, password, confirmPassword)
+    console.log('DATA----->',name, email, password, confirmPassword)
     const hashPassword = await bcrypt.hash(password, 10)
     const newUser = await User.create({ name, email, password: hashPassword})
     return done(null, newUser)

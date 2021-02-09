@@ -63,7 +63,7 @@ export const signInThunk = (inputValue, history) => {
 }
 
 export const signUpThunk = (inputValue, history) => {
-  // console.log('asdadsa')
+  console.log('asdadsa')
   return async (dispatch) => {
     const req = await fetch('/user/signup', {
       method: 'POST',

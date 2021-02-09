@@ -15,11 +15,11 @@ const Profile = () => {
       <div className={styles.header}>
         <div>
           <Link to='/'>
-            <img src='board-game.png' />
+            <img src='hamburger.png'className={styles.hamburger}  />
           </Link>
           <img src="dog.jpg" alt="dog" className={styles.avatar} />
           <Link to='/edit'>
-            <img src="https://img.icons8.com/ios-filled/64/000000/settings.png" className={styles.settings} />
+            <img src="settings.png" className={styles.settings} />
           </Link>
           <div>
             {/* <Link to='/info'>
@@ -48,6 +48,7 @@ const Profile = () => {
         <br />
         <h1>FAVORITE GAMES</h1>
         <ProfileFavGames />
+        <br/>
         <Link to='/edit'>
           <button className='btn btn-danger'>Редактировать профиль</button>
         </Link>

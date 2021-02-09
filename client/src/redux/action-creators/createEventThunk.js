@@ -67,7 +67,7 @@ export const getTagsThunk = () => {
 
 export const getGamesThunk = (title) => {
   return async (dispatch) => {
-    const req = await fetch(`/event/games/${title}`, {
+    const req = await fetch(`/event/games/`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

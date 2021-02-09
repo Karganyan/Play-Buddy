@@ -2,8 +2,10 @@ import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {useHistory} from 'react-router-dom'
+
 import { updateUserThunk } from '../../redux/action-creators/user';
 import { Multiselect } from "multiselect-react-dropdown";
+import styles from "./Profile.module.css";
 
 const EditProfile = () => {
   const games = [{key: "Имаджинариум"},
@@ -31,8 +33,6 @@ const EditProfile = () => {
     dispatch(updateUserThunk(inputs, userId, history))
     // console.log(response);
   };
-
-
 
 
   const onSubmit = event => {
