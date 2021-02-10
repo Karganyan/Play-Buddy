@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-  const allEvent = await Event.find({ visible: true })
+  const allEvent = await Event.find({ visible: true }).populate('participants')
   res.json(allEvent)
 })
 
@@ -77,6 +77,19 @@ router.post('/join', async (req, res) => {
 router.get('/close/:eventId', async (req, res) => {
   const { eventId } = req.params
   await Event.findByIdAndUpdate(eventId, { visible: false })
+  res.json({ status: 200 })
+})
+
+router.post('/kick-user', async (req, res) => {
+  const { userId, eventId } = req.body
+  const user = await User.findById(userId)
+  const event = await Event.findById(eventId)
+  user.userEvents = user.userEvents.filter(event => String(event) !== eventId)
+  event.participants = event.participants.filter(user => String(user) !== userId)
+  user.userChats = user.userChats.filter(chat => String(chat) !== String(event.chat));
+  await user.save()
+  await event.save()
+
   res.json({ status: 200 })
 })
 

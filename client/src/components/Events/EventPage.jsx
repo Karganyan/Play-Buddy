@@ -1,18 +1,24 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
-import { joinEventThunk, closeEvent } from '../../redux/action-creators/events';
+import { joinEventThunk, closeEvent, getEventsThunk, kickUser } from '../../redux/action-creators/events';
+import { userInSessionThunk } from '../../redux/action-creators/user';
 import styles from "./Events.module.css";
 
 const EventPage = () => {
+  const [count, setCount] = useState(0)
   const dispatch = useDispatch()
+  useEffect( () => {
+    dispatch(getEventsThunk());
+  }, [count]);
   const history = useHistory()
-  const { user, userEvents } = useSelector(store => store);
+  const { user, userEvents, events } = useSelector(store => store);
   const param = useParams();
   const [wasAdded, setWasAdded] = useState('');
 
   const event = userEvents.find(event => event._id === param.id)
+  const thisEvent = events.event.find(event => event._id === param.id)
   const joinEvent = () => {
     if (event) {
       setWasAdded('notok')
@@ -36,31 +42,47 @@ const EventPage = () => {
           alt="game"
         />
         <div className={styles.eventMainInfo}>
-          <h1>event title</h1>
+          <h1>{thisEvent && thisEvent.title}</h1>
           <div className={styles.eventDetails}>
-            <span>Time</span>
-            <span>Place</span>
-            <span>People Qty</span>
+            <div>Адресс: {thisEvent && thisEvent.address}</div>
+            <div>Количество игроков: {thisEvent && thisEvent.participants.length} из {thisEvent && thisEvent.max_participants}</div>
           </div>
         </div>
       </div>
-
       <div className="eventDescription">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore ducimus
-        quibusdam aut officia dolor. Voluptatibus, assumenda molestias? Natus
-        praesentium reiciendis earum obcaecati expedita ratione qui perspiciatis
-        voluptas optio. Veniam odio velit hic blanditiis necessitatibus adipisci
-        voluptatem, autem ratione nisi suscipit. Sed atque, esse eligendi
-        veritatis iusto deserunt, natus odit dicta laborum, distinctio iure ad.
-        Labore, animi!
+        Описание мероприятия:{thisEvent && thisEvent.description}
       </div>
-      {event && user.id === event.creator
-        ?
-        <Button onClick={() => closeEvent(event._id, history)}>Закрыть запись</Button>
-        :
-        <Button onClick={joinEvent}>Записаться на игротеку</Button>
+      <br />
+      <div>
+        <h5>Участники мероприятия</h5>
+        {thisEvent && thisEvent.participants.map(userr => (
+          <div key={userr._id}>
+            <span >{userr.name}</span>
+            <img src={user.avatar} alt="ava" />
+            {event && user.id === event.creator
+              ? userr._id === user.id
+                ?
+                null
+                :
+                <Button onClick={() => {
+                  setCount(pre => pre + 1)
+                  kickUser(userr._id, event._id, history)
+                  dispatch(getEventsThunk());
+                }}>выгнать</Button>
+              :
+              null
+            }
+          </div>
+        ))}
+      </div>
+      <br />
+      {
+        event && user.id === event.creator
+          ?
+          <Button onClick={() => closeEvent(event._id, history)}>Закрыть запись</Button>
+          :
+          <Button onClick={joinEvent}>Записаться на игротеку</Button>
       }
-
       {
         wasAdded
           ?
