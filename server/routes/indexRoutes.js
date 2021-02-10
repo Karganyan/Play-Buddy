@@ -37,7 +37,7 @@ router.post("/edit", upload.single('avatar'), async (req, res) => {
     },
     { new: true }
   );
-  // console.log(user.avatar);
+  console.log(user.avatar);
   res.json(user);
 });
 

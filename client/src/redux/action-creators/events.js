@@ -83,3 +83,19 @@ export const closeEvent = async (eventId, history) => {
     history.push('/map')
   }
 }
+
+export const kickUser = async (userId, eventId, history) => {
+  console.log('tut');
+  const ftch = await fetch(`/event/kick-user`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ userId, eventId }),
+    mode: 'cors'
+  })
+  const result = await ftch.json()
+  if (result.status === 200) {
+    history.push(`/event-page/${eventId}`)
+  }
+}

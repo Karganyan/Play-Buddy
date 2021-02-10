@@ -39,8 +39,66 @@
     display: flex;
     flex-direction: column;
 }
+ */
+
+.sticker {
+    position: relative;
+    top: -55%;
+}
+
+.sticker span {
+    font-size: 0.7em;
+    position: absolute;
+    top: 45%;
+    left: 7%;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.title {
+    display: inline;
+    margin-left: 12px;
+    padding-top: 2em;
+}
+
+.myGroup {
+    margin-left: 4vw;
+    margin-bottom: 120px;
+}
+
+.myCard {
+    min-width: 18vw;
+    max-width: 18vw;
+    margin-right: 4vw;
+}
+
+.bodyRelative {
+    position: relative;
+    top: -36%;
+    height: 50px;
+    padding: 0;
+    font-size: 0.8em;
+}
+
+.myCardbBody {
+    height: 50px;
+    font-size: 0.8em;
+    padding: 0;
+}
+
+.btn {
+    margin-top: 7%;
+    font-size: 0.8em;
+}
 
 .eventDetails {
     display: flex;
-    justify-content: space-around;
-} */
+    justify-content: center;
+}
+
+.eventDetails span {
+    background-color: rgba(170, 132, 132, 0.712);
+    box-shadow: 1px 1px 3px rgb(144, 55, 22);
+    padding: 2px;
+    margin: 5px 5px;
+}

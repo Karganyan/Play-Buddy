@@ -21,19 +21,16 @@ const Profile = () => {
     <div className={styles.profile}>
       <div className={styles.header}>
         <div>
-          <Link to="/">
-            <img src='hamburger.png'className={styles.hamburger}  />
+          <Link title="Домой" to="/">
+            <img src="hamburger.png" className={styles.hamburger} />
           </Link>
           <img src={avatarPath} alt="avatar" className={styles.avatar} />
           <Link to="/edit">
-            <img
-              src="settings.png"
-              className={styles.settings}
-            />
+            <img title="Настройки" src="settings.png" className={styles.settings} />
           </Link>
           <ProfileInfo />
           <div>
-             <Link to="/events">
+            <Link to="/events">
               <button className="btn btn-outline-success" type="button">
                 Мои События
               </button>
@@ -54,7 +51,7 @@ const Profile = () => {
         <h1>Любимые Игры</h1>
         {user.fav_games ? <ProfileFavGames /> : <div>Пока не выбрано ни одной любимой игры</div>}
       </div>
-    </div >
+    </div>
   );
 };
 
