@@ -25,7 +25,7 @@ const Search = () => {
         <div className='form-outline'>
           <input type='search' id='form1' className='form-control' />
         </div>
-        <button onClick={eventsHandler} type='button' className='btn btn-primary'>
+        <button type='button' className='btn btn-primary'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='16'

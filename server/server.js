@@ -27,8 +27,9 @@ mongoose.connect('mongodb+srv://Tim:vIxGjX0g290J9TeR@abba.he1uc.mongodb.net/abba
   .then((connect) => console.log("Success connect mongo"))
 
 // MiddleWare
-app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
 app.set('trust proxy', 2)
 app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
