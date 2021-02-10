@@ -3,13 +3,12 @@ import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
 import { joinEventThunk, closeEvent, getEventsThunk, kickUser } from '../../redux/action-creators/events';
-import { userInSessionThunk } from '../../redux/action-creators/user';
 import styles from "./Events.module.css";
 
 const EventPage = () => {
   const [count, setCount] = useState(0)
   const dispatch = useDispatch()
-  useEffect( () => {
+  useEffect(() => {
     dispatch(getEventsThunk());
   }, [count]);
   const history = useHistory()
@@ -45,6 +44,7 @@ const EventPage = () => {
           <h1>{thisEvent && thisEvent.title}</h1>
           <div className={styles.eventDetails}>
             <div>Адресс: {thisEvent && thisEvent.address}</div>
+            <br />
             <div>Количество игроков: {thisEvent && thisEvent.participants.length} из {thisEvent && thisEvent.max_participants}</div>
           </div>
         </div>
