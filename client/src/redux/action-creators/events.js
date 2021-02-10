@@ -69,3 +69,17 @@ export const joinEventThunk = ({ userId, eventId }) => {
     dispatch({ type: SET_NEW_CHAT, payload: result.chat })
   }
 }
+
+export const closeEvent = async (eventId, history) => {
+  const ftch = await fetch(`/event/close/${eventId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    mode: 'cors'
+  })
+  const result = await ftch.json()
+  if (result.status === 200) {
+    history.push('/map')
+  }
+}

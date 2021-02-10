@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
-import { joinEventThunk } from '../../redux/action-creators/events';
+import { joinEventThunk, closeEvent } from '../../redux/action-creators/events';
 import styles from "./Events.module.css";
 
 const EventPage = () => {
@@ -11,8 +11,9 @@ const EventPage = () => {
   const { user, userEvents } = useSelector(store => store);
   const param = useParams();
   const [wasAdded, setWasAdded] = useState('');
+
+  const event = userEvents.find(event => event._id === param.id)
   const joinEvent = () => {
-    const event = userEvents.find(event => event._id === param.id)
     if (event) {
       setWasAdded('notok')
       setTimeout(() => { setWasAdded('') }, 3000)
@@ -53,18 +54,25 @@ const EventPage = () => {
         veritatis iusto deserunt, natus odit dicta laborum, distinctio iure ad.
         Labore, animi!
       </div>
-
-      <Button onClick={joinEvent}>Записаться на игротеку</Button>
-      {wasAdded
+      {event && user.id === event.creator
         ?
-        (wasAdded === 'notok'
-          ?
-          'ALE TI UZHE ZPISAN'
-          :
-          'BRAT TI ZAPISAN OT DUSHI')
+        <Button onClick={() => closeEvent(event._id, history)}>Закрыть запись</Button>
         :
-        ''}
-    </div>
+        <Button onClick={joinEvent}>Записаться на игротеку</Button>
+      }
+
+      {
+        wasAdded
+          ?
+          (wasAdded === 'notok'
+            ?
+            'ALE TI UZHE ZPISAN'
+            :
+            'BRAT TI ZAPISAN OT DUSHI')
+          :
+          ''
+      }
+    </div >
   );
 };
 
