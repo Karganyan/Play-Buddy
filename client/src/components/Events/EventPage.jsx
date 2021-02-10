@@ -11,7 +11,6 @@ const EventPage = () => {
   const { user, userEvents } = useSelector(store => store);
   const param = useParams();
   const [wasAdded, setWasAdded] = useState('');
-  const [closed, setClosed] = useState('');
 
   const event = userEvents.find(event => event._id === param.id)
   const joinEvent = () => {
