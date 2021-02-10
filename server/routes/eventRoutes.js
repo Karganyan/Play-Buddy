@@ -8,12 +8,10 @@ const Tags = require('../models/tag')
 
 
 router.post('/', async (req, res) => {
-  const { title, description, max_participants, address, game, coordinates,category, thumbnail } = req.body
-  console.log('>>>>>>>', title, description, max_participants, address, game, coordinates,category, thumbnail )
+  const { title, description, max_participants, address, game, coordinates, category, thumbnail } = req.body
   const newCoordinates = coordinates.split(' ').map(el => +el).reverse()
-
   const newChat = new Chat({ messages: [], eventTitle: title });
-  const newEvent = new Event({ title, description,category, max_participants, chat: newChat._id, creator: req.user._id, participants: [req.user._id], address, game, coordinates: newCoordinates, thumbnail });
+  const newEvent = new Event({ title, description, category, max_participants, chat: newChat._id, creator: req.user._id, participants: [req.user._id], address, game, coordinates: newCoordinates, thumbnail });
   const user = await User.findById(req.user._id)
   await newChat.save();
   await newEvent.save();
@@ -30,14 +28,26 @@ router.get('/', async (req, res) => {
 
 router.get('/tags', async (req, res) => {
   const tags = await Tags.find()
-  res.json({status: 200, tags})
+  res.json({ status: 200, tags })
 })
+
+router.get("/all-games", async (req, res) => {
+  const games = await Game.find();
+  res.json({ status: 200, games });
+}); // ВЫНЕСТИ В ДРУГОЙ РОУТЕР
+
+router.post("/fav-games", async (req, res) => {
+  console.log(req.body);
+  const currUser = await User.findById(req.body.id).populate('fav_games')
+  console.log(currUser);
+  res.json({ status: 200, favGames: currUser.fav_games });
+}); // ВЫНЕСТИ В ДРУГОЙ РОУТЕР
 
 router.get('/games/', async (req, res) => {
   const { title } = req.params
   // const games = await Game.find({'tags' : {$in: title}}).populate()
   const games = await Game.find()
-  res.json({status: 200, games})
+  res.json({ status: 200, games })
 })
 
 router.get('/:id', async (req, res) => {
@@ -58,7 +68,14 @@ router.post('/join', async (req, res) => {
   const chat = await Chat.findById(event.chat).populate('messages')
   console.log(chat);
   console.log(event);
-  res.json({ chat, event});
+  res.json({ chat, event });
 })
+
+router.get('/close/:eventId', async (req, res) => {
+  const { eventId } = req.params
+  await Event.findByIdAndUpdate(eventId, { visible: false })
+  res.json({ status: 200 })
+})
+
 
 module.exports = router

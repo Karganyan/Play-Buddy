@@ -23,6 +23,13 @@ export const updateUser = (user) => {
   }
 }
 
+export const updateAvatar = (user) => {
+  return {
+    type: UPDATE_USER_AVATAR,
+    payload: user,
+  };
+};
+
 const getDbUserEventsActionCreator = (userEvents) => {
   return { type: GET_DB_USER_EVENTS, payload: userEvents }
 }
@@ -131,7 +138,7 @@ export const userInSessionThunk = () => {
       mode: 'cors'
     })
     const res = await req.json()
-    // console.log(res.user)
+    console.log("res.user", res);
     if (res.user) {
       dispatch(getUser(res.user))
       dispatch(getDbUserEventsActionCreator(res.userEvents))
@@ -141,6 +148,7 @@ export const userInSessionThunk = () => {
 }
 
 export const userLogoutThunk = (history) => {
+
   return async (dispatch) => {
     const req = await fetch('/user/logout', {
       method: 'GET',
@@ -170,8 +178,26 @@ export const updateUserThunk = (inputs, userId, history) => {
       body: JSON.stringify({ inputs, userId })
     })
     const res = await req.json()
-    // console.log(res)
+    console.log(res)
       dispatch(updateUser(res))
-      history.push('/')
+      history.push('/profile')
   }
 }
+
+export const updateUserAvatarThunk = (file, userId, history) => {
+  return async (dispatch) => {
+    const req = await fetch("/avatar", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({ file, userId }),
+    });
+    const res = await req.json();
+    // console.log(res)
+    dispatch(updateAvatar(res));
+    history.push("/profile");
+  };
+};
