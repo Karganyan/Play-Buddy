@@ -31,7 +31,7 @@ const EventCard = () => {
               }
             >
               <Card.Title>
-                <Link to="/create-event">{event.title}</Link>
+                <Link to={`/event-page/${event._id}`}>{event.title}</Link>
               </Card.Title>
               <Card.Text>
                 <span className={styles.eventDetails}>
