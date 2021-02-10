@@ -9,18 +9,14 @@ import Search from '../Search/Search';
 import Checkbox from '../Search/Checkbox';
 
 const EventMap = () => {
-  const items = useSelector(items => items.events.event);
-  // console.log('====================================');
-  // console.log(items);
-  // console.log('====================================');
   const key = '51ad9d93-9100-4ffa-8ebf-138a17d2a225';
   const dispatch = useDispatch();
   const history = useHistory();
-  const { user, events } = useSelector(store => store);
-  const currentEvent = useSelector(store => store.currentEvent);
+  const { user, events, currentEvent } = useSelector(store => store);
   const redirectOnEventPage = id => {
     history.push(`/event-page/${id}`);
   };
+  console.log(currentEvent);
 
   useEffect(() => {
     (async () => {
@@ -46,12 +42,12 @@ const EventMap = () => {
                 <button className='btn btn-primary'>записаться на событие</button>
               </>
             ) : (
-              <p>Выбери событие</p>
-            )}
+                <p>Выбери событие</p>
+              )}
           </>
         ) : (
-          <h1>Давай зарегистрируемся?</h1>
-        )}
+            <h1>Давай зарегистрируемся?</h1>
+          )}
         <Search />
         <Checkbox />
         <YMaps query={{ ns: 'use-load-option', apikey: key }}>
@@ -70,7 +66,6 @@ const EventMap = () => {
             <Clusterer options={{ groupByCoordinates: false }}>
               {events.event &&
                 events.event.map(event => {
-                  // console.log(event)
                   return (
                     <div key={event._id}>
                       <Placemark
@@ -81,6 +76,7 @@ const EventMap = () => {
                           iconImageHref: `http://localhost:3001${event.thumbnail}`,
                           iconImageSize: [40, 40],
                         }}
+                        
                       />
                     </div>
                   );
