@@ -44,3 +44,22 @@
     display: flex;
     justify-content: space-around;
 } */
+
+.sticker {
+    position: relative;
+    top: -55%;
+}
+
+.sticker span {
+    font-size: 0.7em;
+    position: absolute;
+    top: 45%;
+    left: 7%;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.bodyRelative {
+    position: relative;
+    top: -27%;
+}
