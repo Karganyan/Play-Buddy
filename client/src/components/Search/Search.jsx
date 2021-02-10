@@ -10,13 +10,9 @@ const Search = () => {
   const events = useSelector(event => event.events);
   // console.log(events);
 
-//   const eventsHandler = () => {
-//     console.log(filterEvents())
-//  }
-
-
-
-
+  const eventsHandler = () => {
+    console.log(filterEvents())
+ }
 
   return (
     <div>
@@ -25,7 +21,7 @@ const Search = () => {
         <div className='form-outline'>
           <input type='search' id='form1' className='form-control' />
         </div>
-        <button type='button' className='btn btn-primary'>
+        <button onClick={eventsHandler} type='button' className='btn btn-primary'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='16'

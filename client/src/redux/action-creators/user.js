@@ -138,7 +138,7 @@ export const userInSessionThunk = () => {
       mode: 'cors'
     })
     const res = await req.json()
-    console.log("res.user", res);
+    //console.log("res.user", res);
     if (res.user) {
       dispatch(getUser(res.user))
       dispatch(getDbUserEventsActionCreator(res.userEvents))

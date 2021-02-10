@@ -69,4 +69,6 @@
     border: 0px;
 }
     /* border-radius: 50% */
-
+.userName {
+  font-size: 30px;
+}

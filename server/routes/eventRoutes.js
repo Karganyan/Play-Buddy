@@ -69,8 +69,8 @@ router.post('/join', async (req, res) => {
   // console.log(chat);
   // console.log(event);
   res.json({ chat, event});
-  console.log(chat);
-  console.log(event);
+  // console.log(chat);
+  // console.log(event);
   res.json({ chat, event });
 })
 

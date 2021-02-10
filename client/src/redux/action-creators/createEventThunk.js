@@ -82,15 +82,16 @@ export const getGamesThunk = (title) => {
   }
 }
 
-// export const filterEvents = (events, category) => {
-//   const dispatch = useDispatch();
-//   return dispatch({
-//     type: FILTER_EVENTS_BY_CATEGORY,
-//     payload: {
-//       category: category,
-//       events: category === "" ? events : events.filter(a => console.log(a.category))
+export const filterEvents = (events, category) => {
+  const dispatch = useDispatch();
+  return dispatch({
+    type: FILTER_EVENTS_BY_CATEGORY,
+    payload: {
+      category: category,
+      events: category === "" ? events : events.filter(a => console.log(a.category))
 
-//     }  
-// })
-// }
+    }  
+})
+}
+
 
