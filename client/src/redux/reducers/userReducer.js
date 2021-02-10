@@ -16,7 +16,7 @@ const userReducer = (state = {}, action) => {
         phone,
         info,
         id, 
-        fav_games:[...state.fav_games.concat(fav_games)]
+        fav_games
       }
     default:
       return state

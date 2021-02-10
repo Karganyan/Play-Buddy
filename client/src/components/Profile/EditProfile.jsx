@@ -15,6 +15,8 @@ const EditProfile = () => {
   const username = useSelector((store) => store.user.name);
   const userId = useSelector((store) => store.user.id);
   const games = useSelector((store) => store.games.games);
+  const selectedGames = useSelector(store => store.games.favGames)
+console.log(selectedGames);
 
   const [inputs, setInputs] = useState({
     name: username,
@@ -104,6 +106,7 @@ console.log('inputs', inputs);
             options={games}
             displayValue="title"
             onSelect={selectHandler}
+            selectedValues={selectedGames}
           />
         </Form.Group>
         <br />
