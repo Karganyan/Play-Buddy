@@ -1,45 +1,61 @@
 import styles from "./Game.module.css";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 function Game() {
-  let { id } = useParams();
+  const { id } = useParams();
+  const game = useSelector((store) => store.games.favGames).filter(
+    (game) => game._id === id
+  )[0];
+  let currGameTags = game.tags;
+  const tagsInReducer = useSelector((store) => store.events.tags);
+  const populatedTags = currGameTags.map(
+    (tag) => (tag = tagsInReducer.find((item) => item._id === tag))
+  );
+  console.log(populatedTags);
+
+  const dispatch = useDispatch();
+  // console.log("game", game);
+  useEffect(() => {
+    // dispatch(getTagsThunk());
+  }, []);
+
   return (
     <div className="game">
-      <h1 className={styles.gameName}>Взрывные котята</h1>
+      <h1 className={styles.gameName}>{game.title}</h1>
       <div className={styles.gameInfo}>
         <div className={styles.gameLeft}>
           <div className={styles.gamePhoto}>
-            <img
-              width="500px"
-              src="https://www.mosigra.ru/image/cache/data/mosigra.product.main/559/016/DSC_6565-1024x1024-wm.jpg"
-              alt="kittens"
-            />
+            <img src={game.img} alt={game.title} />
           </div>
           <div className={styles.gameDetailes}>
-            <div className={styles.span}>4-5 игроков</div>
-            <div className={styles.span}>партия от 15 минут</div>
+            <div className={styles.span}>
+              от {game.max_players} до {game.max_players} игроков
+            </div>
+            <div className={styles.span}>
+              партия от {game.min_playtime} минут
+            </div>
           </div>
-          <div className="">Правила можно почитать тут: ----------</div>
+          <div className="">
+            <a href={game.rules}>Правила можно почитать тут</a>
+          </div>
         </div>
         <div className={styles.gameRight}>
-          <div className={styles.gameDescription}>
-            ----{id}----
-            «Взрывные котята» — это карточная игра, дико популярная на
-            «Кикстартере». Она там собрала почти девять миллионов долларов — для
-            настольных игр это рекорд. Все в неё просто влюбились. Кому-то эта
-            игра напоминает «Уно», кому-то русскую рулетку. Вы тянете карты из
-            колоды, в которой среди прочих карт замешаны взрывные котята — они
-            сразу выкидывают вас из игры. Все остальные карты помогают избежать
-            встречи с опасными котятами и подставить под удар друзей. Вам нужно
-            остаться в игре последним выжившим.
-          </div>
+          <div className={styles.gameDescription}>{game.description}</div>
           <div className={styles.gameTags}>
-            <div className={styles.span} title="Blablabla">
-              Подходит для детей
-            </div>
-            <div className={styles.span}>Карточная</div>
-            <div className={styles.span}>33333</div>
-            <div className={styles.span}>44444</div>
+            {populatedTags.map((tag) => {
+              return (
+                <div
+                  key={tag._id}
+                  className={styles.span}
+                  title={tag.description}
+                >
+                  {tag.title}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
