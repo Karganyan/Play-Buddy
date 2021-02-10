@@ -11,6 +11,7 @@ import { userInSessionThunk } from "../../redux/action-creators/user";
 import { Link } from "react-router-dom";
 import { getTagsThunk, getGamesThunk } from '../../redux/action-creators/createEventThunk';
 import { useHistory } from "react-router";
+import { getEventsThunk } from '../../redux/action-creators/events';
 
 
 function MainPage() {
@@ -25,7 +26,6 @@ function MainPage() {
       await dispatch(userInSessionThunk());
       await dispatch(getTagsThunk())
       await dispatch(getGamesThunk())
-
       })()
   }, [])
 
