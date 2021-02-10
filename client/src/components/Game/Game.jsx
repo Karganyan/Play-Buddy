@@ -1,6 +1,8 @@
 import styles from "./Game.module.css";
+import { useParams } from "react-router-dom";
 
 function Game() {
+  let { id } = useParams();
   return (
     <div className="game">
       <h1 className={styles.gameName}>Взрывные котята</h1>
@@ -17,12 +19,11 @@ function Game() {
             <div className={styles.span}>4-5 игроков</div>
             <div className={styles.span}>партия от 15 минут</div>
           </div>
-          <div className="">
-            Правила можно почитать тут: ----------
-          </div>
+          <div className="">Правила можно почитать тут: ----------</div>
         </div>
         <div className={styles.gameRight}>
           <div className={styles.gameDescription}>
+            ----{id}----
             «Взрывные котята» — это карточная игра, дико популярная на
             «Кикстартере». Она там собрала почти девять миллионов долларов — для
             настольных игр это рекорд. Все в неё просто влюбились. Кому-то эта
@@ -33,7 +34,9 @@ function Game() {
             остаться в игре последним выжившим.
           </div>
           <div className={styles.gameTags}>
-            <div className={styles.span} title='Blablabla'>Подходит для детей</div>
+            <div className={styles.span} title="Blablabla">
+              Подходит для детей
+            </div>
             <div className={styles.span}>Карточная</div>
             <div className={styles.span}>33333</div>
             <div className={styles.span}>44444</div>

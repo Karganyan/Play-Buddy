@@ -32,6 +32,18 @@ router.get('/tags', async (req, res) => {
   res.json({status: 200, tags})
 })
 
+router.get("/all-games", async (req, res) => {
+   const games = await Game.find();
+  res.json({ status: 200, games });
+}); // ВЫНЕСТИ В ДРУГОЙ РОУТЕР
+
+router.post("/fav-games", async (req, res) => {
+  console.log(req.body);
+  const currUser = await User.findById(req.body.id).populate('fav_games')
+  console.log(currUser);
+  res.json({ status: 200, favGames: currUser.fav_games });
+}); // ВЫНЕСТИ В ДРУГОЙ РОУТЕР
+
 router.get('/games/', async (req, res) => {
   const { title } = req.params
   // const games = await Game.find({'tags' : {$in: title}}).populate()

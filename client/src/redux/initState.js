@@ -1,13 +1,3 @@
-// export const initState = {
-//   userChats: [],
-//   userEvents: [],
-//   user: {},
-//   events: {},
-//   currentEvent: {},
-//   modalChat: '',
-// }
-
-
 const initState = () => {
   const obj = {
     userChats: [],
@@ -18,7 +8,12 @@ const initState = () => {
     modalChat: '',
     // filterEvents: [],
     // category: ''
-  }
+    modalChat: "",
+    games: {
+      favGames: [],
+      games: [],
+    },
+  };
 
   const fromLS = window.localStorage.getItem('store')
 

@@ -23,6 +23,8 @@ function App() {
         <Route path="/create-event" exact component={CreateEventForm} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/signup" exact component={SignUp} />
+        <Route path="/game" exact component={Game} />
+        <Route path="/game/:id" exact component={Game} />
         <Route path="/map" exact component={EventMap} />
         <Route exact path='/event-page/:id' component={EventPage} />
 

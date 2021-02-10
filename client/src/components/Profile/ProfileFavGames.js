@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { userInSessionThunk } from "../../redux/action-creators/user";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
@@ -6,20 +6,15 @@ import styles from "./Profile.module.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
-import Game from '../Game/Game';
+import { getFavGamesThunk } from "../../redux/action-creators/getGames";
 
 const ProfileFavGames = () => {
-
-  const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+  const favGames = useSelector((store) => store.games.favGames);
   useEffect(() => {
-    dispatch(userInSessionThunk());
+    dispatch(getFavGamesThunk(user));
   }, []);
-
-  const images = [
-    "https://images-na.ssl-images-amazon.com/images/I/51A-LThX1rL._AC_SX450_.jpg",
-    "https://ruslania.com/pictures/printed_photos/0/1000/4606369116640_o.jpg",
-  ];
 
   const responsive = {
     superLargeDesktop: {
@@ -42,23 +37,20 @@ const ProfileFavGames = () => {
   };
 
   return (
-    <div >
-      
-
+    <div>
       <Carousel
         responsive={responsive}
         ssr
         partialVisbile
         itemClass="image-item"
       >
-        {images.slice(0, 10).map((image) => {
+        {favGames.map((game) => {
           return (
-            <Link to="/game">
+            <Link to={`/game/${game._id}`} key={game._id}>
               <Image
                 className={styles.favGameImage}
                 draggable={false}
-                src={image}
-                key={Math.random()} // тут будет id игры
+                src={game.thumbnail}
               />
             </Link>
           );

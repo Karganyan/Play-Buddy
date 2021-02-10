@@ -7,13 +7,16 @@ const userReducer = (state = {}, action) => {
     case LOGOUT_USER:
       return action.payload
     case UPDATE_USER_DATA:
-      const { name, phone, information: info, _id: id } = action.payload
+      const { name, phone, information: info, _id: id, fav_games } = action.payload
       // console.log(id)
+      console.log(fav_games);
+      console.log(state.fav_games);
       return {
         name,
         phone,
         info,
-        id
+        id, 
+        fav_games
       }
     default:
       return state

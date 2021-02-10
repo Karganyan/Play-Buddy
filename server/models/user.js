@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   email: String,
   information: String,
   phone: String,
+  avatar: {type: String, default: 'avatar.png'},
   fav_games: [{ type: mongoose.Schema.Types.ObjectId, ref: "Game" }],
   googleID: String,
   vkId: String,
