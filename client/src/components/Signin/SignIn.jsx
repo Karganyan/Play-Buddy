@@ -2,11 +2,12 @@ import { Link } from "react-router-dom"
 import { useState } from 'react'
 import { useHistory } from "react-router"
 import { useDispatch, useSelector } from "react-redux"
-import {signInGoogleThunk, signInThunk, signInVkThunk} from "../../redux/action-creators/user"
+import { signInGoogleThunk, signInThunk, signInVkThunk} from "../../redux/action-creators/user"
 
 
 const Signin = () => {
   const history = useHistory()
+  const [error, setError] = useState('')
   const dispatch = useDispatch()
   const [ inputValue, setInputValue ] = useState()
 
@@ -18,7 +19,7 @@ const Signin = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault()
-    dispatch(signInThunk(inputValue, history))
+    dispatch(signInThunk(inputValue, history, setError))
   }
   const googleHandler = () => {
     dispatch(signInGoogleThunk(history))
@@ -43,6 +44,7 @@ const Signin = () => {
         <a href='http://localhost:3001/user/google' className="form-text col-md-2 offset-md-5 mb-2">Google</a>
         <a href='http://localhost:3001/user/auth/vkontakte' className="form-text col-md-2 offset-md-5 mb-2">VK</a>
       </form>
+      {error ? <p>{error}</p> : null}
     </div>
   )
 }

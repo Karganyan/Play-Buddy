@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux"
 const SignUp = () => {
   const history = useHistory()
   const dispatch = useDispatch()
+  const [error, setError] = useState('')
   const [ inputValue, setInputValue ] = useState({
     name: '',
     email: '',
@@ -21,7 +22,7 @@ const SignUp = () => {
 
   const submitHandler = async (event) => {
     event.preventDefault()
-    dispatch(signUpThunk(inputValue, history))
+    dispatch(signUpThunk(inputValue, history, setError))
   }
 
   return (
@@ -45,7 +46,9 @@ const SignUp = () => {
         </div>
         <button onClick={submitHandler} type="submit" className="btn btn-primary col-md-2 offset-md-5">Sign Up</button>
       </form>
+      {error ? <p>{error}</p> : null}
     </div>
+
   )
 }
 

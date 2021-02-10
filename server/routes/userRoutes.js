@@ -6,12 +6,16 @@ const User = require('../models/user')
 const Chat = require('../models/chat')
 
 
-router.post('/signin', passport.authenticate('local'), async (req, res) => {
+router.post('/signin', passport.authenticate('local', {
+    failureRedirect: '/user/failure/signup'
+}), async (req, res) => {
   req.session.user = { id: req.user._id, name: req.user.name }
   res.json({ status: 200, user: req.session.user })
 })
 
-router.post('/signup', passport.authenticate('local'), async (req, res) => {
+router.post('/signup', passport.authenticate('local',{
+  failureRedirect: '/user/failure/signup'
+}), async (req, res) => {
   req.session.user = { id: req.user._id, name: req.user.name }
   res.json({ status: 200, user: req.session.user })
 })
@@ -39,7 +43,6 @@ router.get('/auth/vkontakte', passport.authenticate('vkontakte'))
 
 router.get('/vk/callback',
   passport.authenticate('vkontakte'), (req, res) => {
-    console.log('tut')
     req.session.user = { id: req.user._id, name: req.user.name }
     res.redirect('http://localhost:3000/')
   }
@@ -49,6 +52,10 @@ router.get('/logout', async (req, res) => {
   req.session.destroy();
   res.clearCookie('sid')
   res.sendStatus(200);
+})
+
+router.get('/failure/signup', async (req, res) => {
+  res.json({status: 400, message: 'Не верные данные'})
 })
 
 

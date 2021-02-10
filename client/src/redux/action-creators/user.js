@@ -48,21 +48,25 @@ const outUserChatsActionCreator = () => {
 //----------------------------THUNK---------------------------------
 
 
-export const signInThunk = (inputValue, history) => {
+export const signInThunk = (inputValue, history, setError) => {
   return async (dispatch) => {
-    const req = await fetch('/user/signin', {
+    const res = await fetch('/user/signin', {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(inputValue),
+      redirect: 'follow',
       mode: 'cors'
     })
-    const res = await req.json()
-
-    if (res.status === 200) {
-      dispatch(getUser(res.user))
+    const result = await res.json()
+    if (res.redirected) {
+      const resFromRedirect = await fetch(res.url)
+      const dataFromRedirect = await resFromRedirect.json()
+      setError(dataFromRedirect.message)
+    } else if (result.status === 200) {
+      dispatch(getUser(result.user))
       history.push('/')
     }
   }
@@ -76,6 +80,7 @@ export const signInGoogleThunk = (history) => {
       headers: {
         'Content-type': 'application/json',
       },
+      redirect: 'follow',
       mode: 'cors'
     })
     const res = await req.json()
@@ -105,10 +110,10 @@ export const signInVkThunk = (history) => {
   }
 }
 
-export const signUpThunk = (inputValue, history) => {
+export const signUpThunk = (inputValue, history, setError) => {
   console.log('asdadsa')
   return async (dispatch) => {
-    const req = await fetch('/user/signup', {
+    const res = await fetch('/user/signup', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -117,12 +122,20 @@ export const signUpThunk = (inputValue, history) => {
       body: JSON.stringify(inputValue),
       mode: 'cors'
     })
-    const res = await req.json()
-
-    if (res.status === 200) {
-      dispatch(getUser(res.user))
+    const result = await res.json()
+    if (res.redirected) {
+      const resFromRedirect = await fetch(res.url)
+      const dataFromRedirect = await resFromRedirect.json()
+      setError(dataFromRedirect.message)
+    } else if (result.status === 200) {
+      dispatch(getUser(result.user))
       history.push('/')
     }
+    // const res = await req.json()
+    // if (res.status === 200) {
+    //   dispatch(getUser(res.user))
+    //   history.push('/')
+    // }
   }
 }
 
