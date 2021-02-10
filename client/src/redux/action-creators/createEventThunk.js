@@ -46,7 +46,7 @@ export function createEventThunk(formInput, history) {
     const res = await req.json();
     dispatch(setNewChatActionCreator(res[0]))
     dispatch(setNewEventActionCreator(res[1]))
-    history.push('/map')
+    history.push(`/event-page/${res[1]._id}`)
   }
 }
 

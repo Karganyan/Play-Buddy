@@ -1,0 +1,38 @@
+.chatModule {
+  position: fixed;
+  position:fixed;
+  top:8.6%;
+  left: 33%;
+  right: 3%;
+  min-height: 88.4%;
+  min-width: 64%;
+  padding: 2%;
+}
+
+.chatInput {
+  position: fixed;
+  padding: 1%;
+  top: 90%;
+  min-height: 7%;
+  bottom: 3%;
+  left: 33%;
+  right: 3%;
+  text-align: center;
+}
+
+.chatInModule {
+  top: 15%;
+  bottom: 9.9%;
+  left: 33%;
+  right: 3%;
+  position: fixed;
+  padding: 2%;
+  flex-direction: column-reverse;
+  overflow-y: scroll;
+  scroll-snap-align: start;
+}
+
+.userRight {
+  text-align: right;
+  overflow-wrap:break-word;
+}
