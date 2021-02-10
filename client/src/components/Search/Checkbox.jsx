@@ -9,18 +9,18 @@ const Checkbox = () => {
 
   const sort = items?.map(event => {
     if (event.category.length) { 
-      console.log(event.category[0]);
+      // console.log(event.category[0]);
     }   
   })
   
   function sortByCheckbox(e) {
-    let smth = items.filter((event) => {
+    let filteredEvents = items.filter((event) => {
       return (
         event.category[0] === e.target.value
       )
     })
     // console.log('====================================');
-    console.log(smth);
+    // console.log(filteredEvents);
     // console.log('====================================');
   }
 

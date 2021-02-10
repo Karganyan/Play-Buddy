@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { createEventThunk, getGamesThunk, getTagsThunk } from "../../redux/action-creators/createEventThunk"
+import { createEventThunk } from "../../redux/action-creators/createEventThunk"
 
 const CreateEventForm = () => {
 
@@ -17,7 +17,7 @@ const CreateEventForm = () => {
   })
   const history = useHistory()
   const dispatch = useDispatch()
-  const { tags, games, event } = useSelector(store => store.events)
+  const { tags, games } = useSelector(store => store.events)
   const [gameValue, setGameValue] = useState(games)
   // console.log('====================================');
   // console.log(form);
@@ -25,24 +25,9 @@ const CreateEventForm = () => {
 
   const tagHandler = (event) => {
     inputHandler(event)
-    setGameValue(pre => games.filter(game=>game.tags.includes(event.target.value)))
+    setGameValue(pre => games.filter(game => game.tags.includes(event.target.value)))
   }
-  // const inputHandler = async (event) => {
-  //   let street
-  //   if (event.target.name === 'address') {
-  //     street = event.target.value
-  //     const req = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-138a17d2a225&format=json&geocode=${street}`)
-  //     const res = await req.json()
-  //     const coordinates = res?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.Point?.pos
-  //     setForm(prev => {
-  //       return { ...prev, coordinates, [event.target.name]: event.target.value }
-  //     })
-  //   } else {
-  //     setForm(prev => {
-  //       return { ...prev, [event.target.name]: event.target.value }
-  //     })
-  //   }
-  // }
+
   const inputHandler = async (event) => {
     let street
     if (event.target.name === 'address') {
@@ -67,11 +52,10 @@ const CreateEventForm = () => {
       })
     }
   }
-  const createEventHandler = async (e) => {
-    e.preventDefault()
+  const createEventHandler = async (event) => {
+    event.preventDefault()
     await dispatch(createEventThunk(form, history));
-    // const event = event.find(event => event)
-    // history.push(`/event-page/${}`) доделаю позже
+
   }
   return (
     <div className='container'>

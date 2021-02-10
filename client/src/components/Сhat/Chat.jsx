@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_MODAL_CHAT } from "../../redux/types/modalChat";
 import ModalCHat from "../ModalChat/ModalChat";
+import styles from './Chat.module.css'
 
 function Chat() {
   const store = useSelector(store => store)
@@ -10,19 +12,21 @@ function Chat() {
   }
   return (
     <>
-      <div>
-        <h1>This is chats!</h1>
-        {store.userChats.length
-          ?
-          store.userChats.map(item => (
-            <div key={item._id} onClick={() => chatHandler(item._id)}>
-              {item.eventTitle}
-            </div>
-          ))
-          :
-          'there are no chats here yet'}
+      <div className={styles.chatConteiner}>
+        <div className={styles.headConteiner}>ЧАТЫ СОБЫТИЙ</div>
+        <div className={styles.chatsConteiner}>
+          {store.userChats.length
+            ?
+            store.userChats.map(item => (
+              <div className={styles.currentChat} key={item._id} onClick={() => chatHandler(item._id)}>
+                {item.eventTitle}
+              </div>
+            ))
+            :
+            'there are no chats here yet'}
+        </div>
+          {store.userChats.length ? <ModalCHat /> : null}
       </div>
-      {store.userChats.length ? <ModalCHat /> : null}
     </>
   )
 }

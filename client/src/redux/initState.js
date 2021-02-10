@@ -16,6 +16,8 @@ const initState = () => {
     events: {},
     currentEvent: {},
     modalChat: '',
+    // filterEvents: [],
+    // category: ''
   }
 
   const fromLS = window.localStorage.getItem('store')
