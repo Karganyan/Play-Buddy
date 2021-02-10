@@ -54,8 +54,12 @@ const EventPage = () => {
         </div>
       </div>
       <div className="eventDescription">
-        Описание мероприятия:{thisEvent && thisEvent.description}
+        <h5>Описание мероприятия:</h5>
+        {thisEvent && thisEvent.description}
       </div>
+      <br />
+      <h5>Организатор мероприятия</h5>
+
       <br />
       <div>
         <h5>Участники мероприятия</h5>
@@ -65,7 +69,12 @@ const EventPage = () => {
             return (
               <div key={userr._id}>
                 <span>{userr.name}</span>
-                <img src={avatarPath} className={styles.ava} alt="ava" width="100px"/>
+                <img
+                  src={avatarPath}
+                  className={styles.ava}
+                  alt="ava"
+                  width="100px"
+                />
                 {event && user.id === event.creator ? (
                   userr._id === user.id ? null : (
                     <Button
