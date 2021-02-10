@@ -94,11 +94,11 @@ const CreateEventForm = () => {
           <input onChange={inputHandler} name='eventPersons' type="number" className="form-control" id="amount" />
         </div>
         <div className="mb-3 form-check">
-          <label className="form-check-label" htmlFor="beginner">Начинащий игрок</label>
+          <label className="form-check-label" htmlFor="beginner">Приглашаю начинающих игроков</label>
           <input onChange={inputHandler} name='beginner' className="form-check-input" type="checkbox" value="" id="beginner" />
         </div>
         <div className="mb-3 form-check">
-          <label className="form-check-label" htmlFor="advanced">Продвинутый игрок</label>
+          <label className="form-check-label" htmlFor="advanced">...продвинутых игроков</label>
           <input onChange={inputHandler} name='advanced' className="form-check-input" type="checkbox" value="" id="advanced" />
         </div>
         <button type="submit" className="btn btn-primary">Submit</button>

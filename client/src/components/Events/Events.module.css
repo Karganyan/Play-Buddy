@@ -31,6 +31,8 @@
     color: red;
 }
 
+*/
+
 .eventWrapper {
     display: flex;
 }
@@ -39,7 +41,6 @@
     display: flex;
     flex-direction: column;
 }
- */
 
 .sticker {
     position: relative;
@@ -101,4 +102,11 @@
     box-shadow: 1px 1px 3px rgb(144, 55, 22);
     padding: 2px;
     margin: 5px 5px;
+}
+
+.ava {
+    border-radius: 50%;
+    object-fit: cover;
+    height: 50px;
+    width: 50px;
 }
