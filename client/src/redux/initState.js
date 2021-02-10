@@ -5,6 +5,9 @@ const initState = () => {
     user: {},
     events: {},
     currentEvent: {},
+    modalChat: '',
+    // filterEvents: [],
+    // category: ''
     modalChat: "",
     games: {
       favGames: [],

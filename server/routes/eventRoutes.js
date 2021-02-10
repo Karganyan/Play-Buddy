@@ -37,9 +37,9 @@ router.get("/all-games", async (req, res) => {
 }); // ВЫНЕСТИ В ДРУГОЙ РОУТЕР
 
 router.post("/fav-games", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const currUser = await User.findById(req.body.id).populate('fav_games')
-  console.log(currUser);
+  // console.log(currUser);
   res.json({ status: 200, favGames: currUser.fav_games });
 }); // ВЫНЕСТИ В ДРУГОЙ РОУТЕР
 
@@ -66,6 +66,9 @@ router.post('/join', async (req, res) => {
   await user.save();
   await event.save();
   const chat = await Chat.findById(event.chat).populate('messages')
+  // console.log(chat);
+  // console.log(event);
+  res.json({ chat, event});
   console.log(chat);
   console.log(event);
   res.json({ chat, event });

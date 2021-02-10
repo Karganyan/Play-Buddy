@@ -180,37 +180,31 @@ export const userLogoutThunk = (history) => {
   }
 }
 export const updateUserThunk = (inputs, userId, history) => {
+
   return async (dispatch) => {
+    console.log(inputs)
+    const formData = new FormData()
+
+    for (const name in inputs) {
+      console.log(inputs[name])
+      Array.isArray(inputs[name])
+        ? inputs[name].forEach(value => formData.append(name + '[]', value))
+        : formData.append(name, inputs[name])
+
+    }
+    formData.append('userId', userId);
+
+    console.log([...formData.entries()])
+
     const req = await fetch('/edit', {
       method: 'POST',
       credentials: 'include',
-      headers: {
-        'Content-type': 'application/json',
-      },
       mode: 'cors',
-      body: JSON.stringify({ inputs, userId })
+      body: formData
     })
     const res = await req.json()
-    console.log(res)
-      dispatch(updateUser(res))
-      history.push('/profile')
+    // console.log(res)
+    dispatch(updateUser(res))
+    history.push('/profile')
   }
 }
-
-export const updateUserAvatarThunk = (file, userId, history) => {
-  return async (dispatch) => {
-    const req = await fetch("/avatar", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-type": "application/json",
-      },
-      mode: "cors",
-      body: JSON.stringify({ file, userId }),
-    });
-    const res = await req.json();
-    // console.log(res)
-    dispatch(updateAvatar(res));
-    history.push("/profile");
-  };
-};

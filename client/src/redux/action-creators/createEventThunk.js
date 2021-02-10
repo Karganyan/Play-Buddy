@@ -1,7 +1,8 @@
 import { ADD_MESSAGE, SET_NEW_CHAT } from "../types/userChats";
 import { SET_NEW_EVENT } from "../types/userEvents";
 import { GET_EVENTS, GET_GAMES, GET_TAGS } from "../types/events"
-//
+import { useDispatch, useSelector } from 'react-redux';
+
 // export function createEventThunk(formValue) {
 //   const { eventName, eventTextArea, eventPersons, address, game } = formValue
 const setNewChatActionCreator = (chat) => {
@@ -81,4 +82,16 @@ export const getGamesThunk = (title) => {
     }
   }
 }
+
+// export const filterEvents = (events, category) => {
+//   const dispatch = useDispatch();
+//   return dispatch({
+//     type: FILTER_EVENTS_BY_CATEGORY,
+//     payload: {
+//       category: category,
+//       events: category === "" ? events : events.filter(a => console.log(a.category))
+
+//     }  
+// })
+// }
 

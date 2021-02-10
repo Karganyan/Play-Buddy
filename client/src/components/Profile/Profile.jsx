@@ -13,8 +13,9 @@ import { useSelector } from 'react-redux';
 
 const Profile = () => {
   const user = useSelector((store) => store.user);
-    const avatar = useSelector((store) => store.user.avatar);
-// console.log(user.fav_games);
+  const avatar = useSelector((store) => store.user.avatar);
+  const avatarPath = `./uploads/${avatar}`
+console.log('AVATAR!====>', avatarPath);
 
   return (
     <div className={styles.profile}>
@@ -23,7 +24,7 @@ const Profile = () => {
           <Link to="/">
             <img src='hamburger.png'className={styles.hamburger}  />
           </Link>
-          <img src="avatar.png" alt="avatar" className={styles.avatar} />
+          <img src={avatarPath} alt="avatar" className={styles.avatar} />
           <Link to="/edit">
             <img
               src="settings.png"
