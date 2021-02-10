@@ -19,9 +19,11 @@ const EventMap = () => {
   const currentEvent = useSelector(store => store.currentEvent);
   const filterEvent = useSelector(items => items.events.filterEvent)
   console.log('>>>>>>', filterEvent)
+  // const { user, events, currentEvent } = useSelector(store => store);
   const redirectOnEventPage = id => {
     history.push(`/event-page/${id}`);
   };
+  console.log(currentEvent);
 
   useEffect(() => {
     (async () => {
@@ -73,12 +75,12 @@ const EventMap = () => {
                 <button className='btn btn-primary'>записаться на событие</button>
               </>
             ) : (
-              <p>Выбери событие</p>
-            )}
+                <p>Выбери событие</p>
+              )}
           </>
         ) : (
-          <h1>Давай зарегистрируемся?</h1>
-        )}
+            <h1>Давай зарегистрируемся?</h1>
+          )}
         <Search />
         <Checkbox sortByCheckbox={sortByCheckbox} />
         <YMaps query={{ ns: 'use-load-option', apikey: key }}>
@@ -107,6 +109,7 @@ const EventMap = () => {
                           iconImageHref: `http://localhost:3001${event.thumbnail}`,
                           iconImageSize: [40, 40],
                         }}
+
                       />
                     </div>
                   );

@@ -1,31 +1,51 @@
-import {
-  Card,
-  CardGroup,
-  Button,
-} from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import styles from "./Events.module.css";
-
+import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { leaveEvent } from '../../redux/action-creators/events'
 
 const EventCard = () => {
+  const { user, userEvents } = useSelector((store) => store);
+  const history = useHistory()
   return (
-    <CardGroup>
-      <Card style={{ "max-width": "10vw" }}>
-        <Card.Img
-          variant="top"
-          src="https://sun9-71.userapi.com/c850720/v850720894/10d47c/NU0_158reys.jpg"
-        />
-        <Card.Body>
-          <Card.Title>Game/Event title</Card.Title>
-          <Card.Text>
-            <div className={styles.eventDetails}>
-              <span>Time</span>
-              <span>Place</span>
-            </div>
-          </Card.Text>
-          <Button style={{ "max-width": "8vw" }}>Отписаться от события</Button>
-        </Card.Body>
-      </Card>
-    </CardGroup>
+    <>
+      {userEvents.map((event) => {
+        return (
+          <Card key={event._id} className={styles.myCard}>
+            <Card.Img variant="top" src={event.thumbnail} />
+            {user.id == event.creator && (
+              <div className={styles.sticker}>
+                <img
+                  src="/sticker.png"
+                  alt="sticker"
+                  width="120px"
+                  height="140px"
+                />
+                <span>Организатор</span>
+              </div>
+            )}
+            <Card.Body
+              className={
+                user.id == event.creator
+                  ? styles.bodyRelative
+                  : styles.myCardbBody
+              }
+            >
+              <Card.Title>
+                <Link to={`/event-page/${event._id}`}>{event.title}</Link>
+              </Card.Title>
+              <Card.Text>
+                <span className={styles.eventDetails}>
+                  <span>Сб, 13.02.2020</span>
+                  <span>{event.address}</span>
+                </span>
+              </Card.Text>
+              <Button className={styles.btn} onClick={() => leaveEvent(user.id,event._id,history)}>Отписаться от события</Button>
+            </Card.Body>
+          </Card>
+        );
+      })}
+    </>
   );
 };
 

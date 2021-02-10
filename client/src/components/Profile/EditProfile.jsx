@@ -35,7 +35,7 @@ const EditProfile = () => {
 
   const nameHandler = event => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
-    console.log('inputs', inputs);
+    //console.log('inputs', inputs);
   };
 
   const onSubmit = event => {
@@ -50,7 +50,7 @@ const EditProfile = () => {
   };
 
   const selectHandler = event => {
-    console.log(inputs.fav_games);
+    //console.log(inputs.fav_games);
     setInputs({ ...inputs, fav_games: event.map(e => (e = e._id)) });
   };
   return (

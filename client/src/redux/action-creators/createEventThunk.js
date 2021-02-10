@@ -1,10 +1,9 @@
 import { ADD_MESSAGE, SET_NEW_CHAT } from "../types/userChats";
 import { SET_NEW_EVENT } from "../types/userEvents";
-import { GET_EVENTS, GET_GAMES, GET_TAGS } from "../types/events"
-import { useDispatch, useSelector } from 'react-redux';
+import { GET_GAMES, GET_TAGS } from "../types/events"
+// import { useDispatch, useSelector } from 'react-redux';
 
-// export function createEventThunk(formValue) {
-//   const { eventName, eventTextArea, eventPersons, address, game } = formValue
+
 const setNewChatActionCreator = (chat) => {
   return { type: SET_NEW_CHAT, payload: chat }
 }
@@ -20,6 +19,13 @@ export const getGames = (games) => {
   return {
     type: GET_GAMES,
     payload: games
+  }
+}
+
+export const getUserInput = (input) => {
+  return {
+    type: FILTER_EVENTS_BY_USER_INPUT,
+    payload: input
   }
 }
 
@@ -83,15 +89,17 @@ export const getGamesThunk = (title) => {
   }
 }
 
-// export const filterEvents = (events, category) => {
-//   const dispatch = useDispatch();
-//   return dispatch({
-//     type: FILTER_EVENTS_BY_CATEGORY,
-//     payload: {
-//       category: category,
-//       events: category === "" ? events : events.filter(a => console.log(a.category))
+export const filterEvents = (events, category, history) => {
+  return async (dispatch) => {
 
-//     }  
-// })
-// }
+    return dispatch({
+      type: FILTER_EVENTS_BY_CATEGORY,
+      payload: {
+        category: category,
+        events: category === "" ? events : events.filter(a => console.log(a.category))
+      }
+  })
+  }
+}
+
 

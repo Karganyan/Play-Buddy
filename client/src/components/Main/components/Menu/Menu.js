@@ -13,7 +13,7 @@ const Menu = ({ open }) => {
       <StyledMenu open={open}>
         <Link to="/">
           <span role="img" aria-label="ABBA"><img src="https://img.icons8.com/bubbles/50/000000/confetti.png" /></span>
-        ABBA
+        PLAY BUDDY
         </Link>
         {isLogged ?
           <Link to="/profile">

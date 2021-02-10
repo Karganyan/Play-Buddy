@@ -3,29 +3,29 @@ import { useEffect } from 'react';
 import { getEventsThunk } from '../../redux/action-creators/events';
 import { userInSessionThunk } from '../../redux/action-creators/user';
 import { GET_EVENTS, FILTER_EVENTS_BY_CATEGORY } from '../../redux/types/events';
-import { filterEvents } from '../../redux/action-creators/createEventThunk';
+import { filterEvents, getUserInput } from '../../redux/action-creators/createEventThunk';
 
 const Search = () => {
   const dispatch = useDispatch();
   const events = useSelector(event => event.events);
   // console.log(events);
 
-//   const eventsHandler = () => {
-//     console.log(filterEvents())
-//  }
-
-
-
-
+  const eventsHandler = () => {
+    console.log(filterEvents())
+  }
+  
+  const handleSearchbarInput = (event) => {
+  dispatch(getUserInput(event.target.value)) 
+}
 
   return (
     <div>
       <h3>Найти игру</h3>
       <div className='input-group'>
         <div className='form-outline'>
-          <input type='search' id='form1' className='form-control' />
+          <input onChange={handleSearchbarInput} type='search' id='form1' className='form-control' />
         </div>
-        <button type='button' className='btn btn-primary'>
+        <button onClick={eventsHandler} type='button' className='btn btn-primary'>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='16'
