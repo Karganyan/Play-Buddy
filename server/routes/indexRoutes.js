@@ -5,6 +5,7 @@ const multer = require('multer');
 
 // создаем стор для аватарок
 const storage = multer.diskStorage({
+  
   destination: './public/uploads/',
   filename: (req, file, callback) => {
     callback(null, file.originalname)
@@ -22,7 +23,7 @@ router.get("/", (req, res) => {
 router.post("/edit", upload.single('avatar'), async (req, res) => {
   const { name, info, phone, fav_games, userId } = req.body;
 
-  req.session.user = { ...req.session.user, name, userId, fav_games, avatar: req.file.path };
+  req.session.user = { ...req.session.user, name, userId, fav_games, avatar: req.file.filename };
   const user = await User.findByIdAndUpdate(
     userId,
     {
@@ -31,12 +32,12 @@ router.post("/edit", upload.single('avatar'), async (req, res) => {
         information: info,
         phone,
         fav_games,
-        avatar: req.file.path
+        avatar: req.file.filename
       },
     },
     { new: true }
   );
-  console.log(user);
+  console.log(user.avatar);
   res.json(user);
 });
 
