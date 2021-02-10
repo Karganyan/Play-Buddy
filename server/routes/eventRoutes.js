@@ -38,9 +38,9 @@ router.get("/all-games", async (req, res) => {
 }); // ВЫНЕСТИ В ДРУГОЙ РОУТЕР
 
 router.post("/fav-games", async (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const currUser = await User.findById(req.body.id).populate('fav_games')
-  console.log(currUser);
+  // console.log(currUser);
   res.json({ status: 200, favGames: currUser.fav_games });
 }); // ВЫНЕСТИ В ДРУГОЙ РОУТЕР
 

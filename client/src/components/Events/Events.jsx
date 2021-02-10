@@ -11,16 +11,12 @@ const Events = () => {
             <h1>Мои События</h1>
           </div>
         </div>
-        <div className={`${styles.split} ${styles.right}`}>
-          <div className={styles.centered}>
-            <h1>События</h1>
-            <EventCard />
-          </div>
-        </div>
+        <EventCard />
+        <hr/>
         <Link to="/create-event">
           <button className="btn btn-outline-success" type="button">
             Create Event
-              </button>
+          </button>
         </Link>
       </div>
     </div>
