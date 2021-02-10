@@ -84,7 +84,7 @@ const CreateEventForm = () => {
         </select>
         <div className="mb-3">
           <label htmlFor="desc">Описание события</label>
-          <textarea onChange={inputHandler} name='eventTextArea' className="form-control" id="desc" />
+          <textarea onChange={inputHandler} name='description' className="form-control" id="desc" />
         </div>
         <div className="mb-3">
           <label htmlFor="amount" className="form-label">Колличество игроков</label>
