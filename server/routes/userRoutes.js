@@ -41,7 +41,7 @@ router.get('/auth/vkontakte', passport.authenticate('vkontakte'), (req, res) => 
 
 router.get('/vk/callback',
   passport.authenticate('vkontakte'), (req, res) => {
-    console.log('tut')
+    // console.log('tut')
     req.session.user = { id: req.user._id, name: req.user.name }
     res.redirect('http://localhost:3000/')
   }

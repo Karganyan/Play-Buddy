@@ -1,4 +1,4 @@
-import { GET_EVENTS, GET_GAMES, GET_TAGS, UPDATE_EVENT } from "../types/events"
+import { GET_EVENTS, GET_GAMES, GET_TAGS, UPDATE_EVENT, FILTER_EVENTS_BY_CATEGORY } from "../types/events"
 
 const eventsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -17,6 +17,11 @@ const eventsReducer = (state = {}, action) => {
           :
           event)
       }
+    // case FILTER_EVENTS_BY_CATEGORY: 
+    //   return {
+    //     ...state,
+    //     filterEvents: action.payload.events, category: action.payload.category
+    //   }
     default:
       return state
   }

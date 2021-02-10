@@ -1,58 +1,58 @@
 import { Form, Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
 
 import { updateUserThunk } from '../../redux/action-creators/user';
-import { Multiselect } from "multiselect-react-dropdown";
-import styles from "./Profile.module.css";
-import { useEffect } from "react";
+import { Multiselect } from 'multiselect-react-dropdown';
+import styles from './Profile.module.css';
+import { useEffect } from 'react';
 import { getAllGamesThunk } from '../../redux/action-creators/getGames';
 
 const EditProfile = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const username = useSelector((store) => store.user.name);
-  const userId = useSelector((store) => store.user.id);
-  const games = useSelector((store) => store.games.games);
-  const selectedGames = useSelector(store => store.games.favGames)
-console.log(selectedGames);
+  const username = useSelector(store => store.user.name);
+  const userId = useSelector(store => store.user.id);
+  const games = useSelector(store => store.games.games);
+  const selectedGames = useSelector(store => store.games.favGames);
+  console.log(selectedGames);
 
   const [inputs, setInputs] = useState({
     name: username,
-    info: "",
-    phone: "",
-    fav_games: []
+    info: '',
+    phone: '',
+    fav_games:
+      Array.isArray(selectedGames) && selectedGames.length
+        ? selectedGames.map(e => (e = e._id))
+        : [],
+    avatar: {},
   });
 
-  const [file, setFile] = useState("");
-
   useEffect(() => {
-     dispatch(getAllGamesThunk());
+    dispatch(getAllGamesThunk());
   }, []);
 
-  const nameHandler = (event) => {
+  const nameHandler = event => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
-    console.log('inputs', inputs);
-  };
-
-  const handleInfo = async () => {
-    dispatch(updateUserThunk(inputs, userId, history));
-
-    // console.log(response);
+    //console.log('inputs', inputs);
   };
 
   const onSubmit = event => {
     event.preventDefault();
-    handleInfo();
+    dispatch(updateUserThunk(inputs, userId, history));
   };
 
-    const selectHandler = (event) => {
-      console.log(inputs.fav_games);
-      setInputs({ ...inputs, fav_games: event.map(e => e = e._id) });
+  const onFileChange = event => {
+    setInputs(prev => {
+      return { ...prev, avatar: event.target.files[0] };
+    });
+  };
 
-    };
-console.log('inputs', inputs);
+  const selectHandler = event => {
+    //console.log(inputs.fav_games);
+    setInputs({ ...inputs, fav_games: event.map(e => (e = e._id)) });
+  };
   return (
     <div>
       <h1>Редактировать профиль</h1>
@@ -61,9 +61,9 @@ console.log('inputs', inputs);
           <Form.Label>Имя</Form.Label>
           <Form.Control
             onChange={nameHandler}
-            type="text"
-            placeholder="Введи имя"
-            name="name"
+            type='text'
+            placeholder='Введи имя'
+            name='name'
             value={inputs.name}
           />
         </Form.Group>
@@ -72,9 +72,9 @@ console.log('inputs', inputs);
           <Form.Label>Информация</Form.Label>
           <Form.Control
             onChange={nameHandler}
-            type="text"
-            placeholder="Расскажи немножко о себе"
-            name="info"
+            type='text'
+            placeholder='Расскажи немножко о себе'
+            name='info'
             value={inputs.info}
           />
         </Form.Group>
@@ -83,9 +83,10 @@ console.log('inputs', inputs);
           <Form.Label>Выбрать фото</Form.Label>
           <br />
           <Form.Control
-            type="file"
-            /* onChange={onFileChange} */
-            placeholder="Выбрать фото"
+            type='file'
+            onChange={onFileChange}
+            placeholder='Выбрать фото'
+            name='avatar'
           />
         </Form.Group>
         <br />
@@ -93,9 +94,9 @@ console.log('inputs', inputs);
           <Form.Label>Телефон</Form.Label>
           <Form.Control
             onChange={nameHandler}
-            type="tel"
-            placeholder="Введи номер телефона для связи"
-            name="phone"
+            type='tel'
+            placeholder='Введи номер телефона для связи'
+            name='phone'
             value={inputs.phone}
           />
         </Form.Group>
@@ -104,13 +105,13 @@ console.log('inputs', inputs);
           <Form.Label>Любимые игры</Form.Label>
           <Multiselect
             options={games}
-            displayValue="title"
+            displayValue='title'
             onSelect={selectHandler}
             selectedValues={selectedGames}
           />
         </Form.Group>
         <br />
-        <Button variant="primary" type="submit">
+        <Button variant='primary' type='submit'>
           Сохранить изменения
         </Button>
       </Form>

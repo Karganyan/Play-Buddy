@@ -14,11 +14,14 @@ const Checkbox = () => {
   })
   
   function sortByCheckbox(e) {
-    let smth = items.filter((event) => {
+    let filteredEvents = items.filter((event) => {
       return (
         event.category[0] === e.target.value
       )
     })
+    // console.log('====================================');
+    // console.log(filteredEvents);
+    // console.log('====================================');
   }
 
   return (
@@ -31,57 +34,57 @@ const Checkbox = () => {
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bea' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bea' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Подходит для детей
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999beb' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999beb' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Карточная
         </label>
       </div>
       <br/>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bec' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bec' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         ККИ
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bed' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bed' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Словесная
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bee' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bee' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         На целый день
         </label>
       </div>
       <br/>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bef' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bef' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Ролевая
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf0' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf0' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         На скорость
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf1' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf1' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Детективная
         </label>
       </div>
       <div className='form-check form-check-inline'>
-        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf2' />
+        <input className='form-check-input' type='checkbox' value='602169c62667f6c388999bf2' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
         Мафия
         </label>

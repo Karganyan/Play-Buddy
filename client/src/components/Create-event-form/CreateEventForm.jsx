@@ -19,6 +19,9 @@ const CreateEventForm = () => {
   const dispatch = useDispatch()
   const { tags, games } = useSelector(store => store.events)
   const [gameValue, setGameValue] = useState(games)
+  // console.log('====================================');
+  // console.log(form);
+  // console.log('====================================');
 
   const tagHandler = (event) => {
     inputHandler(event)

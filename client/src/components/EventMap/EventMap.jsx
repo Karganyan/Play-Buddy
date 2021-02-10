@@ -9,6 +9,10 @@ import Search from '../Search/Search';
 import Checkbox from '../Search/Checkbox';
 
 const EventMap = () => {
+  const items = useSelector(items => items.events.event);
+  // console.log('====================================');
+  // console.log(items);
+  // console.log('====================================');
   const key = '51ad9d93-9100-4ffa-8ebf-138a17d2a225';
   const dispatch = useDispatch();
   const history = useHistory();
@@ -66,7 +70,7 @@ const EventMap = () => {
             <Clusterer options={{ groupByCoordinates: false }}>
               {events.event &&
                 events.event.map(event => {
-                  console.log(event)
+                  // console.log(event)
                   return (
                     <div key={event._id}>
                       <Placemark

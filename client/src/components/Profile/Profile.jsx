@@ -13,8 +13,9 @@ import { useSelector } from 'react-redux';
 
 const Profile = () => {
   const user = useSelector((store) => store.user);
-    const avatar = useSelector((store) => store.user.avatar);
-// console.log(user.fav_games);
+  const avatar = useSelector((store) => store.user.avatar);
+  const avatarPath = `./uploads/${avatar}`
+// console.log('AVATAR!====>', avatarPath);
 
   return (
     <div className={styles.profile}>
@@ -23,35 +24,32 @@ const Profile = () => {
           <Link title="Домой" to="/">
             <img src="hamburger.png" className={styles.hamburger} />
           </Link>
-          <img src="avatar.png" alt="avatar" className={styles.avatar} />
+          <img src={avatarPath} alt="avatar" className={styles.avatar} />
           <Link to="/edit">
             <img title="Настройки" src="settings.png" className={styles.settings} />
           </Link>
+          <ProfileInfo />
           <div>
             <Link to="/events">
               <button className="btn btn-outline-success" type="button">
-                События
+                Мои События
               </button>
             </Link>
             <Link to="/chats">
               <button className="btn btn-outline-success" type="button">
-                Чаты
+                Мои Чаты
               </button>
             </Link>
           </div>
         </div>
       </div>
       <div className={styles.bottom}>
-        <h1>INFO</h1>
-        <ProfileInfo />
+        <h1>Личная информация</h1>
+        
         <br />
         <br />
-        <h1>FAVORITE GAMES</h1>
-        {user.fav_games ? (
-          <ProfileFavGames />
-        ) : (
-          <div>Пока не выбрано ни одной любимой игры</div>
-        )}
+        <h1>Любимые Игры</h1>
+        {user.fav_games ? <ProfileFavGames /> : <div>Пока не выбрано ни одной любимой игры</div>}
       </div>
     </div>
   );
