@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch, useHistory } from "react-router-dom";
 import styles from "./Profile.module.css";
 import EditProfile from "./EditProfile";
 // import Events from "../events/events";
@@ -10,11 +10,16 @@ import ProfileFavGames from './ProfileFavGames';
 // import UserChats from '../Chat/UserChats';
 // import Main from '../Main/Main';
 import { useSelector } from 'react-redux';
+import { useEffect } from "react";
 
 const Profile = () => {
   const user = useSelector((store) => store.user);
   const avatar = useSelector((store) => store.user.avatar);
   const avatarPath = `./uploads/${avatar}`
+  const history = useHistory()
+  useEffect(()=>{
+    !user.id ? history.push('/signin') : null
+  },[])
 // console.log('AVATAR!====>', avatarPath);
 
   return (

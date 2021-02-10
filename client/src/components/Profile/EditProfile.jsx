@@ -14,6 +14,11 @@ const EditProfile = () => {
   const history = useHistory();
   const username = useSelector(store => store.user.name);
   const userId = useSelector(store => store.user.id);
+
+  useEffect(()=>{
+    !userId ? history.push('/signin') : null
+  },[])
+
   const games = useSelector(store => store.games.games);
   const selectedGames = useSelector(store => store.games.favGames);
   console.log(selectedGames);

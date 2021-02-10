@@ -27,6 +27,7 @@ function ModalCHat() {
 
   wsClient.onmessage = (message) => {
     const { newMess, chatId } = JSON.parse(message.data);
+    console.log();
     dispatch(addMessageActionCreator({ newMess, chatId }))
   }
 
@@ -43,12 +44,22 @@ function ModalCHat() {
                   {chat.eventTitle}
                   <div className={styles.chatInModule}>
                     {chat.messages.map(mess => {
+                      console.log(mess.user_ref);
                       return (
-                        user.id === mess.user_ref
+                        user.id === mess.user_ref._id
                           ?
-                          <div className={styles.userRight} key={mess._id}>{mess.text}</div>
+
+                          <div className={styles.userRight} key={mess._id}>
+                            {mess.text}
+                          </div>
+
                           :
-                          <div key={mess._id}>{mess.text}</div>
+                          <div key={mess._id}>
+                            <span>
+                              <img src={mess.user_ref.avatar} alt="ava" className={styles.chatAvatar}/>
+                              {mess.text}
+                            </span>
+                          </div>
                       )
                     })}
                   </div>
