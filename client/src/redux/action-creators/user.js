@@ -102,7 +102,6 @@ export const signInVkThunk = (history) => {
       mode: 'cors'
     })
     const res = await req.json()
-    console.log(res)
     if (res.status === 200) {
       dispatch(getUser(res.user))
       history.push('/map')
@@ -111,7 +110,6 @@ export const signInVkThunk = (history) => {
 }
 
 export const signUpThunk = (inputValue, history, setError) => {
-  console.log('asdadsa')
   return async (dispatch) => {
     const res = await fetch('/user/signup', {
       method: 'POST',
@@ -140,7 +138,6 @@ export const signUpThunk = (inputValue, history, setError) => {
 }
 
 export const userInSessionThunk = () => {
-  // console.log('userInSession')
   return async (dispatch) => {
     const req = await fetch('/user/in-session', {
       method: 'GET',
@@ -151,7 +148,6 @@ export const userInSessionThunk = () => {
       mode: 'cors'
     })
     const res = await req.json()
-    console.log("res.user", res);
     if (res.user) {
       dispatch(getUser(res.user))
       dispatch(getDbUserEventsActionCreator(res.userEvents))
@@ -180,13 +176,9 @@ export const userLogoutThunk = (history) => {
   }
 }
 export const updateUserThunk = (inputs, userId, history) => {
-
   return async (dispatch) => {
-    console.log(inputs)
     const formData = new FormData()
-
     for (const name in inputs) {
-      console.log(inputs[name])
       Array.isArray(inputs[name])
         ? inputs[name].forEach(value => formData.append(name + '[]', value))
         : formData.append(name, inputs[name])

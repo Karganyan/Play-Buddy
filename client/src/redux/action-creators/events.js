@@ -1,4 +1,4 @@
-import { GET_CURRENT_EVENT, GET_EVENTS, UPDATE_EVENT } from "../types/events"
+import {FILTER_EVENTS, GET_CURRENT_EVENT, GET_EVENTS, UPDATE_EVENT} from "../types/events"
 import { SET_NEW_CHAT } from "../types/userChats"
 import { SET_NEW_EVENT } from "../types/userEvents"
 
@@ -12,6 +12,12 @@ export const getCurrentEvent = (event) => {
   return {
     type: GET_CURRENT_EVENT,
     payload: event
+  }
+}
+export const filterEvents = (eventsArray) => {
+  return {
+    type: FILTER_EVENTS,
+    payload: eventsArray
   }
 }
 
