@@ -11,7 +11,7 @@ const Events = () => {
           <img src="hamburger.png" className={styles.hamburger} />
         </Link>
         <h1 className={styles.title}>Мои События</h1>
-        <CardGroup>
+        <CardGroup className={styles.myGroup}>
           <EventCard />
         </CardGroup>
         <hr />

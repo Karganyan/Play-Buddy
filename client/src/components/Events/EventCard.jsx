@@ -10,7 +10,7 @@ const EventCard = () => {
     <>
       {userEvents.map((event) => {
         return (
-          <Card key={event._id} style={{ maxWidth: "25vw" }}>
+          <Card key={event._id} className={styles.myCard}>
             <Card.Img variant="top" src={event.thumbnail} />
             {user.id == event.creator && (
               <div className={styles.sticker}>
@@ -24,7 +24,11 @@ const EventCard = () => {
               </div>
             )}
             <Card.Body
-              className={user.id == event.creator && styles.bodyRelative}
+              className={
+                user.id == event.creator
+                  ? styles.bodyRelative
+                  : styles.myCardbBody
+              }
             >
               <Card.Title>
                 <Link to="/create-event">{event.title}</Link>
@@ -35,9 +39,7 @@ const EventCard = () => {
                   <span>{event.address}</span>
                 </span>
               </Card.Text>
-              <Button className={styles.btn}>
-                Отписаться от события
-              </Button>
+              <Button className={styles.btn}>Отписаться от события</Button>
             </Card.Body>
           </Card>
         );
