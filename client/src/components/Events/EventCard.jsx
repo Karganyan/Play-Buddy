@@ -1,18 +1,14 @@
-import {
-  Card,
-  CardGroup,
-  Button,
-} from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 import styles from "./Events.module.css";
-import { useSelector } from 'react-redux';
-
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const EventCard = () => {
   const user = useSelector((store) => store.user);
-  const userEvents = useSelector(store => store.userEvents);
+  const userEvents = useSelector((store) => store.userEvents);
   return (
-    <CardGroup>
-      {userEvents.map(event => {
+    <>
+      {userEvents.map((event) => {
         return (
           <Card key={event._id} style={{ maxWidth: "25vw" }}>
             <Card.Img variant="top" src={event.thumbnail} />
@@ -30,21 +26,23 @@ const EventCard = () => {
             <Card.Body
               className={user.id == event.creator && styles.bodyRelative}
             >
-              <Card.Title>{event.title}</Card.Title>
+              <Card.Title>
+                <Link to="/create-event">{event.title}</Link>
+              </Card.Title>
               <Card.Text>
                 <span className={styles.eventDetails}>
                   <span>Сб, 13.02.2020</span>
                   <span>{event.address}</span>
                 </span>
               </Card.Text>
-              <Button style={{ maxWidth: "18vw" }}>
+              <Button className={styles.btn}>
                 Отписаться от события
               </Button>
             </Card.Body>
           </Card>
         );
       })}
-    </CardGroup>
+    </>
   );
 };
 

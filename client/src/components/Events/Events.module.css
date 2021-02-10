@@ -63,3 +63,14 @@
     position: relative;
     top: -27%;
 }
+
+.btn {
+    max-width: "18vw";
+    margin-top: 7%;
+}
+
+.title {
+    display: inline;
+    margin-left: 12px;
+    padding-top: 2em;
+}
