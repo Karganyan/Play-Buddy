@@ -5,7 +5,6 @@ import { createEventThunk } from "../../redux/action-creators/createEventThunk";
 import DatePicker from "react-date-picker";
 import styles from "./Create-event-form.module.css";
 
-
 const CreateEventForm = () => {
   const [value, onChange] = useState(new Date("2021-02-13"));
   const [form, setForm] = useState({
@@ -71,92 +70,101 @@ const CreateEventForm = () => {
     await dispatch(createEventThunk(form, history));
   };
 
-  console.log('date', value);
+  console.log("date", value);
   return (
-    <div className="container">
-      <h1 className="mb-4">Создание события</h1>
-      <form onSubmit={createEventHandler}>
-        <div className="mb-3">
-          <label htmlFor="event" className="form-label">
-            Название события
-          </label>
-          <input
-            onChange={inputHandler}
-            name="title"
-            type="text"
-            className="form-control"
-            id="event"
-            aria-describedby="emailHelp"
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="address" className="form-label">
-            Адрес
-          </label>
-          <input
-            onChange={inputHandler}
-            name="address"
-            type="text"
-            className="form-control"
-            id="address"
-          />
-        </div>
-        <select
-          onChange={tagHandler}
-          name="category"
-          className="mb-3 form-select"
-        >
-          <option selected>Категория игры</option>
-          {tags &&
-            tags.map((tag) => {
-              return (
-                <option key={tags._id} value={tag._id}>
-                  {tag.title}
-                </option>
-              );
-            })}
-        </select>
-        <select
-          onChange={inputHandler}
-          name="game"
-          className="mb-3 form-select"
-        >
-          <option selected>Название игры</option>
-          {gameValue &&
-            gameValue.map((game) => {
-              return (
-                <option key={game._id} value={game._id}>
-                  {game.title}
-                </option>
-              );
-            })}
-        </select>
-        <div className="mb-3">
-          <label htmlFor="desc">Описание события</label>
-          <textarea
-            onChange={inputHandler}
-            name="description"
-            className="form-control"
-            id="desc"
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="amount" className="form-label">
-            Ожидаемое количество игроков
-          </label>
-          <input
-            onChange={inputHandler}
-            name="eventPersons"
-            type="number"
-            className="form-control"
-            id="amount"
-          />
-        </div>
+    <div className={styles.formBg}>
+      <div className={styles.centering}>
+        <div className="container">
+          <h1 className="mb-4">Создание события</h1>
+          <form onSubmit={createEventHandler}>
+            <div className="mb-3">
+              <label htmlFor="event" className="form-label">
+                Название события
+              </label>
+              <input
+                onChange={inputHandler}
+                name="title"
+                type="text"
+                className="form-control"
+                id="event"
+                aria-describedby="emailHelp"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="address" className="form-label">
+                Адрес
+              </label>
+              <input
+                onChange={inputHandler}
+                name="address"
+                type="text"
+                className="form-control"
+                id="address"
+              />
+            </div>
+            <select
+              onChange={tagHandler}
+              name="category"
+              className="mb-3 form-select"
+            >
+              <option selected>Категория игры</option>
+              {tags &&
+                tags.map((tag) => {
+                  return (
+                    <option key={tags._id} value={tag._id}>
+                      {tag.title}
+                    </option>
+                  );
+                })}
+            </select>
+            <select
+              onChange={inputHandler}
+              name="game"
+              className="mb-3 form-select"
+            >
+              <option selected>Название игры</option>
+              {gameValue &&
+                gameValue.map((game) => {
+                  return (
+                    <option key={game._id} value={game._id}>
+                      {game.title}
+                    </option>
+                  );
+                })}
+            </select>
+            <div className="mb-3">
+              <label htmlFor="desc">Описание события</label>
+              <textarea
+                onChange={inputHandler}
+                name="description"
+                className="form-control"
+                id="desc"
+              />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="amount" className="form-label">
+                Ожидаемое количество игроков
+              </label>
+              <input
+                onChange={inputHandler}
+                name="eventPersons"
+                type="number"
+                className="form-control"
+                id="amount"
+              />
+            </div>
 
-        <DatePicker className={styles.picker} onChange={onChange} value={value} format={"yy-MM-dd"} />
+      {/*       <DatePicker
+              className={styles.picker}
+              onChange={onChange}
+              value={value}
+              format={"yy-MM-dd"}
+              monthPlaceholder="mm"
+              minDate={new Date()}
+            /> */}
 
-        {/* player's level */}
-        {/*  <div className="mb-3 form-check">
+            {/* player's level */}
+            {/*  <div className="mb-3 form-check">
           <label className="form-check-label" htmlFor="beginner">Приглашаю начинающих игроков</label>
           <input onChange={inputHandler} name='beginner' className="form-check-input" type="checkbox" value="" id="beginner" />
         </div>
@@ -165,10 +173,12 @@ const CreateEventForm = () => {
           <input onChange={inputHandler} name='advanced' className="form-check-input" type="checkbox" value="" id="advanced" />
         </div> */}
 
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
+            <button type="submit" className="btn btn-primary">
+              Идём играть!
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
