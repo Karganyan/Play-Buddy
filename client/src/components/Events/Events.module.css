@@ -1,112 +1,105 @@
-/* .split {
-    height: 100%;
-    width: 50%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-    padding-top: 20px;
-}
-
-.left {
-    left: 0;
-    background-color: #ece2e1;
-}
-
-.right {
-    right: 0;
-    background-color: #fcd1d1;
-}
-
-.centered {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-}
-
-.button {
-    z-index: 6;
-    color: red;
-}
-
-*/
-
-.eventWrapper {
-    display: flex;
-}
-
-.eventMainInfo {
-    display: flex;
-    flex-direction: column;
-}
-
-.sticker {
-    position: relative;
-    top: -55%;
-}
-
-.sticker span {
-    font-size: 0.7em;
-    position: absolute;
-    top: 45%;
-    left: 7%;
-    font-weight: bold;
-    z-index: 1;
-}
-
-.title {
-    display: inline;
-    margin-left: 12px;
-    padding-top: 2em;
-}
-
-.myGroup {
-    margin-left: 4vw;
-    margin-bottom: 120px;
-}
-
-.myCard {
-    min-width: 18vw;
-    max-width: 18vw;
-    margin-right: 4vw;
-}
-
-.bodyRelative {
-    position: relative;
-    top: -36%;
-    height: 50px;
-    padding: 0;
-    font-size: 0.8em;
-}
-
-.myCardbBody {
-    height: 50px;
-    font-size: 0.8em;
-    padding: 0;
-}
-
-.btn {
-    margin-top: 7%;
-    font-size: 0.8em;
-}
-
-.eventDetails {
-    display: flex;
-    justify-content: center;
-}
-
-.eventDetails span {
-    background-color: rgba(170, 132, 132, 0.712);
-    box-shadow: 1px 1px 3px rgb(144, 55, 22);
-    padding: 2px;
-    margin: 5px 5px;
-}
-
-.ava {
-    border-radius: 50%;
-    object-fit: cover;
-    height: 50px;
-    width: 50px;
-}
+ .eventBg {
+     min-height: 100vh;
+     padding-top: 30px;
+     font-family: 'BalsamiqSans-Bold';
+     color: white;
+ }
+ 
+ .centering {
+     width: 55vw;
+     margin: 0 auto;
+ }
+ 
+ .eventWrapper {
+     display: flex;
+     margin-bottom: 20px;
+ }
+ 
+ .eventWrapper img {
+     box-shadow: 1px 1px 3px #8b8a97;
+     margin: 0 15px;
+ }
+ 
+ .eventMainInfo {
+     display: flex;
+     flex-direction: column;
+ }
+ 
+ .sticker {
+     position: relative;
+     top: -55%;
+ }
+ 
+ .sticker span {
+     font-size: 0.7em;
+     position: absolute;
+     top: 45%;
+     left: 7%;
+     font-weight: bold;
+     z-index: 1;
+ }
+ 
+ .title {
+     display: inline;
+     margin-left: 12px;
+     padding-top: 2em;
+ }
+ 
+ .myGroup {
+     margin-left: 4vw;
+     margin-bottom: 120px;
+ }
+ 
+ .myCard {
+     min-width: 18vw;
+     max-width: 18vw;
+     margin-right: 4vw;
+ }
+ 
+ .bodyRelative {
+     position: relative;
+     top: -36%;
+     height: 50px;
+     padding: 0;
+     font-size: 0.8em;
+ }
+ 
+ .myCardbBody {
+     height: 50px;
+     font-size: 0.8em;
+     padding: 0;
+ }
+ 
+ .btn {
+     margin-top: 7%;
+     font-size: 0.8em;
+ }
+ 
+ .eventDetails {
+     display: flex;
+     justify-content: center;
+ }
+ 
+ .eventDetails span {
+     background-color: #53508E;
+     box-shadow: 1px 1px 3px #8b8a97;
+     padding: 2px;
+     margin: 5px 5px;
+ }
+ 
+ .ava {
+     border-radius: 50%;
+     object-fit: cover;
+     height: 50px;
+     width: 50px;
+ }
+ 
+ .participant {
+     margin-right: 20px;
+     display: inline-flex;
+ }
+ 
+ .participant::before {
+     content: "✵";
+     margin-right: 10px;
+ }
