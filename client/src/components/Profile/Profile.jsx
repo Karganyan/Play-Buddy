@@ -15,6 +15,7 @@ import { useEffect } from "react";
 const Profile = () => {
   const user = useSelector((store) => store.user);
   const avatar = useSelector((store) => store.user.avatar);
+
   const avatarPath = `./uploads/${avatar}`
   const history = useHistory()
   useEffect(() => {
@@ -29,7 +30,7 @@ const Profile = () => {
           <Link title="Домой" to="/">
             <img src="hamburger.png" className={styles.hamburger} />
           </Link>
-          <img src={avatarPath} alt="avatar" className={styles.avatar} />
+          <img src={avatarPath} alt='avatar' className={styles.avatar} />
           <Link to="/edit">
             <img title="Настройки" src="settings.png" className={styles.settings} />
           </Link>
