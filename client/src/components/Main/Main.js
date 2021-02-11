@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { getTagsThunk, getGamesThunk } from '../../redux/action-creators/createEventThunk';
 import { useHistory } from "react-router";
 import { getEventsThunk } from '../../redux/action-creators/events';
+import styles from "./Main.module.css";
 
 
 function MainPage() {
@@ -26,16 +27,14 @@ function MainPage() {
       await dispatch(userInSessionThunk());
       await dispatch(getTagsThunk())
       await dispatch(getGamesThunk())
-      })()
+    })()
   }, [])
 
   const [open, setOpen] = useState(false);
   const node = useRef();
   useOnClickOutside(node, () => setOpen(false));
 
-  const logoutHandler = async () => {
-    dispatch(userLogoutThunk(history))
-  }
+
 
   return (
     <>
@@ -44,19 +43,37 @@ function MainPage() {
         <>
           <GlobalStyles />
           <div>
-            { user.id ? <h1>Приветики, {user.name}</h1> : <h1>Зарегистрироваться</h1> }
-            <h1 style={{ fontSize: '50px', textAlign: 'center' }} className='appName'>Play Buddy <img src='https://media.giphy.com/media/ygzkZPxmh6HgUzbYFz/giphy.gif' style={{ width: '70px', height: '70px' }} /></h1>
+            {/* {user.id
+              ?
+              <>
+                <h1>Приветики, {user.name}</h1>
+                {currentEvent._id
+                  ?
+                  <>
+                    <h4>{currentEvent.title}</h4>
+                    <p>{currentEvent.description}</p>
+                    <span>Адрес: {currentEvent.coordinates}(пока это координаты)</span>
+                    <button className='btn btn-primary'>записаться на событие</button>
+                  </>
+                  :
+                  <p>Выбери событие</p>
+                }
+              </>
+              :
+              <h1>Зарегистрироваться</h1>
+            } */}
+            <h1 className={styles.appName}>Play Buddy <img src='https://media.giphy.com/media/ygzkZPxmh6HgUzbYFz/giphy.gif' className={styles.giphy} /></h1>
 
-            <img className='logo' src="/logo1.jpg" alt="logo" style={{ width: '300px', height: '300px', borderRadius: '80%' }} />
+            <img className={styles.logo} src="/dice.jpg" alt="logo" />
           </div>
           <div ref={node}>
             <Burger open={open} setOpen={setOpen} />
             <Menu open={open} setOpen={setOpen} />
 
           </div>
-          <Link to='/' onClick={logoutHandler}>
+          {/* <Link to='/' onClick={logoutHandler}>
             <img src="/icons8-open-door-50.png" alt='img'/>
-          </Link>
+          </Link> */}
         </>
       </ThemeProvider>
     </>

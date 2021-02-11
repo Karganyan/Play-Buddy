@@ -10,6 +10,7 @@ import Game from './components/Game/Game';
 import Profile from "./components/Profile/Profile.jsx"
 import EditProfile from "./components/Profile/EditProfile.jsx"
 import Chat from "./components/Сhat/Chat"
+import './index.css'
 
 function App() {
   return (

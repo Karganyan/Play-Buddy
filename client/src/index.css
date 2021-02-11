@@ -1,11 +1,7 @@
-/* @font-face {
+@font-face {
   font-family: 'BalsamiqSans-Bold';
-  src: url(BalsamiqSans-Bold) format('woff');
-       
+  src: url('BalsamiqSans-Bold.woff')      
 }
 
-body {
-  font-family: 'BalsamiqSans-Bold';
-} */
 
-/* not working!!!! */
+
