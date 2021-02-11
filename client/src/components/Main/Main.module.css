@@ -1,0 +1,15 @@
+.appName {
+  font-size: 50px;
+  text-align: center;
+}
+
+.giphy {
+  width: 70px;
+  height: 70px;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+  border-radius: 80%;
+}

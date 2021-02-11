@@ -15,9 +15,9 @@ const EditProfile = () => {
   const username = useSelector(store => store.user.name);
   const userId = useSelector(store => store.user.id);
 
-  useEffect(()=>{
-    !userId ? history.push('/signin') : null
-  },[])
+  useEffect(() => {
+    !userId ? history.push('/signin') : null;
+  }, []);
 
   const games = useSelector(store => store.games.games);
   const selectedGames = useSelector(store => store.games.favGames);
@@ -61,10 +61,11 @@ const EditProfile = () => {
   return (
     <div>
       <h1>Редактировать профиль</h1>
-      <Form onSubmit={onSubmit}>
-        <Form.Group>
+      <Form onSubmit={onSubmit} className={styles.form}>
+        <Form.Group >
           <Form.Label>Имя</Form.Label>
           <Form.Control
+            className={styles.Group}
             onChange={nameHandler}
             type='text'
             placeholder='Введи имя'
@@ -76,6 +77,7 @@ const EditProfile = () => {
         <Form.Group>
           <Form.Label>Информация</Form.Label>
           <Form.Control
+            className={styles.Group}
             onChange={nameHandler}
             type='text'
             placeholder='Расскажи немножко о себе'
@@ -88,6 +90,7 @@ const EditProfile = () => {
           <Form.Label>Выбрать фото</Form.Label>
           <br />
           <Form.Control
+            
             type='file'
             onChange={onFileChange}
             placeholder='Выбрать фото'
@@ -99,6 +102,7 @@ const EditProfile = () => {
           <Form.Label>Телефон</Form.Label>
           <Form.Control
             onChange={nameHandler}
+            className={styles.Group}
             type='tel'
             placeholder='Введи номер телефона для связи'
             name='phone'
@@ -109,6 +113,7 @@ const EditProfile = () => {
         <Form.Group>
           <Form.Label>Любимые игры</Form.Label>
           <Multiselect
+            className={styles.Group}
             options={games}
             displayValue='title'
             onSelect={selectHandler}
@@ -120,6 +125,7 @@ const EditProfile = () => {
           Сохранить изменения
         </Button>
       </Form>
+
     </div>
   );
 };
