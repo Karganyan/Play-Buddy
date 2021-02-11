@@ -19,6 +19,7 @@ const EventPage = () => {
 
   const event = userEvents.find(event => event._id === param.id)
   const thisEvent = events.event.find(event => event._id === param.id)
+  console.log('>>>>>>', thisEvent)
   const joinEvent = () => {
     if (event) {
       setWasAdded('notok')
