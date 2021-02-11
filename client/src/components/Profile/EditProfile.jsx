@@ -84,6 +84,8 @@ const EditProfile = () => {
               placeholder="Расскажи немножко о себе"
               name="info"
               value={inputs.info}
+              style={{ height: '100px' }}
+              rows='3'
             />
           </Form.Group>
           <br />
@@ -121,8 +123,8 @@ const EditProfile = () => {
             />
           </Form.Group>
           <br />
-          <Button variant="primary" type="submit">
-            Сохранить изменения
+          <Button variant="info" type="submit" className={styles.saveBtn}> 
+            Сохранить
           </Button>
         </Form>
       </div>
