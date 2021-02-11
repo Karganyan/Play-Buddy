@@ -11,8 +11,13 @@ import './Profile.module.css'
 const Profile = () => {
   const user = useSelector(store => store.user);
   const avatar = useSelector(store => store.user.avatar);
-
-  const avatarPath = `./uploads/${avatar}`;
+  let avatarPath;
+  console.log(avatar);
+  if(avatar === '/uploads/avatar.png'){
+    avatarPath = `${avatar}`;
+  } else {
+    avatarPath = `/uploads/${avatar}`;
+  }
   const history = useHistory();
   useEffect(() => {
     !user.id ? history.push('/signin') : null;

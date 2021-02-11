@@ -32,7 +32,6 @@ function MainPage() {
   useOnClickOutside(node, () => setOpen(false));
 
 
-
   return (
     <>
 

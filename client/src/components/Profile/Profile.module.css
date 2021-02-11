@@ -1,10 +1,9 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /* background-color: coral; */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-color: coral; */
 }
-
 
 .profile {
     /* border: 1px black solid; */
@@ -13,11 +12,7 @@
     text-align: center;
     font-family: 'BalsamiqSans-Bold';
     color: white;
-
-    /* display: flex; */
-    /* flex-direction: column;
-    align-items: center; */
-
+    display: contents;
 }
 
 .header {
@@ -29,25 +24,22 @@
 }
 
 .avatar {
-    width: 250px;
-    height: 250px;
-    border-radius: 50%; 
+    width: 10%;
+    height: 25%;
+    border-radius: 50%;
     margin: 10px;
-
 }
 
 .settings {
     height: 32px;
     width: 32px;
-    margin: 32px 28px 0 0 ;
-   
+    margin: 32px 28px 0 0;
 }
 
 .hamburger {
-  height: 32px;
-  width: 32px;
-  margin: 32px 0 0 28px ;
-
+    height: 32px;
+    width: 32px;
+    margin: 32px 0 0 28px;
 }
 
 .card {
@@ -67,9 +59,7 @@
     max-width: 300px;
     max-height: 250px;
     border-radius: 5px;
-
 }
-     
 
 .formControl {
     width: 100%;
@@ -85,30 +75,33 @@
 .formControl input:focus {
     border: 0px;
 }
-    /* border-radius: 50% */
+
+
+/* border-radius: 50% */
+
 .userName {
-  font-size: 40px;
+    font-size: 40px;
 }
 
 .form {
-  font-size: 1.5rem;
-  background: #fff;
-  color: #000;
-  overflow-wrap: break-word;
-  border-radius: 8px;
-  padding: 4rem;
+    font-size: 1.5rem;
+    background: #fff;
+    color: #000;
+    overflow-wrap: break-word;
+    border-radius: 8px;
+    padding: 4rem;
 }
 
 .Group {
-  background-color: #eaeaea;
+    background-color: #eaeaea;
 }
 
 .bottom {
-  margin-top: 50px;
+    margin-top: 50px;
 }
 
 .profileWrapper {
-  display: flex;
-  /* align-items: center; */
-  justify-content: space-between;
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
 }
