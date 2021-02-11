@@ -40,26 +40,37 @@ function ModalCHat() {
             (chat.messages.length
               ?
               <>
-                <div>
-                  {chat.eventTitle}
                   <div className={styles.chatInModule}>
                     {chat.messages.map(mess => {
                       console.log(mess.user_ref);
+                      const avatarPath = `./uploads/${mess.user_ref.avatar}`
                       return (
                         user.id === mess.user_ref._id
                           ?
-
-                          <div className={styles.userRight} key={mess._id}>
-                            {mess.text}
-                          </div>
-
+                          <>
+                            <div className={styles.userRR}>
+                              <div className={styles.userRight} key={mess._id}>
+                                {mess.text}
+                              </div>
+                            </div>
+                            <br />
+                          </>
                           :
-                          <div key={mess._id}>
-                            <span>
-                              <img src={mess.user_ref.avatar} alt="ava" className={styles.chatAvatar}/>
+                          <>
+                            <div key={mess._id} className={styles.nonUserDiv}>
+                              <div>
+                                <span>
+                                  <img alt="ava" src={avatarPath} className={styles.chatAvatar} />
+                                </span>
+                              &ensp;
+                              <span>
+                                  {mess.user_ref.name}:
+                              </span>
+                              </div>
                               {mess.text}
-                            </span>
-                          </div>
+                            </div>
+                            <br />
+                          </>
                       )
                     })}
                   </div>
@@ -67,7 +78,6 @@ function ModalCHat() {
                     <input onChange={inputHandler} value={input} />
                     <button onClick={wsPost}>send</button>
                   </div>
-                </div>
               </>
               :
               (
