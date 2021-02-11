@@ -73,7 +73,6 @@ router.post('/join', async (req, res) => {
   await event.save();
   const chat = await Chat.findById(event.chat).populate('messages')
   res.json({ chat, event});
-  res.json({ chat, event });
 })
 
 router.get('/close/:eventId', async (req, res) => {

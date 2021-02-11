@@ -9,6 +9,7 @@ function Chat() {
   const store = useSelector(store => store)
   const dispatch = useDispatch()
   const history = useHistory()
+  const chat = store.userChats.find(chat => chat._id === store.modalChat)
   useEffect(() => {
     !store.user.id ? history.push('/signin') : null
   }, [])
@@ -17,8 +18,11 @@ function Chat() {
   }
   return (
     <>
-      <div className={styles.chatConteiner}>
-        <div className={styles.headConteiner}>ЧАТЫ СОБЫТИЙ</div>
+      <div className=' wrapper' >
+        <div className={styles.headCont}>
+          <h2>ЧАТЫ СОБЫТИЙ</h2>
+          <h3 className='titles'>{chat.eventTitle}</h3>
+        </div>
         <div className={styles.chatsConteiner}>
           {store.userChats.length
             ?
@@ -30,7 +34,7 @@ function Chat() {
             :
             'there are no chats here yet'}
         </div>
-          {store.userChats.length ? <ModalCHat /> : null}
+        {store.userChats.length ? <ModalCHat /> : null}
       </div>
     </>
   )
