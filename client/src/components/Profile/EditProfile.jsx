@@ -12,21 +12,21 @@ import { getAllGamesThunk } from '../../redux/action-creators/getGames';
 const EditProfile = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const username = useSelector(store => store.user.name);
+  const { user } = useSelector(store => store);
   const userId = useSelector(store => store.user.id);
 
-  useEffect(()=>{
+  useEffect(() => {
     !userId ? history.push('/signin') : null
-  },[])
+  }, [])
 
   const games = useSelector(store => store.games.games);
   const selectedGames = useSelector(store => store.games.favGames);
   console.log(selectedGames);
 
   const [inputs, setInputs] = useState({
-    name: username,
-    info: '',
-    phone: '',
+    name: user.name,
+    info: user.information,
+    phone: user.phone,
     fav_games:
       Array.isArray(selectedGames) && selectedGames.length
         ? selectedGames.map(e => (e = e._id))

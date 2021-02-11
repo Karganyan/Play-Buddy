@@ -17,10 +17,10 @@ const Profile = () => {
   const avatar = useSelector((store) => store.user.avatar);
   const avatarPath = `./uploads/${avatar}`
   const history = useHistory()
-  useEffect(()=>{
+  useEffect(() => {
     !user.id ? history.push('/signin') : null
-  },[])
-// console.log('AVATAR!====>', avatarPath);
+  }, [])
+  // console.log('AVATAR!====>', avatarPath);
 
   return (
     <div className={styles.profile}>
@@ -50,7 +50,12 @@ const Profile = () => {
       </div>
       <div className={styles.bottom}>
         <h1>Личная информация</h1>
+        {user.phone ? 
+          <div>Номер телефона: {user.phone}</div>
         
+          :
+          null
+        }
         <br />
         <br />
         <h1>Любимые Игры</h1>
