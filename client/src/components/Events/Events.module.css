@@ -73,7 +73,14 @@
  .btn {
      margin-top: 7%;
      font-size: 0.8em;
+  
  }
+
+ .hamburger {
+  height: 32px;
+  width: 32px;
+  margin: 32px 0 0 28px;
+}
  
  .eventDetails {
      display: flex;

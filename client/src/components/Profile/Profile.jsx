@@ -54,7 +54,7 @@ const Profile = () => {
               className='btn btn-outline-info btn-lg'
               style={{
                 width: '200px',
-                padding: '20px',
+                padding: '15px',
                 fontSize: '25px',
                 marginRight: '20px',
                 color: 'white',
@@ -67,7 +67,7 @@ const Profile = () => {
           <Link to='/chats'>
             <button
               className='btn btn-outline-info btn-lg'
-              style={{ width: '200px', padding: '38px', fontSize: '25px', color: 'white' }}
+              style={{ width: '200px', padding: '15px', fontSize: '25px', color: 'white' }}
             >
               Мои Чаты
             </button>
@@ -83,8 +83,6 @@ const Profile = () => {
             <h3>{user.information} </h3>
           </div>
         ) : null}
-        <br />
-        <br />
         {user.phone ? (
           <div>
             <h2 style={{ color: '#fcf876' }}>Со мной можно связаться по номеру</h2> <br />
@@ -92,7 +90,7 @@ const Profile = () => {
           </div>
         ) : null}
         <br />
-        <br />
+  
         <h1 style={{ color: '#fcf876', fontSize: '50px', textShadow: '1px 1px 2px #e7e7de' }}>
           Любимые Игры
         </h1>

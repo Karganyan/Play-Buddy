@@ -8,6 +8,7 @@ import { useHistory } from 'react-router';
 import Checkbox from '../Checkbox/Checkbox';
 import '../EventMap/eventMap.css'
 import { Link } from "react-router-dom";
+import styles from '../Profile/Profile.module.css';
 
 const EventMap = () => {
   const [category, setCategory] = useState([])
@@ -57,9 +58,9 @@ const EventMap = () => {
   return (
  <div className="bg">
       <div className="eventMap wrapper">
-      <Link title="Домой" to="/">
-        <img src="icons8-menu-96.png" className="hamburger" />
-      </Link>
+      <Link title='Домой' to='/'>
+            <img src='home.svg' className={styles.hamburger} />
+          </Link>
       <div className="container">
         <div className="info">
           {user ? (
@@ -67,13 +68,14 @@ const EventMap = () => {
               {currentEvent ? (
                 <>
                   <h3>{currentEvent.game.title}</h3>
-                  <p>Описание события: {currentEvent.description}</p>
-                  <span>Адрес: {currentEvent.address}</span>
+                  <h4>Описание события:  {currentEvent.description}</h4>
+                  <span>Адрес:  {currentEvent.address}</span>
                   <button
                     onClick={() => redirectOnEventPage(currentEvent._id)}
-                    className="btn btn-primary"
-                  >
-                    Подробнее
+                      className="btn btn-info"
+                      style={{color: '#41444b', padding: '10px'}}
+                  >Подробнее
+                   
                   </button>
                 </>
               ) : (
