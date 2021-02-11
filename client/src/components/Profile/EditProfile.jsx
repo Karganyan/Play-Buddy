@@ -95,7 +95,6 @@ const EditProfile = () => {
               onChange={onFileChange}
               placeholder="Выбрать фото"
               name="avatar"
-              // value={inputs.avatar}
             />
           </Form.Group>
           <br />

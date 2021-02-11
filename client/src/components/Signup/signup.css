@@ -4,6 +4,7 @@
     height: 100vh;
 }
 .text-error {
+    color: #f4f9f9;
     text-align: center;
     font-size: 1.2rem;
 }

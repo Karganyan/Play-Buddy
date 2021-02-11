@@ -38,7 +38,7 @@ const EventPage = () => {
     <div className={styles.eventBg}>
       <div className={styles.centering}>
         <div className={styles.eventWrapper}>
-          <img width="105px" src={thisEvent.thumbnail} alt="game" />
+          <img width="105px" src={thisEvent && thisEvent.thumbnail} alt="game" />
           <div className={styles.eventMainInfo}>
             <h1>{thisEvent && thisEvent.title}</h1>
             <div className={styles.eventDetails}>
@@ -61,7 +61,12 @@ const EventPage = () => {
           <h5>Участники мероприятия</h5>
           {thisEvent &&
             thisEvent.participants.map((userr) => {
-              const avatarPath = `/uploads/${userr.avatar}`;
+              let avatarPath;
+              if(userr.avatar === '/uploads/avatar.png'){
+                avatarPath = `${userr.avatar}`;
+              } else {
+                avatarPath = `/uploads/${userr.avatar}`;
+              }
               return (
                 <ul key={userr._id}>
                   <li className={styles.participant}>{userr.name}</li>

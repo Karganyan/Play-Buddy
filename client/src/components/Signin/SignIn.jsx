@@ -45,7 +45,7 @@ const Signin = () => {
             <label htmlFor="exampleInputPassword13" className="form-label text-white">Password</label>
             <input onChange={inputHandler} name='password' type="password" className="form-control" id="exampleInputPassword13" />
           </div>
-          {error ? <p className='text-error text-danger'>{error}</p> : null}
+          {error ? <p className='text-error'>{error}</p> : null}
           <button onClick={submitHandler} type="submit" className="btn btn-primary col-md-2 offset-md-5 mb-2">Sign In</button>
           <a href='http://localhost:3001/user/google' className=" btn btn-primary google form-text col-md-2 offset-md-5 mb-2">Войти через <i
             className="fab fa-google"/></a>

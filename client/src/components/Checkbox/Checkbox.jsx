@@ -3,7 +3,7 @@ import '../Checkbox/checkbox.css'
 const Checkbox = ({sortByCheckbox}) => {
   return (
     <div className='checkbox-wrapper'>
-      <h3>Категория</h3>
+      <h2>Категория</h2>
       <div className='form-check form-check-inline'>
         <input className='form-check-input' type='checkbox' id='one' data-id='602169c62667f6c388999be9' onChange={sortByCheckbox}/>
         <label htmlFor='one' className='form-check-label' >

@@ -32,7 +32,6 @@ function MainPage() {
   useOnClickOutside(node, () => setOpen(false));
 
 
-
   return (
     <>
 
@@ -44,12 +43,12 @@ function MainPage() {
             <h1 className={styles.appName}>Play Buddy</h1>
 
             <div className="dice logo pb-3">
-              <div className="face" id="f1">1</div>
-              <div className="face" id="f2">2</div>
-              <div className="face" id="f3">3</div>
-              <div className="face" id="f4">4</div>
-              <div className="face" id="f5">5</div>
-              <div className="face" id="f6">6</div>
+              <div className="face" id="f1">Играй</div>
+              <div className="face" id="f2">Дружи</div>
+              <div className="face" id="f3">Собирай</div>
+              <div className="face" id="f4">Туси</div>
+              <div className="face" id="f5">Тащи</div>
+              <div className="face" id="f6">Смейся</div>
             </div>
           <h4 className='say text-b'>Приложение для поиска близких по духу людей!</h4>
           </div>

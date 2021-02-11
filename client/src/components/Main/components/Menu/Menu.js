@@ -33,7 +33,8 @@ const Menu = ({ open }) => {
         Профиль
       </Link>
           <Link to='/' onClick={logoutHandler}>
-            <span role="img" aria-label="Профиль"><img src="exit.png" /> Выйти</span>
+            <span role="img" aria-label="Профиль"><img src="exit.png" /> </span>
+            Выйти
           </Link>
         </>
         :

@@ -3,17 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userInSessionThunk } from '../../redux/action-creators/user';
 import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps';
 import './eventMap.css';
-import {filterEvents, getCurrentEventThunk, getEventsThunk} from '../../redux/action-creators/events';
+import { filterEvents, getCurrentEventThunk, getEventsThunk } from '../../redux/action-creators/events';
+import { useHistory } from 'react-router';
 import Checkbox from '../Checkbox/Checkbox';
 import '../EventMap/eventMap.css'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  useHistory,
-} from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 const EventMap = () => {
   const [category, setCategory] = useState([])
@@ -51,14 +45,14 @@ const EventMap = () => {
   };
   const sortByCheckbox = (event) => {
     event.target.value = !event.target.value
-      if (event.target.checked) {
-        setCategory(prev => [...prev, event.target.dataset.id])
-      } else {
-        setCategory(prev => {
-          return prev.filter(el => el !== event.target.dataset.id)
-        })
-        setEventState(events.event)
-      }
+    if (event.target.checked) {
+      setCategory(prev => [...prev, event.target.dataset.id])
+    } else {
+      setCategory(prev => {
+        return prev.filter(el => el !== event.target.dataset.id)
+      })
+      setEventState(events.event)
+    }
   }
   return (
  <div className="bg">
@@ -97,28 +91,24 @@ const EventMap = () => {
               defaultState={{
                 center: [55.75, 37.57],
                 zoom: 10,
-                controls: ["zoomControl", "fullscreenControl"],
+                controls: ['zoomControl', 'fullscreenControl'],
               }}
-              modules={[
-                "control.ZoomControl",
-                "control.FullscreenControl",
-                "geocode",
-              ]}
-              className="map"
-              instanceRef={(ref) => {
-                ref && ref.behaviors.disable("scrollZoom");
+              modules={['control.ZoomControl', 'control.FullscreenControl', 'geocode']}
+              className='map'
+              instanceRef={ref => {
+                ref && ref.behaviors.disable('scrollZoom');
               }}
             >
               <Clusterer options={{ groupByCoordinates: false }}>
                 {eventState &&
-                  eventState.map((event) => {
+                  eventState.map(event => {
                     return (
                       <div key={event._id}>
                         <Placemark
                           onClick={() => clickHandler(event._id)}
                           geometry={event.coordinates}
                           options={{
-                            iconLayout: "default#image",
+                            iconLayout: 'default#image',
                             iconImageHref: `http://localhost:3001${event.thumbnail}`,
                             iconImageSize: [40, 40],
                           }}
