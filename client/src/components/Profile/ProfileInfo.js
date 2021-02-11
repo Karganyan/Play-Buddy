@@ -10,7 +10,7 @@ const ProfileInfo = () => {
     dispatch(userInSessionThunk());
   }, []);
 
-  return <div className={styles.userName}>Привет, {user.name} !</div>;
+  return <h1 className={styles.userName}>Привет, {user.name} !</h1>;
 };
 
 export default ProfileInfo;

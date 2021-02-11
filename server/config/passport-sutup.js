@@ -21,7 +21,7 @@ const authenticateUser = async (req, email, password, done) => {
     return done(null, false)
   }
   const { name, confirmPassword } = req.body
-  const isEmail = await User.findOne({email})
+  const isEmail = await User.findOne({email : email})
   console.log('>>>>>>>>>>',isEmail)
   if (isEmail?.email === email) return done(null, false)
   // if (isEmail.length > 1) return done(null, false)

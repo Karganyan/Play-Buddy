@@ -7,13 +7,7 @@ import { filterEvents, getCurrentEventThunk, getEventsThunk } from '../../redux/
 import { useHistory } from 'react-router';
 import Checkbox from '../Checkbox/Checkbox';
 import '../EventMap/eventMap.css'
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-} from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 const EventMap = () => {
   const [category, setCategory] = useState([])

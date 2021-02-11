@@ -186,8 +186,8 @@ export const updateUserThunk = (inputs, userId, history) => {
     }
     formData.append('userId', userId);
 
-    console.log([...formData.entries()])
-    console.log(typeof formData);
+    // console.log([...formData.entries()])
+    // console.log(typeof formData);
 
     const req = await fetch('/edit', {
       method: 'POST',
@@ -196,7 +196,7 @@ export const updateUserThunk = (inputs, userId, history) => {
       body: formData
     })
     const res = await req.json()
-    console.log(res)
+    // console.log(res)
     dispatch(updateUser(res))
     history.push('/profile')
   }

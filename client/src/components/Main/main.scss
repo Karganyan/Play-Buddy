@@ -1,4 +1,4 @@
-$size: 155px;
+$size: 165px;
 
 .dice {
   margin: 4rem auto;
@@ -6,7 +6,7 @@ $size: 155px;
   width: $size;
   height: $size;
   transform-origin: $size/2 $size/2 0px;
-  animation: rotate 5s linear 0s infinite forwards;
+  animation: rotate 10s linear 0s infinite forwards;
 
   @keyframes rotate {
     0% {
@@ -113,4 +113,9 @@ $size: 155px;
 .say {
   padding-top: 4rem;
   font-family: 'BalsamiqSans-Bold';
+}
+.dice .face {
+  color: #f4f9f9;
+  font-family: 'BalsamiqSans-Bold';
+  font-size: 2rem;
 }
