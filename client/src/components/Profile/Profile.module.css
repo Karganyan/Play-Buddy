@@ -24,8 +24,8 @@
 }
 
 .avatar {
-    width: 10%;
-    height: 25%;
+    width: 20%;
+    height: 55%;
     border-radius: 50%;
     margin: 10px;
 }
@@ -56,8 +56,8 @@
 }
 
 .favGameImage {
-    max-width: 300px;
-    max-height: 250px;
+    max-width: 200px;
+    max-height: 150px;
     border-radius: 5px;
 }
 
