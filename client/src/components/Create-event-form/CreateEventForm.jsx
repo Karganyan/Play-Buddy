@@ -88,6 +88,7 @@ const CreateEventForm = () => {
                 className="form-control"
                 id="event"
                 aria-describedby="emailHelp"
+                placeholder="Введи название события"
               />
             </div>
             <div className="mb-3">
@@ -100,6 +101,7 @@ const CreateEventForm = () => {
                 type="text"
                 className="form-control"
                 id="address"
+                placeholder="Введи корректный адрес"
               />
             </div>
             <select
@@ -139,6 +141,7 @@ const CreateEventForm = () => {
                 name="description"
                 className="form-control"
                 id="desc"
+                placeholder="Во что будем играть? Кого готов позвать? Нужно ли заранее почитать правила?"
               />
             </div>
             <div className="mb-3">
@@ -151,10 +154,11 @@ const CreateEventForm = () => {
                 type="number"
                 className="form-control"
                 id="amount"
+                placeholder="Введи количество от 2 и более человек"
               />
             </div>
 
-      {/*       <DatePicker
+            {/*       <DatePicker
               className={styles.picker}
               onChange={onChange}
               value={value}
