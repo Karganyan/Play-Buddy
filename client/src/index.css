@@ -1,11 +1,10 @@
-/* @font-face {
-  font-family: 'BalsamiqSans-Bold';
-  src: url(BalsamiqSans-Bold) format('woff');
-       
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    padding: 0;
 }
 
-body {
-  font-family: 'BalsamiqSans-Bold';
-} */
 
-/* not working!!!! */

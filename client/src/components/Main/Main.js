@@ -5,13 +5,12 @@ import { theme } from './Theme';
 import Burger from './components/Burger/Burger'
 import Menu from './components/Menu/Menu'
 import { useOnClickOutside } from './hooks';
-import { userInSession, userLogoutThunk } from "../../redux/action-creators/user";
+import { userLogoutThunk } from "../../redux/action-creators/user";
 import { useDispatch, useSelector } from "react-redux";
 import { userInSessionThunk } from "../../redux/action-creators/user";
 import { Link } from "react-router-dom";
 import { getTagsThunk, getGamesThunk } from '../../redux/action-creators/createEventThunk';
 import { useHistory } from "react-router";
-import { getEventsThunk } from '../../redux/action-creators/events';
 
 
 function MainPage() {

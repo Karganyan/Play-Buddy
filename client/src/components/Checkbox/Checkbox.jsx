@@ -1,14 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { filterEvents, getEventsThunk} from '../../redux/action-creators/events';
-import { userInSessionThunk } from '../../redux/action-creators/user';
-import { GET_EVENTS } from '../../redux/types/events'
-import {useEffect, useState} from "react"
-
+import '../Checkbox/checkbox.css'
 
 const Checkbox = ({sortByCheckbox}) => {
   return (
-    <div>
-      <h3>Выбери категорию</h3>
+    <div className='checkbox-wrapper'>
+      <h3>Категория</h3>
       <div className='form-check form-check-inline'>
         <input className='form-check-input' type='checkbox' id='one' data-id='602169c62667f6c388999be9' onChange={sortByCheckbox}/>
         <label htmlFor='one' className='form-check-label' >
