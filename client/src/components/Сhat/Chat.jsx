@@ -17,21 +17,21 @@ function Chat() {
   }
   return (
     <>
-      <div className={styles.chatConteiner}>
-        <div className={styles.headConteiner}>ЧАТЫ СОБЫТИЙ</div>
-        <div className={styles.chatsConteiner}>
-          {store.userChats.length
-            ?
-            store.userChats.map(item => (
-              <div className={styles.currentChat} key={item._id} onClick={() => chatHandler(item._id)}>
-                {item.eventTitle}
-              </div>
-            ))
-            :
-            'there are no chats here yet'}
-        </div>
+        <div className={styles.chatConteiner}>
+          <h2 className={styles.headConteiner}>ЧАТЫ СОБЫТИЙ</h2>
+          <div className={styles.chatsConteiner}>
+            {store.userChats.length
+              ?
+              store.userChats.map(item => (
+                <div className={styles.currentChat} key={item._id} onClick={() => chatHandler(item._id)}>
+                  {item.eventTitle}
+                </div>
+              ))
+              :
+              'there are no chats here yet'}
+          </div>
           {store.userChats.length ? <ModalCHat /> : null}
-      </div>
+        </div>
     </>
   )
 }
