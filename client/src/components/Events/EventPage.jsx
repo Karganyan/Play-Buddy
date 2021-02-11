@@ -62,7 +62,7 @@ const EventPage = () => {
           {thisEvent &&
             thisEvent.participants.map((userr) => {
               let avatarPath;
-              if(userr.avatar === '/uploads/avatar.png'){
+              if (userr.avatar === '/uploads/avatar.png') {
                 avatarPath = `${userr.avatar}`;
               } else {
                 avatarPath = `/uploads/${userr.avatar}`;
@@ -76,23 +76,30 @@ const EventPage = () => {
                     alt="ava"
                     width="100px"
                   />
-                  {event && user.id === event.creator ? (
+                  {event && user.id === event.creator._id ? (
                     userr._id === user.id ? (
-                      <>
-                        &nbsp;<span> Организатор</span>
-                      </>
+                      null
+                      // <>
+                      //   &nbsp;<span> Организатор</span>
+                      // </>
                     ) : (
-                      <Button
-                        onClick={() => {
-                          setCount((pre) => pre + 1);
-                          kickUser(userr._id, event._id, history);
-                          dispatch(getEventsThunk());
-                        }}
-                      >
-                        выгнать
-                      </Button>
-                    )
+                        <Button
+                          onClick={() => {
+                            setCount((pre) => pre + 1);
+                            kickUser(userr._id, event._id, history);
+                            dispatch(getEventsThunk());
+                          }}
+                        >
+                          выгнать
+                        </Button>
+                      )
                   ) : null}
+                  {event && userr._id === event.creator._id
+                    ?
+                    <span>Организатор</span>
+                    :
+                    null
+                  }
                 </ul>
               );
             })}
@@ -105,14 +112,14 @@ const EventPage = () => {
         ) : user.id ? (
           <Button onClick={joinEvent}>Записаться на игротеку</Button>
         ) : (
-          <Button
-            onClick={() => {
-              history.push("/signin");
-            }}
-          >
-            Записаться на игротеку
-          </Button>
-        )}
+              <Button
+                onClick={() => {
+                  history.push("/signin");
+                }}
+              >
+                Записаться на игротеку
+              </Button>
+            )}
         {wasAdded
           ? wasAdded === "notok"
             ? "ALE TI UZHE ZPISAN"

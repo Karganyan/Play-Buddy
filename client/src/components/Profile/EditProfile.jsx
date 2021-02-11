@@ -1,26 +1,25 @@
-import { Form, Button } from 'react-bootstrap';
-import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { updateUserThunk } from '../../redux/action-creators/user';
-import { Multiselect } from 'multiselect-react-dropdown';
-import styles from './EditProfile.module.css';
-import { useEffect } from 'react';
-import { getAllGamesThunk } from '../../redux/action-creators/getGames';
+import { Form, Button } from "react-bootstrap";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { updateUserThunk } from "../../redux/action-creators/user";
+import { Multiselect } from "multiselect-react-dropdown";
+import styles from "./EditProfile.module.css";
+import { useEffect } from "react";
+import { getAllGamesThunk } from "../../redux/action-creators/getGames";
 
 const EditProfile = () => {
   const dispatch = useDispatch();
   const history = useHistory();
-  const { user } = useSelector(store => store);
-  const userId = useSelector(store => store.user.id);
+  const { user } = useSelector((store) => store);
+  const userId = useSelector((store) => store.user.id);
 
   useEffect(() => {
-    !userId ? history.push('/signin') : null;
+    !userId ? history.push("/signin") : null;
   }, []);
 
-
-  const games = useSelector(store => store.games.games);
-  const selectedGames = useSelector(store => store.games.favGames);
+  const games = useSelector((store) => store.games.games);
+  const selectedGames = useSelector((store) => store.games.favGames);
   console.log(selectedGames);
 
   const [inputs, setInputs] = useState({
@@ -29,7 +28,7 @@ const EditProfile = () => {
     phone: user.phone,
     fav_games:
       Array.isArray(selectedGames) && selectedGames.length
-        ? selectedGames.map(e => (e = e._id))
+        ? selectedGames.map((e) => (e = e._id))
         : [],
     avatar: {},
   });
@@ -38,29 +37,29 @@ const EditProfile = () => {
     dispatch(getAllGamesThunk());
   }, []);
 
-  const nameHandler = event => {
+  const nameHandler = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
     //console.log('inputs', inputs);
   };
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
     dispatch(updateUserThunk(inputs, userId, history));
   };
 
-  const onFileChange = event => {
-    setInputs(prev => {
+  const onFileChange = (event) => {
+    setInputs((prev) => {
       return { ...prev, avatar: event.target.files[0] };
     });
   };
 
-  const selectHandler = event => {
+  const selectHandler = (event) => {
     //console.log(inputs.fav_games);
-    setInputs({ ...inputs, fav_games: event.map(e => (e = e._id)) });
+    setInputs({ ...inputs, fav_games: event.map((e) => (e = e._id)) });
   };
   return (
     <div className={styles.formBg}>
-        <div className={styles.centering}>
+      <div className={styles.centering}>
         <h1>Редактировать профиль</h1>
         <Form onSubmit={onSubmit} className={styles.form}>
           <Form.Group>
@@ -84,8 +83,8 @@ const EditProfile = () => {
               placeholder="Расскажи немножко о себе"
               name="info"
               value={inputs.info}
-              style={{ height: '100px' }}
-              rows='3'
+              style={{ height: "100px" }}
+              rows="3"
             />
           </Form.Group>
           <br />
@@ -115,15 +114,25 @@ const EditProfile = () => {
           <Form.Group>
             <Form.Label>Любимые игры</Form.Label>
             <Multiselect
-              className={styles.Group}
               options={games}
               displayValue="title"
               onSelect={selectHandler}
               selectedValues={selectedGames}
+              style={{
+                option: { background: "#ced4da", color: "gray" },
+                searchBox: {
+                  display: "block",
+                  width: "100%",
+                  padding: ".375rem .75rem",
+                  backgroundColor: "#fff",
+                  backgroundClip: "padding-box",
+                  border: "1px solid #ced4da",
+                },
+              }}
             />
           </Form.Group>
           <br />
-          <Button variant="info" type="submit" className={styles.saveBtn}> 
+          <Button variant="info" type="submit" className={styles.saveBtn}>
             Сохранить
           </Button>
         </Form>

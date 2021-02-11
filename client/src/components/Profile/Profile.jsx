@@ -13,9 +13,7 @@ const Profile = () => {
   const avatar = useSelector(store => store.user.avatar);
 
   let avatarPath;
-  // console.log(avatar);
 
-  // let avatarPath;
   if (avatar === '/uploads/avatar.png') {
     avatarPath = `${avatar}`;
   } else {
@@ -26,7 +24,6 @@ const Profile = () => {
   useEffect(() => {
     !user.id ? history.push('/signin') : null;
   }, []);
-  // console.log('AVATAR!====>', avatarPath);
 
   const [open, setOpen] = useState(false);
   const node = useRef();

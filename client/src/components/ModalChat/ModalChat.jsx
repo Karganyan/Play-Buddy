@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addMessageActionCreator } from "../../redux/action-creators/createEventThunk";
 import styles from './ModalChat.module.css'
+import './ModalChat.css'
 
 const wsClient = new WebSocket('ws://localhost:1234')
 
@@ -47,7 +48,7 @@ function ModalCHat() {
                       avatarPath = `${mess.user_ref.avatar}`;
                     } else {
                       avatarPath = `/uploads/${mess.user_ref.avatar}`;
-                    } 
+                    }
                     return (
                       user.id === mess.user_ref._id
                         ?
@@ -57,7 +58,6 @@ function ModalCHat() {
                               {mess.text}
                             </div>
                           </div>
-                          <br />
                         </>
                         :
                         <>
@@ -73,27 +73,33 @@ function ModalCHat() {
                             </div>
                             {mess.text}
                           </div>
-                          <br />
                         </>
                     )
                   })}
                 </div>
                 <div className={styles.chatInput}>
-                  <input onChange={inputHandler} value={input} />
-                  <button onClick={wsPost}>send</button>
+                  <div className="input-group mb-3">
+                    <input type="text" className="inp form-control" placeholder="Введите сообщение" aria-label="Recipient's username" aria-describedby="basic-addon2" onChange={inputHandler} value={input} />
+                    <div className="input-group-append">
+                      <button onClick={wsPost} className="btn btn-outline-info btn-lg bbbtn" type="button">Отправить</button>
+                    </div>
+                  </div>
                 </div>
               </>
               :
               (
                 <>
-                  {chat.eventTitle}
+                  <br />
                   <br />
                   <div className={styles.chatInput}>
-                    <input onChange={inputHandler} value={input} />
-                    <button onClick={wsPost}>send</button>
+                    <div className="input-group mb-3">
+                      <input onChange={inputHandler} value={input} type="text" className="form-control inp" placeholder="Введите сообщение" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                      <div className="input-group-append">
+                        <button onClick={wsPost} className="btn btn-outline-info btn-lg bbbtn" type="button">Отправить</button>
+                      </div>
+                    </div>
                   </div>
                   <div>
-                    <br />
                     {'there are no messages here yet'}
                   </div>
                 </>
