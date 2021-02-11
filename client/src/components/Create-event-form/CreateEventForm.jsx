@@ -70,7 +70,7 @@ const CreateEventForm = () => {
     await dispatch(createEventThunk(form, history));
   };
 
-  console.log("date", value);
+  console.log(">>>>>>>>", form);
   return (
     <div className={styles.formBg}>
       <div className={styles.centering}>

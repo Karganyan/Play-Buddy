@@ -3,6 +3,8 @@
   src: url('BalsamiqSans-Bold.woff')
 }
 
-
-
+* {
+  color: #f4f9f9;
+  font-family: 'BalsamiqSans-Bold';
+}
 

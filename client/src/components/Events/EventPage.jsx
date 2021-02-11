@@ -38,7 +38,7 @@ const EventPage = () => {
     <div className={styles.eventBg}>
       <div className={styles.centering}>
         <div className={styles.eventWrapper}>
-          <img width="105px" src={thisEvent.thumbnail} alt="game" />
+          <img width="105px" src={thisEvent && thisEvent.thumbnail} alt="game" />
           <div className={styles.eventMainInfo}>
             <h1>{thisEvent && thisEvent.title}</h1>
             <div className={styles.eventDetails}>

@@ -11,6 +11,7 @@ import Profile from "./components/Profile/Profile.jsx"
 import EditProfile from "./components/Profile/EditProfile.jsx"
 import Chat from "./components/Сhat/Chat"
 import './index.css'
+import React from "react"
 
 function App() {
   return (

@@ -7,6 +7,8 @@ import {filterEvents, getCurrentEventThunk, getEventsThunk} from '../../redux/ac
 import { useHistory } from 'react-router';
 import Checkbox from '../Checkbox/Checkbox';
 import '../EventMap/eventMap.css'
+import styles from "../Profile/Profile.module.css"
+import {Link} from "react-router-dom"
 const EventMap = () => {
   const [category, setCategory] = useState([])
   const key = '51ad9d93-9100-4ffa-8ebf-138a17d2a225';
@@ -56,14 +58,17 @@ const EventMap = () => {
     <div className='eventMap wrapper'>
       <div className='container'>
         <div className='info'>
+          <Link title='Домой' to='/'>
+            <img src='home.svg' className={styles.hamburger} />
+          </Link>
         {user ?
           <div className='current-info'>
             {currentEvent ?
               <>
-                <h3>{currentEvent.game.title}</h3>
+                <h1>{currentEvent.game.title}</h1>
                 <p>Описание события: {currentEvent.description}</p>
                 <span>Адрес: {currentEvent.address}</span>
-                <button onClick={() => redirectOnEventPage(currentEvent._id)} className='btn btn-primary'>Подробнее</button>
+                <button onClick={() => redirectOnEventPage(currentEvent._id)} className='btn btn-outline-light btn-lg'>Подробнее</button>
               </>
               :
               <p>Выбери событие</p>
