@@ -1,13 +1,12 @@
 .chatConteiner {
-  min-width: 94%;
+  min-width: 100%;
   padding: 20px;
   position:fixed;
-  min-height: 94%;
-  bottom: 3%;
-  top: 3%;
-  left: 3%;
-  right: 3%;
+  min-height: 100%;
+  background-image: linear-gradient(to bottom right, rgb(21, 25, 71), rgb(27, 23, 69), rgb(32, 21, 67), rgb(38, 20, 66), rgb(43, 18, 64), rgb(49, 16, 62), rgb(54, 14, 60), rgb(60, 12, 58), rgb(65, 10, 56), rgb(71, 9, 55), rgb(76, 7, 53), rgb(82, 5, 51));
 }
+
+
 
 .chatsConteiner {
   min-width: 30%;
@@ -31,10 +30,12 @@
   bottom: 91.3%;
   padding: 1%;
   text-align: center;
+  color: #e9e9e9;
 }
 
 .currentChat {
-  border-bottom: black 1px solid;
+  border-bottom: #e9e9e9 1px solid;
+  color: #e9e9e9;
 }
 
 
