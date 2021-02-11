@@ -22,12 +22,12 @@ export const getGames = (games) => {
   }
 }
 
-export const getUserInput = (input) => {
-  return {
-    type: FILTER_EVENTS_BY_USER_INPUT,
-    payload: input
-  }
-}
+// export const getUserInput = (input) => {
+//   return {
+//     type: FILTER_EVENTS_BY_USER_INPUT,
+//     payload: input
+//   }
+// }
 
 const setNewEventActionCreator = (event) => {
   return { type: SET_NEW_EVENT, payload: event }
@@ -89,17 +89,17 @@ export const getGamesThunk = (title) => {
   }
 }
 
-export const filterEvents = (events, category, history) => {
-  return async (dispatch) => {
-
-    return dispatch({
-      type: FILTER_EVENTS_BY_CATEGORY,
-      payload: {
-        category: category,
-        events: category === "" ? events : events.filter(a => console.log(a.category))
-      }
-  })
-  }
-}
+// export const filterEvents = (events, category, history) => {
+//   return async (dispatch) => {
+//
+//     return dispatch({
+//       type: FILTER_EVENTS_BY_CATEGORY,
+//       payload: {
+//         category: category,
+//         events: category === "" ? events : events.filter(a => console.log(a.category))
+//       }
+//   })
+//   }
+// }
 
 

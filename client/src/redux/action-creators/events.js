@@ -33,6 +33,7 @@ export const getEventsThunk = () => {
       mode: 'cors',
     })
     const res = await req.json()
+    console.log('tut',res)
     if (res) {
       dispatch(getEvents(res))
     }

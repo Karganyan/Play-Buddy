@@ -19,15 +19,13 @@ const CreateEventForm = () => {
   const dispatch = useDispatch()
   const { tags, games } = useSelector(store => store.events)
   const [gameValue, setGameValue] = useState(games)
-  // console.log('====================================');
-  // console.log(form);
-  // console.log('====================================');
 
   const tagHandler = (event) => {
     inputHandler(event)
     setGameValue(pre => games.filter(game => game.tags.includes(event.target.value)))
   }
 
+  // https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-138a17d2a225&format=json&geocode=37.611347,55.760241
   const inputHandler = async (event) => {
     let street
     if (event.target.name === 'address') {

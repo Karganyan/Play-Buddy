@@ -7,7 +7,7 @@ const eventSchema = new mongoose.Schema({
   time: Date,
   address: String,
   coordinates: {type: Array},
-  game: String,
+  game: { type: mongoose.Schema.Types.ObjectId, ref: "Game"},
   category: Array,
   thumbnail: {type: String},
   place: { type: mongoose.Schema.Types.ObjectId, ref: "Place" },
