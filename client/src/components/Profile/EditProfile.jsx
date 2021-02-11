@@ -17,7 +17,7 @@ const EditProfile = () => {
   useEffect(() => {
     !userId ? history.push('/signin') : null;
   }, []);
-  
+
 
   const games = useSelector(store => store.games.games);
   const selectedGames = useSelector(store => store.games.favGames);
@@ -95,6 +95,7 @@ const EditProfile = () => {
               onChange={onFileChange}
               placeholder="Выбрать фото"
               name="avatar"
+              // value={inputs.avatar}
             />
           </Form.Group>
           <br />
