@@ -1,0 +1,9 @@
+.picker {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.picker .react-date-picker__wrapper {
+    border: 0px;
+    height: 60px !important;
+}
