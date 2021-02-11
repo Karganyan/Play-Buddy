@@ -98,8 +98,12 @@ const EventPage = () => {
           Закрыть запись
         </Button>
       ) : (
-        <Button onClick={joinEvent}>Записаться на игротеку</Button>
-      )}
+          user.id?
+            <Button onClick={joinEvent}>Записаться на игротеку</Button>
+            :
+            <Button onClick={() => { history.push('/signin') }}>Записаться на игротеку</Button>
+
+        )}
       {wasAdded
         ? wasAdded === "notok"
           ? "ALE TI UZHE ZPISAN"

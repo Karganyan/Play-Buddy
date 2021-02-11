@@ -1,11 +1,17 @@
 import { Card, Button } from "react-bootstrap";
 import styles from "./Events.module.css";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { leaveEvent } from '../../redux/action-creators/events'
+import { useEffect } from "react";
 
 const EventCard = () => {
-  const user = useSelector((store) => store.user);
-  const userEvents = useSelector((store) => store.userEvents);
+  const { user, userEvents } = useSelector((store) => store);
+  const history = useHistory()
+  useEffect(() => {
+    !user.id ? history.push('/signin') : null
+  }, [])
+
   return (
     <>
       {userEvents.map((event) => {
@@ -39,7 +45,7 @@ const EventCard = () => {
                   <span>{event.address}</span>
                 </span>
               </Card.Text>
-              <Button className={styles.btn}>Отписаться от события</Button>
+              <Button className={styles.btn} onClick={() => leaveEvent(user.id, event._id, history)}>Отписаться от события</Button>
             </Card.Body>
           </Card>
         );

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Card, CardGroup, Button } from "react-bootstrap";
 
 const Events = () => {
+
   return (
     <div>
       <div>
