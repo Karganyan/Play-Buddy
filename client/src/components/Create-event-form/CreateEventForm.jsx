@@ -68,10 +68,10 @@ const CreateEventForm = () => {
   };
   const createEventHandler = async (event) => {
     event.preventDefault();
-    console.log(form);
     await dispatch(createEventThunk(form, history));
   };
 
+  console.log('date', value);
   return (
     <div className="container">
       <h1 className="mb-4">Создание события</h1>
@@ -150,7 +150,6 @@ const CreateEventForm = () => {
             type="number"
             className="form-control"
             id="amount"
-            min="2"
           />
         </div>
 

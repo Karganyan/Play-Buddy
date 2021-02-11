@@ -21,8 +21,11 @@ const authenticateUser = async (req, email, password, done) => {
     return done(null, false)
   }
   const { name, confirmPassword } = req.body
-  const isEmail = User.find({email: email})
-  if (isEmail.length > 1) return done(null, false)
+  const isEmail = await User.findOne({email})
+  console.log('>>>>>>>>>>',isEmail)
+  if (isEmail.email === email) return done(null, false)
+  // if (isEmail.length > 1) return done(null, false)
+  if (password !== confirmPassword) return done(null, false)
   if (name && email && password && confirmPassword) {
     const hashPassword = await bcrypt.hash(password, 10)
     const newUser = await User.create({ name, email, password: hashPassword})

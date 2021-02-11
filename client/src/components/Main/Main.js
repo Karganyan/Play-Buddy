@@ -44,25 +44,7 @@ function MainPage() {
         <>
           <GlobalStyles />
           <div>
-            {user.id
-              ?
-              <>
-                <h1>Приветики, {user.name}</h1>
-                {currentEvent._id
-                  ?
-                  <>
-                    <h4>{currentEvent.title}</h4>
-                    <p>{currentEvent.description}</p>
-                    <span>Адрес: {currentEvent.coordinates}(пока это координаты)</span>
-                    <button className='btn btn-primary'>записаться на событие</button>
-                  </>
-                  :
-                  <p>Выбери событие</p>
-                }
-              </>
-              :
-              <h1>Зарегистрироваться</h1>
-            }
+            { user.id ? <h1>Приветики, {user.name}</h1> : <h1>Зарегистрироваться</h1> }
             <h1 style={{ fontSize: '50px', textAlign: 'center' }} className='appName'>Play Buddy <img src='https://media.giphy.com/media/ygzkZPxmh6HgUzbYFz/giphy.gif' style={{ width: '70px', height: '70px' }} /></h1>
 
             <img className='logo' src="/logo1.jpg" alt="logo" style={{ width: '300px', height: '300px', borderRadius: '80%' }} />

@@ -15,12 +15,13 @@ import { useEffect } from "react";
 const Profile = () => {
   const user = useSelector((store) => store.user);
   const avatar = useSelector((store) => store.user.avatar);
+
   const avatarPath = `./uploads/${avatar}`
   const history = useHistory()
-  useEffect(()=>{
+  useEffect(() => {
     !user.id ? history.push('/signin') : null
-  },[])
-// console.log('AVATAR!====>', avatarPath);
+  }, [])
+  // console.log('AVATAR!====>', avatarPath);
 
   return (
     <div className={styles.profile}>
@@ -29,7 +30,7 @@ const Profile = () => {
           <Link title="Домой" to="/">
             <img src="hamburger.png" className={styles.hamburger} />
           </Link>
-          <img src={avatarPath} alt="avatar" className={styles.avatar} />
+          <img src={avatarPath} alt='avatar' className={styles.avatar} />
           <Link to="/edit">
             <img title="Настройки" src="settings.png" className={styles.settings} />
           </Link>
@@ -50,7 +51,12 @@ const Profile = () => {
       </div>
       <div className={styles.bottom}>
         <h1>Личная информация</h1>
+        {user.phone ? 
+          <div>Номер телефона: {user.phone}</div>
         
+          :
+          null
+        }
         <br />
         <br />
         <h1>Любимые Игры</h1>

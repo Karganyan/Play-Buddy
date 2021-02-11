@@ -22,7 +22,8 @@ router.get("/", (req, res) => {
 
 router.post("/edit", upload.single('avatar'), async (req, res) => {
   const { name, info, phone, fav_games, userId } = req.body;
-
+  const userr = await User.findById(userId)
+  console.log(userr);
   req.session.user = { ...req.session.user, name, userId, fav_games, avatar: req.file.filename };
   const user = await User.findByIdAndUpdate(
     userId,
@@ -37,7 +38,9 @@ router.post("/edit", upload.single('avatar'), async (req, res) => {
     },
     { new: true }
   );
-  console.log(user.avatar);
+  console.log(userr);
+
+  console.log('========> user',user);
   res.json(user);
 });
 
