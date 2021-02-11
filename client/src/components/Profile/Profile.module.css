@@ -11,7 +11,9 @@
     width: 100%;
     height: 100vh;
     text-align: center;
-    font-family: 
+    font-family: 'BalsamiqSans-Bold';
+    color: white;
+
     /* display: flex; */
     /* flex-direction: column;
     align-items: center; */
@@ -20,7 +22,7 @@
 
 .header {
     display: inline-block;
-    width: 40%;
+    width: 100%;
     height: 40%;
     /* border: 1px black solid;  */
     vertical-align: top;
@@ -35,14 +37,16 @@
 }
 
 .settings {
-    height: 60px;
-    width: 60px;
+    height: 32px;
+    width: 32px;
+    margin: 32px 28px 0 0 ;
    
 }
 
 .hamburger {
-  height: 60px;
-  width: 60px;
+  height: 32px;
+  width: 32px;
+  margin: 32px 0 0 28px ;
 
 }
 
@@ -60,10 +64,12 @@
 }
 
 .favGameImage {
-    max-width: 120px;
-    max-height: 120px;
+    max-width: 300px;
+    max-height: 250px;
     border-radius: 5px;
+
 }
+     
 
 .formControl {
     width: 100%;
@@ -81,7 +87,7 @@
 }
     /* border-radius: 50% */
 .userName {
-  font-size: 30px;
+  font-size: 40px;
 }
 
 .form {
@@ -95,4 +101,14 @@
 
 .Group {
   background-color: #eaeaea;
+}
+
+.bottom {
+  margin-top: 50px;
+}
+
+.profileWrapper {
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
 }
