@@ -1,8 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* background-color: coral; */
+}
+
+
 .profile {
-    border: 1px black solid;
-    width: 700px;
-    height: 700px;
+    /* border: 1px black solid; */
+    width: 100%;
+    height: 100vh;
     text-align: center;
+    font-family: 
+    /* display: flex; */
+    /* flex-direction: column;
+    align-items: center; */
+
 }
 
 .header {
@@ -14,25 +27,23 @@
 }
 
 .avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 1px solid black;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%; 
     margin: 10px;
+
 }
 
 .settings {
-    height: 40px;
-    width: 40px;
-    right: 0px;
-    align-self: flex-end;
+    height: 60px;
+    width: 60px;
+   
 }
 
 .hamburger {
-  height: 40px;
-  width: 40px;
-  /* right: 0px;
-  align-self: flex-end; */
+  height: 60px;
+  width: 60px;
+
 }
 
 .card {
@@ -71,4 +82,17 @@
     /* border-radius: 50% */
 .userName {
   font-size: 30px;
+}
+
+.form {
+  font-size: 1.5rem;
+  background: #fff;
+  color: #000;
+  overflow-wrap: break-word;
+  border-radius: 8px;
+  padding: 4rem;
+}
+
+.Group {
+  background-color: #eaeaea;
 }
