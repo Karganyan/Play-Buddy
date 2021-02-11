@@ -9,6 +9,7 @@ function Chat() {
   const store = useSelector(store => store)
   const dispatch = useDispatch()
   const history = useHistory()
+  const chat = store.userChats.find(chat => chat._id === store.modalChat)
   useEffect(() => {
     !store.user.id ? history.push('/signin') : null
   }, [])
@@ -17,21 +18,24 @@ function Chat() {
   }
   return (
     <>
-        <div className={styles.chatConteiner}>
-          <h2 className={styles.headConteiner}>ЧАТЫ СОБЫТИЙ</h2>
-          <div className={styles.chatsConteiner}>
-            {store.userChats.length
-              ?
-              store.userChats.map(item => (
-                <div className={styles.currentChat} key={item._id} onClick={() => chatHandler(item._id)}>
-                  {item.eventTitle}
-                </div>
-              ))
-              :
-              'there are no chats here yet'}
-          </div>
-          {store.userChats.length ? <ModalCHat /> : null}
+      <div className=' wrapper' >
+        <div className={styles.headCont}>
+          <h2>ЧАТЫ СОБЫТИЙ</h2>
+          <h3 className='titles'>{chat.eventTitle}</h3>
         </div>
+        <div className={styles.chatsConteiner}>
+          {store.userChats.length
+            ?
+            store.userChats.map(item => (
+              <div className={styles.currentChat} key={item._id} onClick={() => chatHandler(item._id)}>
+                {item.eventTitle}
+              </div>
+            ))
+            :
+            'there are no chats here yet'}
+        </div>
+        {store.userChats.length ? <ModalCHat /> : null}
+      </div>
     </>
   )
 }

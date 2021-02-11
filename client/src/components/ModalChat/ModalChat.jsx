@@ -40,8 +40,6 @@ function ModalCHat() {
             (chat.messages.length
               ?
               <>
-                <div>
-                  {chat.eventTitle}
                   <div className={styles.chatInModule}>
                     {chat.messages.map(mess => {
                       console.log(mess.user_ref);
@@ -80,7 +78,6 @@ function ModalCHat() {
                     <input onChange={inputHandler} value={input} />
                     <button onClick={wsPost}>send</button>
                   </div>
-                </div>
               </>
               :
               (
