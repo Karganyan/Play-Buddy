@@ -5,15 +5,12 @@ import { theme } from './Theme';
 import Burger from './components/Burger/Burger'
 import Menu from './components/Menu/Menu'
 import { useOnClickOutside } from './hooks';
-import { userInSession, userLogoutThunk } from "../../redux/action-creators/user";
 import { useDispatch, useSelector } from "react-redux";
 import { userInSessionThunk } from "../../redux/action-creators/user";
-import { Link } from "react-router-dom";
 import { getTagsThunk, getGamesThunk } from '../../redux/action-creators/createEventThunk';
 import { useHistory } from "react-router";
-import { getEventsThunk } from '../../redux/action-creators/events';
 import styles from "./Main.module.css";
-
+import './main.scss'
 
 function MainPage() {
   const history = useHistory()
@@ -42,38 +39,25 @@ function MainPage() {
       <ThemeProvider theme={theme}>
         <>
           <GlobalStyles />
-          <div>
-            {/* {user.id
-              ?
-              <>
-                <h1>Приветики, {user.name}</h1>
-                {currentEvent._id
-                  ?
-                  <>
-                    <h4>{currentEvent.title}</h4>
-                    <p>{currentEvent.description}</p>
-                    <span>Адрес: {currentEvent.coordinates}(пока это координаты)</span>
-                    <button className='btn btn-primary'>записаться на событие</button>
-                  </>
-                  :
-                  <p>Выбери событие</p>
-                }
-              </>
-              :
-              <h1>Зарегистрироваться</h1>
-            } */}
-            <h1 className={styles.appName}>Play Buddy <img src='https://media.giphy.com/media/ygzkZPxmh6HgUzbYFz/giphy.gif' className={styles.giphy} /></h1>
+          <div className='main-wrapper'>
 
-            <img className={styles.logo} src="/dice.jpg" alt="logo" />
+            <h1 className={styles.appName}>Play Buddy</h1>
+
+            <div className="dice logo pb-3">
+              <div className="face" id="f1">1</div>
+              <div className="face" id="f2">2</div>
+              <div className="face" id="f3">3</div>
+              <div className="face" id="f4">4</div>
+              <div className="face" id="f5">5</div>
+              <div className="face" id="f6">6</div>
+            </div>
+          <h4 className='say text-b'>Приложение для поиска близких по духу людей!</h4>
           </div>
           <div ref={node}>
             <Burger open={open} setOpen={setOpen} />
             <Menu open={open} setOpen={setOpen} />
 
           </div>
-          {/* <Link to='/' onClick={logoutHandler}>
-            <img src="/icons8-open-door-50.png" alt='img'/>
-          </Link> */}
         </>
       </ThemeProvider>
     </>

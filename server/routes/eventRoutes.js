@@ -9,14 +9,14 @@ const fetch = require('node-fetch')
 
 
 router.post('/', async (req, res) => {
-  const { title, description, max_participants, address, game, coordinates, category, thumbnail } = req.body
+  const { title, description, max_participants, address, game, coordinates, category, thumbnail, time } = req.body
   const newCoordinates = coordinates.split(' ').map(el => +el).reverse()
   const fetchToYandex = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-138a17d2a225&format=json&geocode=${coordinates}`)
   const correctAddress = await fetchToYandex.json()
   const resultAddress = correctAddress?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.metaDataProperty?.GeocoderMetaData?.text
   // console.log('>>>>>>>>>>', resultAddress)
   const newChat = new Chat({ messages: [], eventTitle: title });
-  const newEvent = new Event({ title, description, category, max_participants, chat: newChat._id, creator: req.user._id, participants: [req.user._id], address:resultAddress, game, coordinates: newCoordinates, thumbnail });
+  const newEvent = new Event({ title, description, category, max_participants, chat: newChat._id, creator: req.user._id, participants: [req.user._id], address:resultAddress, game, coordinates: newCoordinates, thumbnail, time });
   const user = await User.findById(req.user._id)
   await newChat.save();
   await newEvent.save();
@@ -73,7 +73,6 @@ router.post('/join', async (req, res) => {
   await event.save();
   const chat = await Chat.findById(event.chat).populate('messages')
   res.json({ chat, event});
-  res.json({ chat, event });
 })
 
 router.get('/close/:eventId', async (req, res) => {

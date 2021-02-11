@@ -1,0 +1,9 @@
+/*html * {*/
+/*    box-shadow: 0 0 0 1px dodgerblue;*/
+/*}*/
+.checkbox-wrapper{
+    padding-top: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+}

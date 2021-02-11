@@ -19,7 +19,6 @@ const EventPage = () => {
 
   const event = userEvents.find(event => event._id === param.id)
   const thisEvent = events.event.find(event => event._id === param.id)
-
   const joinEvent = () => {
     if (event) {
       setWasAdded('notok')
@@ -36,51 +35,48 @@ const EventPage = () => {
 
 
   return (
-    <div>
-      <div className={styles.eventWrapper}>
-        <img
-          width="105px"
-          src="https://sun9-71.userapi.com/c850720/v850720894/10d47c/NU0_158reys.jpg"
-          alt="game"
-        />
-        <div className={styles.eventMainInfo}>
-          <h1>{thisEvent && thisEvent.title}</h1>
-          <div className={styles.eventDetails}>
-            <span>Адресс: {thisEvent && thisEvent.address}</span>
+    <div className={styles.eventBg}>
+      <div className={styles.centering}>
+        <div className={styles.eventWrapper}>
+          <img width="105px" src={thisEvent.thumbnail} alt="game" />
+          <div className={styles.eventMainInfo}>
+            <h1>{thisEvent && thisEvent.title}</h1>
+            <div className={styles.eventDetails}>
+              <span>Адресс: {thisEvent && thisEvent.address}</span>
 
-            <span>
-              Количество игроков: {thisEvent && thisEvent.participants.length}{" "}
-              из {thisEvent && thisEvent.max_participants}
-            </span>
+              <span>
+                Количество игроков: {thisEvent && thisEvent.participants.length}{" "}
+                из {thisEvent && thisEvent.max_participants}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="eventDescription">
-        <h5>Описание мероприятия:</h5>
-        {thisEvent && thisEvent.description}
-      </div>
+        <div className="eventDescription">
+          <h5>Описание мероприятия:</h5>
+          {thisEvent && thisEvent.description}
+        </div>
 
-      <br />
-      <div>
-        <h5>Участники мероприятия</h5>
-        {thisEvent &&
-          thisEvent.participants.map((userr) => {
-            const avatarPath = `/uploads/${userr.avatar}`;
-            return (
-              <div key={userr._id}>
-                <span>{userr.name}</span>
-                <img
-                  src={avatarPath}
-                  className={styles.ava}
-                  alt="ava"
-                  width="100px"
-                />
-                {event && user.id === event.creator ? (
-                  userr._id === user.id ? (
-                    <>
-                    &nbsp;<span> Организатор</span>
-                    </>
-                  ) : (
+        <br />
+        <div>
+          <h5>Участники мероприятия</h5>
+          {thisEvent &&
+            thisEvent.participants.map((userr) => {
+              const avatarPath = `/uploads/${userr.avatar}`;
+              return (
+                <ul key={userr._id}>
+                  <li className={styles.participant}>{userr.name}</li>
+                  <img
+                    src={avatarPath}
+                    className={styles.ava}
+                    alt="ava"
+                    width="100px"
+                  />
+                  {event && user.id === event.creator ? (
+                    userr._id === user.id ? (
+                      <>
+                        &nbsp;<span> Организатор</span>
+                      </>
+                    ) : (
                       <Button
                         onClick={() => {
                           setCount((pre) => pre + 1);
@@ -91,28 +87,33 @@ const EventPage = () => {
                         выгнать
                       </Button>
                     )
-                ) : null}
-              </div>
-            );
-          })}
-      </div>
-      <br />
-      {event && user.id === event.creator ? (
-        <Button onClick={() => closeEvent(event._id, history)}>
-          Закрыть запись
-        </Button>
-      ) : (
-          user.id ?
-            <Button onClick={joinEvent}>Записаться на игротеку</Button>
-            :
-            <Button onClick={() => { history.push('/signin') }}>Записаться на игротеку</Button>
-
+                  ) : null}
+                </ul>
+              );
+            })}
+        </div>
+        <br />
+        {event && user.id === event.creator ? (
+          <Button onClick={() => closeEvent(event._id, history)}>
+            Закрыть запись
+          </Button>
+        ) : user.id ? (
+          <Button onClick={joinEvent}>Записаться на игротеку</Button>
+        ) : (
+          <Button
+            onClick={() => {
+              history.push("/signin");
+            }}
+          >
+            Записаться на игротеку
+          </Button>
         )}
-      {wasAdded
-        ? wasAdded === "notok"
-          ? "ALE TI UZHE ZPISAN"
-          : "BRAT TI ZAPISAN OT DUSHI"
-        : ""}
+        {wasAdded
+          ? wasAdded === "notok"
+            ? "ALE TI UZHE ZPISAN"
+            : "BRAT TI ZAPISAN OT DUSHI"
+          : ""}
+      </div>
     </div>
   );
 };

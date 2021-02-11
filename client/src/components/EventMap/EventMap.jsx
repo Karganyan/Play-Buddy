@@ -5,9 +5,8 @@ import { YMaps, Map, Placemark, Clusterer } from 'react-yandex-maps';
 import './eventMap.css';
 import {filterEvents, getCurrentEventThunk, getEventsThunk} from '../../redux/action-creators/events';
 import { useHistory } from 'react-router';
-// import Search from '../Search/Search';
-import Checkbox from '../Search/Checkbox';
-
+import Checkbox from '../Checkbox/Checkbox';
+import '../EventMap/eventMap.css'
 const EventMap = () => {
   const [category, setCategory] = useState([])
   const key = '51ad9d93-9100-4ffa-8ebf-138a17d2a225';
@@ -53,27 +52,28 @@ const EventMap = () => {
         setEventState(events.event)
       }
   }
-  console.log(currentEvent)
   return (
-    <div className='eventMap'>
-      <div className='container mt-5'>
-        {user ? (
-          <>
-            {currentEvent._id ? (
+    <div className='eventMap wrapper'>
+      <div className='container'>
+        <div className='info'>
+        {user ?
+          <div className='current-info'>
+            {currentEvent ?
               <>
                 <h3>{currentEvent.game.title}</h3>
-                <p>{currentEvent.description}</p>
+                <p>Описание события: {currentEvent.description}</p>
                 <span>Адрес: {currentEvent.address}</span>
                 <button onClick={() => redirectOnEventPage(currentEvent._id)} className='btn btn-primary'>Подробнее</button>
               </>
-            ) : (
-                <p>Выбери событие</p>
-              )}
-          </>
-        ) : (
+              :
+              <p>Выбери событие</p>
+            }
+          </div>
+         :
             <h1>Давай зарегистрируемся?</h1>
-          )}
-        {/*<Search />*/}
+          }
+        </div>
+        <div className='y-wrapper'>
         <Checkbox sortByCheckbox={sortByCheckbox} />
         <YMaps query={{ ns: 'use-load-option', apikey: key }}>
           <Map
@@ -108,6 +108,7 @@ const EventMap = () => {
             </Clusterer>
           </Map>
         </YMaps>
+        </div>
       </div>
     </div>
   );

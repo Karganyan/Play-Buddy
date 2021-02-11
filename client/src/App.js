@@ -28,7 +28,6 @@ function App() {
         <Route path="/game/:id" exact component={Game} />
         <Route path="/map" exact component={EventMap} />
         <Route exact path='/event-page/:id' component={EventPage} />
-
       </Switch>
     </Router>
   )

@@ -1,39 +1,61 @@
-.gameInfo,
-.gameLeft,
-.gameRight,
-.gameDetailes,
-.gameTags {
-    display: flex;
-}
-
-.gameDetailes,
-.gameTags {
-    justify-content: space-around;
-}
-
-.gameDetailes .span,
-.gameTags .span {
-    height: 2em;
-    background-color: rgba(170, 132, 132, 0.712);
-    box-shadow: 1px 1px 3px rgb(144, 55, 22);
-    padding: 2px;
-    margin: 5px 0;
-}
-
-.gameLeft,
-.gameRight {
-    flex-direction: column;
-    border: 1px solid black;
-    width: 50%;
-    padding: 20px;
-}
-
-.gamePhoto img {
-    width: 100%;
-}
-
-
-/* .span {
+ .bg {
+     min-height: 100vh;
+     padding-top: 30px;
+     color: white;
+ }
+ 
+ .centering {
+     width: 75vw;
+     margin: 0 auto;
+ }
+ 
+ .gameInfo,
+ .gameLeft,
+ .gameRight,
+ .gameDetailes,
+ .gameTags {
+     display: flex;
+ }
+ 
+ .gameDetailes,
+ .gameTags {
+     justify-content: space-around;
+ }
+ 
+ .gameDetailes .span,
+ .gameTags .span {
+     height: 2em;
+     background-color: #53508E;
+     box-shadow: 1px 1px 3px #8b8a97;
+     padding: 2px;
+     margin: 25px 0;
+ }
+ 
+ .gameLeft,
+ .gameRight {
+     flex-direction: column;
+     justify-content: space-between;
+     padding: 20px;
+ }
+ 
+ .gameLeft {
+     min-width: 40%;
+ }
+ 
+ .gameLink a {
+     box-shadow: 1px 1px 3px #8b8a97;
+     text-decoration: none;
+ }
+ 
+ .gamePhoto img {
+     width: 100%;
+     max-height: 40vh;
+ }
+ 
+ .gameDetails {
+     padding: 40px;
+ }
+ /* .span {
     position: relative;
     display: inline-block;
     margin-top: 20px;

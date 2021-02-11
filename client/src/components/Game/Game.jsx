@@ -23,39 +23,41 @@ function Game() {
   }, []);
 
   return (
-    <div className="game">
-      <h1 className={styles.gameName}>{game.title}</h1>
-      <div className={styles.gameInfo}>
-        <div className={styles.gameLeft}>
-          <div className={styles.gamePhoto}>
-            <img src={game.img} alt={game.title} />
-          </div>
-          <div className={styles.gameDetailes}>
-            <div className={styles.span}>
-              от {game.max_players} до {game.max_players} игроков
+    <div className={styles.bg}>
+      <div className={styles.centering}>
+        <h1 className={styles.gameName}>{game.title}</h1>
+        <div className={styles.gameInfo}>
+          <div className={styles.gameLeft}>
+            <div className={styles.gamePhoto}>
+              <img src={game.img} alt={game.title} />
             </div>
-            <div className={styles.span}>
-              партия от {game.min_playtime} минут
+            <div className={styles.gameLink}>
+              <a href={game.rules}>Правила можно почитать тут</a>
+            </div>
+            <div className={styles.gameDetailes}>
+              <div className={styles.span}>
+                от {game.max_players} до {game.max_players} игроков
+              </div>
+              <div className={styles.span}>
+                партия от {game.min_playtime} минут
+              </div>
             </div>
           </div>
-          <div className="">
-            <a href={game.rules}>Правила можно почитать тут</a>
-          </div>
-        </div>
-        <div className={styles.gameRight}>
-          <div className={styles.gameDescription}>{game.description}</div>
-          <div className={styles.gameTags}>
-            {populatedTags.map((tag) => {
-              return (
-                <div
-                  key={tag._id}
-                  className={styles.span}
-                  title={tag.description}
-                >
-                  {tag.title}
-                </div>
-              );
-            })}
+          <div className={styles.gameRight}>
+            <div className={styles.gameDescription}>{game.description}</div>
+            <div className={styles.gameTags}>
+              {populatedTags.map((tag) => {
+                return (
+                  <div
+                    key={tag._id}
+                    className={styles.span}
+                    title={tag.description}
+                  >
+                    {tag.title}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
