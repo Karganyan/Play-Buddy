@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledMenu = styled.nav`
   display: flex;
+  font-family: 'BalsamiqSans-Bold';
   flex-direction: column;
   justify-content: center;
   background: ${({ theme }) => theme.primaryLight};
