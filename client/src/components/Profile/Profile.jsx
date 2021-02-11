@@ -6,13 +6,21 @@ import ProfileFavGames from './ProfileFavGames';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { useOnClickOutside } from '../Main/hooks';
-import './Profile.module.css'
+import './Profile.module.css';
 
 const Profile = () => {
   const user = useSelector(store => store.user);
   const avatar = useSelector(store => store.user.avatar);
 
-  const avatarPath = `./uploads/${avatar}`;
+  let avatarPath;
+  // console.log(avatar);
+
+  if (avatar === '/uploads/avatar.png') {
+    avatarPath = `${avatar}`;
+  } else {
+    avatarPath = `/uploads/${avatar}`;
+  }
+
   const history = useHistory();
   useEffect(() => {
     !user.id ? history.push('/signin') : null;
@@ -26,8 +34,7 @@ const Profile = () => {
   return (
     <div className={styles.profile}>
       <div className={styles.header}>
-          <div className={styles.profileWrapper}>
-
+        <div className={styles.profileWrapper}>
           <Link title='Домой' to='/'>
             <img src='home.svg' className={styles.hamburger} />
           </Link>
@@ -36,32 +43,57 @@ const Profile = () => {
           <Link to='/edit'>
             <img title='Настройки' src='settings.svg' className={styles.settings} />
           </Link>
-          </div>
+        </div>
 
-          <ProfileInfo />
-          <>
-            <Link to='/events'>
-              <button  className="btn btn-outline-light btn-lg">Мои События</button>
-            </Link>
+        <ProfileInfo />
+        <>
+          <Link to='/events'>
+            <button
+              className='btn btn-outline-info btn-lg'
+              style={{
+                width: '200px',
+                padding: '20px',
+                fontSize: '25px',
+                marginRight: '20px',
+                color: 'white',
+              }}
+            >
+              Мои События
+            </button>
+          </Link>
 
-            <Link to='/chats'>
-              <button className="btn btn-outline-light btn-lg">Мои Чаты</button>
-            </Link>
-          </>
+          <Link to='/chats'>
+            <button
+              className='btn btn-outline-info btn-lg'
+              style={{ width: '200px', padding: '37px', fontSize: '25px', color: 'white' }}
+            >
+              Мои Чаты
+            </button>
+          </Link>
+        </>
       </div>
       {/* </div> */}
 
       <div className={styles.bottom}>
-        <h1>Личная информация</h1>
-
-        {user.phone ? <div>Номер телефона: {user.phone}</div> : null}
+        {user.information ? (
+          <div>
+            {' '}
+            <h2>Личная информация:</h2>
+            <br />
+            <h5>{user.information} </h5>
+          </div>
+        ) : null}
+        {user.phone ? (
+          <div>
+            <h3>Со мной можно связаться по номеру</h3> <br />
+            <h5>{user.phone} </h5>
+          </div>
+        ) : null}
         <br />
         <br />
-        <h1>Любимые Игры</h1>
+        <h1 style={{color: '#a9294f', fontSize: "60px", textShadow: '1px 1px 2px #e7e7de'}}>Любимые Игры</h1>
         {user.fav_games ? <ProfileFavGames /> : <div>Пока не выбрано ни одной любимой игры</div>}
       </div>
-
-      {/* </div > */}
     </div>
   );
 };
