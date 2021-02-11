@@ -40,44 +40,48 @@ function ModalCHat() {
             (chat.messages.length
               ?
               <>
-                  <div className={styles.chatInModule}>
-                    {chat.messages.map(mess => {
-                      console.log(mess.user_ref);
-                      const avatarPath = `./uploads/${mess.user_ref.avatar}`
-                      return (
-                        user.id === mess.user_ref._id
-                          ?
-                          <>
-                            <div className={styles.userRR}>
-                              <div className={styles.userRight} key={mess._id}>
-                                {mess.text}
-                              </div>
-                            </div>
-                            <br />
-                          </>
-                          :
-                          <>
-                            <div key={mess._id} className={styles.nonUserDiv}>
-                              <div>
-                                <span>
-                                  <img alt="ava" src={avatarPath} className={styles.chatAvatar} />
-                                </span>
-                              &ensp;
-                              <span>
-                                  {mess.user_ref.name}:
-                              </span>
-                              </div>
+                <div className={styles.chatInModule}>
+                  {chat.messages.map(mess => {
+                    let avatarPath;
+                    if (mess.user_ref.avatar === '/uploads/avatar.png') {
+                      avatarPath = `${mess.user_ref.avatar}`;
+                    } else {
+                      avatarPath = `/uploads/${mess.user_ref.avatar}`;
+                    } 
+                    return (
+                      user.id === mess.user_ref._id
+                        ?
+                        <>
+                          <div className={styles.userRR}>
+                            <div className={styles.userRight} key={mess._id}>
                               {mess.text}
                             </div>
-                            <br />
-                          </>
-                      )
-                    })}
-                  </div>
-                  <div className={styles.chatInput}>
-                    <input onChange={inputHandler} value={input} />
-                    <button onClick={wsPost}>send</button>
-                  </div>
+                          </div>
+                          <br />
+                        </>
+                        :
+                        <>
+                          <div key={mess._id} className={styles.nonUserDiv}>
+                            <div>
+                              <span>
+                                <img alt="ava" src={avatarPath} className={styles.chatAvatar} />
+                              </span>
+                              &ensp;
+                              <span>
+                                {mess.user_ref.name}:
+                              </span>
+                            </div>
+                            {mess.text}
+                          </div>
+                          <br />
+                        </>
+                    )
+                  })}
+                </div>
+                <div className={styles.chatInput}>
+                  <input onChange={inputHandler} value={input} />
+                  <button onClick={wsPost}>send</button>
+                </div>
               </>
               :
               (

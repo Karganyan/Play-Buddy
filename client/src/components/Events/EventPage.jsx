@@ -61,7 +61,12 @@ const EventPage = () => {
           <h5>Участники мероприятия</h5>
           {thisEvent &&
             thisEvent.participants.map((userr) => {
-              const avatarPath = `/uploads/${userr.avatar}`;
+              let avatarPath;
+              if(userr.avatar === '/uploads/avatar.png'){
+                avatarPath = `${userr.avatar}`;
+              } else {
+                avatarPath = `/uploads/${userr.avatar}`;
+              }
               return (
                 <ul key={userr._id}>
                   <li className={styles.participant}>{userr.name}</li>
