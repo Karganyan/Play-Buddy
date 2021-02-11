@@ -21,7 +21,7 @@ function Chat() {
       <div className=' wrapper' >
         <div className={styles.headCont}>
           <h2>ЧАТЫ СОБЫТИЙ</h2>
-          <h3 className='titles'>{chat.eventTitle}</h3>
+          {/* <h3 className='titles'>{chat.eventTitle}</h3> */}
         </div>
         <div className={styles.chatsConteiner}>
           {store.userChats.length
