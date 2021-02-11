@@ -14,6 +14,7 @@ import { useHistory } from "react-router";
 import { getEventsThunk } from '../../redux/action-creators/events';
 import styles from "./Main.module.css";
 
+
 function MainPage() {
   const history = useHistory()
   const dispatch = useDispatch()
@@ -26,14 +27,14 @@ function MainPage() {
       await dispatch(userInSessionThunk());
       await dispatch(getTagsThunk())
       await dispatch(getGamesThunk())
-      })()
+    })()
   }, [])
 
   const [open, setOpen] = useState(false);
   const node = useRef();
   useOnClickOutside(node, () => setOpen(false));
 
-  
+
 
   return (
     <>

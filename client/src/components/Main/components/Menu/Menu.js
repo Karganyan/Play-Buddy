@@ -22,6 +22,10 @@ const Menu = ({ open }) => {
         <span role="img" aria-label="ABBA"><img src="https://img.icons8.com/bubbles/50/000000/confetti.png" /></span>
         PLAY BUDDY
         </Link>
+      <Link to="/map">
+        <span role="img" aria-label="Карта Игр"><img src="https://img.icons8.com/doodle/48/000000/dice.png" /></span>
+        Карта Игр
+        </Link>
       {isLogged ?
         <>
           <Link to="/profile">
@@ -38,10 +42,7 @@ const Menu = ({ open }) => {
         Войти
       </Link>
       }
-      <Link to="/map">
-        <span role="img" aria-label="Карта Игр"><img src="https://img.icons8.com/doodle/48/000000/dice.png" /></span>
-        Карта Игр
-        </Link>
+
 
     </StyledMenu>
 

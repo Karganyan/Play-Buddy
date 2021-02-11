@@ -48,21 +48,25 @@ const outUserChatsActionCreator = () => {
 //----------------------------THUNK---------------------------------
 
 
-export const signInThunk = (inputValue, history) => {
+export const signInThunk = (inputValue, history, setError) => {
   return async (dispatch) => {
-    const req = await fetch('/user/signin', {
+    const res = await fetch('/user/signin', {
       method: 'POST',
       credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
       body: JSON.stringify(inputValue),
+      redirect: 'follow',
       mode: 'cors'
     })
-    const res = await req.json()
-
-    if (res.status === 200) {
-      dispatch(getUser(res.user))
+    const result = await res.json()
+    if (res.redirected) {
+      const resFromRedirect = await fetch(res.url)
+      const dataFromRedirect = await resFromRedirect.json()
+      setError(dataFromRedirect.message)
+    } else if (result.status === 200) {
+      dispatch(getUser(result.user))
       history.push('/')
     }
   }
@@ -76,6 +80,7 @@ export const signInGoogleThunk = (history) => {
       headers: {
         'Content-type': 'application/json',
       },
+      redirect: 'follow',
       mode: 'cors'
     })
     const res = await req.json()
@@ -97,7 +102,6 @@ export const signInVkThunk = (history) => {
       mode: 'cors'
     })
     const res = await req.json()
-    console.log(res)
     if (res.status === 200) {
       dispatch(getUser(res.user))
       history.push('/map')
@@ -105,10 +109,9 @@ export const signInVkThunk = (history) => {
   }
 }
 
-export const signUpThunk = (inputValue, history) => {
-  console.log('asdadsa')
+export const signUpThunk = (inputValue, history, setError) => {
   return async (dispatch) => {
-    const req = await fetch('/user/signup', {
+    const res = await fetch('/user/signup', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -117,17 +120,24 @@ export const signUpThunk = (inputValue, history) => {
       body: JSON.stringify(inputValue),
       mode: 'cors'
     })
-    const res = await req.json()
-
-    if (res.status === 200) {
-      dispatch(getUser(res.user))
+    const result = await res.json()
+    if (res.redirected) {
+      const resFromRedirect = await fetch(res.url)
+      const dataFromRedirect = await resFromRedirect.json()
+      setError(dataFromRedirect.message)
+    } else if (result.status === 200) {
+      dispatch(getUser(result.user))
       history.push('/')
     }
+    // const res = await req.json()
+    // if (res.status === 200) {
+    //   dispatch(getUser(res.user))
+    //   history.push('/')
+    // }
   }
 }
 
 export const userInSessionThunk = () => {
-  // console.log('userInSession')
   return async (dispatch) => {
     const req = await fetch('/user/in-session', {
       method: 'GET',
@@ -138,7 +148,6 @@ export const userInSessionThunk = () => {
       mode: 'cors'
     })
     const res = await req.json()
-    //console.log("res.user", res);
     if (res.user) {
       dispatch(getUser(res.user))
       dispatch(getDbUserEventsActionCreator(res.userEvents))
@@ -167,13 +176,9 @@ export const userLogoutThunk = (history) => {
   }
 }
 export const updateUserThunk = (inputs, userId, history) => {
-
   return async (dispatch) => {
-    console.log(inputs)
     const formData = new FormData()
-
     for (const name in inputs) {
-      console.log(inputs[name])
       Array.isArray(inputs[name])
         ? inputs[name].forEach(value => formData.append(name + '[]', value))
         : formData.append(name, inputs[name])
@@ -182,6 +187,7 @@ export const updateUserThunk = (inputs, userId, history) => {
     formData.append('userId', userId);
 
     console.log([...formData.entries()])
+    console.log(typeof formData);
 
     const req = await fetch('/edit', {
       method: 'POST',
@@ -190,7 +196,7 @@ export const updateUserThunk = (inputs, userId, history) => {
       body: formData
     })
     const res = await req.json()
-    // console.log(res)
+    console.log(res)
     dispatch(updateUser(res))
     history.push('/profile')
   }

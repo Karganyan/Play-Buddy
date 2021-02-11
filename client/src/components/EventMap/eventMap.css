@@ -7,3 +7,6 @@
 .ymaps-2-1-78-image {
     border-radius: 50%;
 }
+.button1 {
+    z-index: 99999;
+}

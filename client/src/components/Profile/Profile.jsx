@@ -27,7 +27,7 @@ const Profile = () => {
       <div className={styles.header}>
         <div>
           <Link title="Домой" to="/">
-            <img src="https://img.icons8.com/doodle/48/000000/menu.png" className={styles.hamburger}/>
+            <img src="icons8-menu-96.png" className={styles.hamburger}/>
           </Link>
 
           <img src={avatarPath} alt='avatar' className={styles.avatar} />
@@ -37,12 +37,12 @@ const Profile = () => {
           <ProfileInfo />
           <div>
             <Link to='/events'>
-              <button className='btn btn-outline-success' type='button'>
+              <button className='btn btn-outline-success btn-lg' type='button'>
                 Мои События
               </button>
             </Link>
             <Link to='/chats'>
-              <button className='btn btn-outline-success' type='button'>
+              <button className='btn btn-outline-success btn-lg' type='button'>
                 Мои Чаты
               </button>
             </Link>
@@ -52,6 +52,12 @@ const Profile = () => {
       <div className={styles.bottom}>
         <h1>Личная информация</h1>
 
+        {user.phone ? 
+          <div>Номер телефона: {user.phone}</div>
+        
+          :
+          null
+        }
         <br />
         <br />
         <h1>Любимые Игры</h1>

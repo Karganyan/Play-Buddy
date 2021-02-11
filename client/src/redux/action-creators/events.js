@@ -1,4 +1,4 @@
-import { GET_CURRENT_EVENT, GET_EVENTS, UPDATE_EVENT } from "../types/events"
+import {FILTER_EVENTS, GET_CURRENT_EVENT, GET_EVENTS, UPDATE_EVENT} from "../types/events"
 import { SET_NEW_CHAT } from "../types/userChats"
 import { SET_NEW_EVENT } from "../types/userEvents"
 
@@ -14,6 +14,12 @@ export const getCurrentEvent = (event) => {
     payload: event
   }
 }
+export const filterEvents = (eventsArray) => {
+  return {
+    type: FILTER_EVENTS,
+    payload: eventsArray
+  }
+}
 
 //----------------------------THUNK---------------------------------
 
@@ -27,6 +33,7 @@ export const getEventsThunk = () => {
       mode: 'cors',
     })
     const res = await req.json()
+    console.log('tut',res)
     if (res) {
       dispatch(getEvents(res))
     }

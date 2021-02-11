@@ -1,4 +1,4 @@
-import { GET_EVENTS, GET_GAMES, GET_TAGS, UPDATE_EVENT, FILTER_EVENTS_BY_USER_INPUT } from "../types/events"
+import {GET_EVENTS, GET_GAMES, GET_TAGS, UPDATE_EVENT, FILTER_EVENTS_BY_CATEGORY, FILTER_EVENTS} from "../types/events"
 
 const eventsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -8,6 +8,8 @@ const eventsReducer = (state = {}, action) => {
       return { ...state, tags: action.payload }
     case GET_GAMES:
       return { ...state, games: action.payload }
+    case FILTER_EVENTS:
+      return { ...state, filterEvent: state.event.filter(event => action.payload.includes(event.category[0]))}
     case UPDATE_EVENT:
       return {
         ...state,
@@ -17,22 +19,6 @@ const eventsReducer = (state = {}, action) => {
           :
           event)
       }
-    case FILTER_EVENTS_BY_USER_INPUT:
-      // console.log(action.payload);
-      console.log(state.event, action.payload.length );
-      return {
-        ...state,
-        event: 
-        action.payload.length ?
-            [...state.event].filter(e => {
-            console.log(state.event);
-            return e.title.toLowerCase().includes(action.payload.toLowerCase())
-          })
-          :
-        state.event
-      }
-
-
     default:
       return state
   }
