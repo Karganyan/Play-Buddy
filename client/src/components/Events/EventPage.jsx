@@ -7,6 +7,7 @@ import styles from "./Events.module.css";
 
 const EventPage = () => {
   const [count, setCount] = useState(0)
+  const [userCreator, setUserCreator] = useState('')
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getEventsThunk());
@@ -18,6 +19,7 @@ const EventPage = () => {
 
   const event = userEvents.find(event => event._id === param.id)
   const thisEvent = events.event.find(event => event._id === param.id)
+
   const joinEvent = () => {
     if (event) {
       setWasAdded('notok')
@@ -57,8 +59,6 @@ const EventPage = () => {
         <h5>Описание мероприятия:</h5>
         {thisEvent && thisEvent.description}
       </div>
-      <br />
-      <h5>Организатор мероприятия</h5>
 
       <br />
       <div>
@@ -76,17 +76,21 @@ const EventPage = () => {
                   width="100px"
                 />
                 {event && user.id === event.creator ? (
-                  userr._id === user.id ? null : (
-                    <Button
-                      onClick={() => {
-                        setCount((pre) => pre + 1);
-                        kickUser(userr._id, event._id, history);
-                        dispatch(getEventsThunk());
-                      }}
-                    >
-                      выгнать
-                    </Button>
-                  )
+                  userr._id === user.id ? (
+                    <>
+                    &nbsp;<span> Организатор</span>
+                    </>
+                  ) : (
+                      <Button
+                        onClick={() => {
+                          setCount((pre) => pre + 1);
+                          kickUser(userr._id, event._id, history);
+                          dispatch(getEventsThunk());
+                        }}
+                      >
+                        выгнать
+                      </Button>
+                    )
                 ) : null}
               </div>
             );
@@ -98,7 +102,7 @@ const EventPage = () => {
           Закрыть запись
         </Button>
       ) : (
-          user.id?
+          user.id ?
             <Button onClick={joinEvent}>Записаться на игротеку</Button>
             :
             <Button onClick={() => { history.push('/signin') }}>Записаться на игротеку</Button>

@@ -60,10 +60,11 @@ app.use(passport.session())
 wsSerever.on('connection', (client) => {
   client.on('message', async (message) => {
     const { mess, chatId, userId } = JSON.parse(message)
-    const newMess = new Message({ text: mess, user_ref: userId })
+    let newMess = new Message({ text: mess, user_ref: userId })
     const chat = await Chat.findById(chatId)
     chat.messages.push(newMess._id)
     await newMess.save()
+    newMess = await Message.findById(newMess).populate('user_ref')
     await chat.save()
     wsSerever.clients.forEach((thisClient => {
       thisClient.send(JSON.stringify({ newMess, chatId }))

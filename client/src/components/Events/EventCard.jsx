@@ -3,10 +3,15 @@ import styles from "./Events.module.css";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { leaveEvent } from '../../redux/action-creators/events'
+import { useEffect } from "react";
 
 const EventCard = () => {
   const { user, userEvents } = useSelector((store) => store);
   const history = useHistory()
+  useEffect(() => {
+    !user.id ? history.push('/signin') : null
+  }, [])
+
   return (
     <>
       {userEvents.map((event) => {
@@ -40,7 +45,7 @@ const EventCard = () => {
                   <span>{event.address}</span>
                 </span>
               </Card.Text>
-              <Button className={styles.btn} onClick={() => leaveEvent(user.id,event._id,history)}>Отписаться от события</Button>
+              <Button className={styles.btn} onClick={() => leaveEvent(user.id, event._id, history)}>Отписаться от события</Button>
             </Card.Body>
           </Card>
         );
