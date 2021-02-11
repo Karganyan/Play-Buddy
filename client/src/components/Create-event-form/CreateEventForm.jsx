@@ -7,7 +7,7 @@ import styles from "./Create-event-form.module.css";
 
 
 const CreateEventForm = () => {
-  const [value, onChange] = useState(new Date());
+  const [value, onChange] = useState(new Date("2021-02-13"));
   const [form, setForm] = useState({
     title: "",
     address: "",
