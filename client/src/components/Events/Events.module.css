@@ -74,7 +74,16 @@
  .btn {
      margin-top: 7%;
      font-size: 0.8em;
+     color: #41444b;
+
  }
+
+ .hamburger {
+  height: 32px;
+  width: 32px;
+  margin: 0px 0 0 28px;
+}
+
 
  .eventDetails {
      display: flex;
@@ -86,6 +95,7 @@
      box-shadow: 1px 1px 3px #8b8a97;
      padding: 2px;
      margin: 5px 5px;
+     border-radius: 10px;
  }
 
  .ava {
@@ -103,4 +113,15 @@
  .participant::before {
      content: "✵";
      margin-right: 10px;
+ }
+
+
+ .thumbnailPic {
+   width: 210px;
+   height: 210px;
+   border-radius: 10px;
+ }
+
+ .eventDescription {
+
  }
