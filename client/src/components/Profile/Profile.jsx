@@ -36,7 +36,6 @@ const Profile = () => {
           <Link title='Домой' to='/'>
             <img src='home.svg' className={styles.hamburger} />
           </Link>
-
           <img src={avatarPath} alt='avatar' className={styles.avatar} />
           <Link to='/edit'>
             <img title='Настройки' src='settings.svg' className={styles.settings} />
@@ -46,55 +45,55 @@ const Profile = () => {
         <ProfileInfo />
         <div>
           <>
-          <Link to='/events'>
-            <button
-              className='btn btn-outline-info btn-lg'
-              style={{
-                width: '200px',
-                padding: '15px',
-                fontSize: '25px',
-                marginRight: '20px',
-                color: 'white',
-              }}
-            >
-              Мои События
-            </button>
-          </Link>
+            <Link to='/events'>
+              <button
+                className='btn btn-outline-info btn-lg'
+                style={{
+                  width: '200px',
+                  padding: '15px',
+                  fontSize: '25px',
+                  marginRight: '20px',
+                  color: 'white',
+                }}
+              >
+                Мои События
+              </button>
+            </Link>
 
-          <Link to='/chats'>
-            <button
-              className='btn btn-outline-info btn-lg'
-              style={{ width: '200px', padding: '15px', fontSize: '25px', color: 'white' }}
-            >
-              Мои Чаты
-            </button>
-          </Link>
-        </>
-      </div>
+            <Link to='/chats'>
+              <button
+                className='btn btn-outline-info btn-lg'
+                style={{ width: '200px', padding: '15px', fontSize: '25px', color: 'white' }}
+              >
+                Мои Чаты
+              </button>
+            </Link>
+          </>
+        </div>
 
-      <div className={styles.bottom}>
-        {user.information ? (
-          <div>
-            {' '}
-            <h2 style={{ color: '#fcf876' }}>Личная информация</h2>
-            <h3>{user.information} </h3>
-          </div>
-        ) : null}
-        {user.phone ? (
-          <div>
-            <h2 style={{ color: '#fcf876' }}>Со мной можно связаться по номеру</h2> <br />
-            <h3>{user.phone} </h3>
-          </div>
-        ) : null}
-        <br />
-  
-        <h1 style={{ color: '#fcf876', fontSize: '50px', textShadow: '1px 1px 2px #e7e7de' }}>
-          Любимые Игры
-        </h1>
-        {user.fav_games ? <ProfileFavGames /> : <div>Пока не выбрано ни одной любимой игры</div>}
+        <div className={styles.bottom}>
+          {user.information ? (
+            <div>
+              {' '}
+              <h2 style={{ color: '#fcf876' }}>Личная информация</h2>
+              <p>{user.information} </p>
+            </div>
+          ) : null}
+          {user.phone ? (
+            <div>
+              <h2 style={{ color: '#fcf876' }}>Со мной можно связаться по номеру</h2>
+              <p>{user.phone} </p>
+            </div>
+          ) : null}
+          <br />
+
+          <h1 style={{ color: '#fcf876', fontSize: '50px', textShadow: '1px 1px 2px #e7e7de' }}>
+            Любимые Игры
+          </h1>
+          {user.fav_games ? <ProfileFavGames /> : <div>Пока не выбрано ни одной любимой игры</div>}
+        </div>
       </div>
-      </div>
-      </div>
+    </div>
   );
 };
 export default Profile;

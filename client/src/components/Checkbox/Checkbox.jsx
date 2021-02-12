@@ -3,7 +3,7 @@ import '../Checkbox/checkbox.css'
 const Checkbox = ({sortByCheckbox}) => {
   return (
     <div className='checkbox-wrapper'>
-      <h2>Категория</h2>
+      <h2>Категории</h2>
       <div className='form-check form-check-inline'>
         <input className='form-check-input' type='checkbox' id='one' data-id='602169c62667f6c388999be9' onChange={sortByCheckbox}/>
         <label htmlFor='one' className='form-check-label' >
@@ -22,7 +22,7 @@ const Checkbox = ({sortByCheckbox}) => {
         Карточная
         </label>
       </div>
-      <br/>
+   
       <div className='form-check form-check-inline'>
         <input className='form-check-input' type='checkbox' data-id='602169c62667f6c388999bec' onChange={sortByCheckbox}/>
         <label className='form-check-label' >
@@ -41,7 +41,7 @@ const Checkbox = ({sortByCheckbox}) => {
         На целый день
         </label>
       </div>
-      <br/>
+   
       <div className='form-check form-check-inline'>
         <input className='form-check-input' type='checkbox' data-id='602169c62667f6c388999bef' onChange={sortByCheckbox}/>
         <label className='form-check-label' >

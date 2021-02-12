@@ -17,7 +17,7 @@ const EventCard = () => {
       {userEvents.map((event) => {
         return (
           <Card key={event._id} className={styles.myCard}>
-            <Card.Img variant="top" src={event.thumbnail} />
+            <Card.Img className={styles.img} variant="top" src={event.thumbnail} />
             {user.id == event.creator && (
               <div className={styles.sticker}>
                 <img
@@ -36,7 +36,7 @@ const EventCard = () => {
                   : styles.myCardbBody
               }
             >
-              <Card.Title>
+              <Card.Title className={styles.cardTitle}>
                 <Link to={`/event-page/${event._id}`}>{event.title}</Link>
               </Card.Title>
               <Card.Text>
