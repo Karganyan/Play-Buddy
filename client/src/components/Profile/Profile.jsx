@@ -79,10 +79,10 @@ const Profile = () => {
               <p>{user.information} </p>
             </div>
           ) : null}
+              <h2 style={{ color: '#fcf876' }}>Со мной можно связаться по номеру</h2>
           {user.phone ? (
             <div>
-              <h2 style={{ color: '#fcf876' }}>Со мной можно связаться по номеру</h2>
-              <p>{user.phone} </p>
+              <p>{user?.phone} </p>
             </div>
           ) : null}
           <br />
