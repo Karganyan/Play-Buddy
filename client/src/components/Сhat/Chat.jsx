@@ -26,7 +26,7 @@ function Chat() {
               <img src='home.svg' className={styles.hamburger} />
             </Link>
         <div className={styles.headCont}>
-          <h2>ЧАТЫ СОБЫТИЙ</h2>
+          <h4>ЧАТЫ СОБЫТИЙ</h4>
           <h3 className='titles'>{chat && chat.eventTitle}</h3>
         </div>
         <div className={styles.chatsConteiner}>

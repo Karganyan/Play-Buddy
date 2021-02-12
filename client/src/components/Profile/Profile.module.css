@@ -98,13 +98,19 @@
 }
 
 .bottom {
-    margin-top: 50px;
+    margin-top: 22px;
 }
 
 .profileWrapper {
     display: flex;
     /* align-items: center; */
     justify-content: space-between;
+}
+p {
+    margin: 0;
+}
+button {
+    width: 100px;
 }
 
 

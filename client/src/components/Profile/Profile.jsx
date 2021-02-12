@@ -50,8 +50,8 @@ const Profile = () => {
                 className='btn btn-outline-info btn-lg'
                 style={{
                   width: '200px',
-                  padding: '15px',
-                  fontSize: '25px',
+                  padding: '6px',
+                  fontSize: '22px',
                   marginRight: '20px',
                   color: 'white',
                 }}
@@ -62,8 +62,8 @@ const Profile = () => {
 
             <Link to='/chats'>
               <button
-                className='btn btn-outline-info btn-lg'
-                style={{ width: '200px', padding: '15px', fontSize: '25px', color: 'white' }}
+                className='btn btn-outline-info btn-sm'
+                style={{ width: '200px', padding: '6px', fontSize: '22px', color: 'white' }}
               >
                 Мои Чаты
               </button>
@@ -75,19 +75,19 @@ const Profile = () => {
           {user.information ? (
             <div>
               {' '}
-              <h2 style={{ color: '#fcf876' }}>Личная информация</h2>
+              <h2 style={{ color: '#fcf876', fontSize: '1.3rem' }}>Личная информация</h2>
               <p>{user.information} </p>
             </div>
           ) : null}
           {user.phone ? (
             <div>
-              <h2 style={{ color: '#fcf876' }}>Со мной можно связаться по номеру</h2>
+              <h2 style={{ color: '#fcf876', fontSize: '1.3rem' }}>Со мной можно связаться по номеру</h2>
               <p>{user.phone} </p>
             </div>
           ) : null}
           <br />
 
-          <h1 style={{ color: '#fcf876', fontSize: '50px', textShadow: '1px 1px 2px #e7e7de' }}>
+          <h1 style={{ color: '#fcf876', fontSize: '1.3rem', textShadow: '1px 1px 2px #e7e7de' }}>
             Любимые Игры
           </h1>
           {user.fav_games ? <ProfileFavGames /> : <div>Пока не выбрано ни одной любимой игры</div>}

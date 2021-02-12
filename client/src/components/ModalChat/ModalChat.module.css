@@ -13,9 +13,9 @@
 .chatInput {
   position: fixed;
   padding: 1%;
-  top: 90%;
+  top: 85%;
   min-height: 7%;
-  bottom: 3%;
+  bottom: 8%;
   left: 33%;
   right: 3%;
   text-align: center;
@@ -34,11 +34,13 @@
 
 .chatInModule {
   top: 15%;
-  bottom: 9.9%;
+  bottom: 15%;
   left: 33%;
   right: 3%;
   position: fixed;
   padding: 2%;
+  padding-top: 6%!important;
+  padding-bottom: 3%!important;
   overflow-y: scroll;
   scroll-snap-align: end;
 }

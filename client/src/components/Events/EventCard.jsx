@@ -42,7 +42,7 @@ const EventCard = () => {
               <Card.Text>
                 <span className={styles.eventDetails}>
                   <span>Сб, 13.02.2020</span>
-                  <span>{event.address}</span>
+                  <span style={{overflowY: "scroll", height: '100px'}}>{event.address}</span>
                 </span>
               </Card.Text>
               <Button className={styles.btn} onClick={() => leaveEvent(user.id, event._id, history)}>Отписаться от события</Button>

@@ -177,7 +177,7 @@ const CreateEventForm = () => {
           <input onChange={inputHandler} name='advanced' className="form-check-input" type="checkbox" value="" id="advanced" />
         </div> */}
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" style={{width: '200px', marginBottom: '25px'}}>
               Идём играть!
             </button>
           </form>

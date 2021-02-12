@@ -65,15 +65,15 @@ const EventMap = () => {
         <div className="info">
           {user ? (
             <div className="current-info">
-              {currentEvent ? (
+              {currentEvent?.id ? (
                 <>
                   <h3>{currentEvent.game.title}</h3>
-                  <h4>Описание события:  {currentEvent.description}</h4>
-                  <span>Адрес:  {currentEvent.address}</span>
+                  <h5>Описание события:  {currentEvent.description}</h5>
+                  <span className='address'>Адрес:{currentEvent.address}</span>
                   <button
                     onClick={() => redirectOnEventPage(currentEvent._id)}
                       className="btn btn-info"
-                      style={{color: '#41444b', padding: '10px'}}
+                      style={{color: '#41444b', padding: '10px', width: '160px'}}
                   >Подробнее
 
                   </button>

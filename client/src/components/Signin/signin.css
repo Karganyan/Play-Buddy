@@ -17,8 +17,10 @@
 .create {
     text-decoration: none;
     text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     color: #f4f9f9;
+    width: 350px;
+    margin: 0 auto;
 }
 i {
     margin-right: 10px;

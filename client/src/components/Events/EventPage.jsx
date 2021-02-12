@@ -24,7 +24,7 @@ const EventPage = () => {
   const [wasAdded, setWasAdded] = useState('');
 
   const event = userEvents.find(event => event._id === param.id);
-  const thisEvent = events.event.find(event => event._id === param.id);
+  const thisEvent = events?.event?.find(event => event._id === param.id);
   const joinEvent = () => {
     if (event) {
       setWasAdded('notok');
@@ -54,7 +54,7 @@ const EventPage = () => {
           <div className={styles.eventMainInfo}>
             <h1>{thisEvent && thisEvent.title}</h1>
             <div className={styles.eventDetails}>
-              <span>Адрес: {thisEvent && thisEvent.address}</span>
+              <span className={styles.textAddress}>Адрес: {thisEvent && thisEvent.address}</span>
 
               <span>
                 Количество игроков: {thisEvent && thisEvent.participants.length} из{' '}
@@ -97,7 +97,7 @@ const EventPage = () => {
                         </Button>
                       )
                     ) : null}
-                    {event && userr._id === event.creator._id ? <span>Организатор:</span> : null}
+                    {event && userr._id === event.creator._id ? <span> (организатор)</span> : null}
                   </ul>
                 );
               })}
@@ -105,17 +105,17 @@ const EventPage = () => {
         </div>
         <br />
         {event && user.id === event.creator ? (
-          <Button onClick={() => closeEvent(event._id, history)}>Закрыть запись</Button>
+          <Button onClick={() => closeEvent(event._id, history)} style={{width: '160px'}}>Закрыть запись</Button>
         ) : user.id ? (
           <>
             <Button
               onClick={joinEvent}
-              style={{ backgroundColor: '#17a2b8', marginBottom: '20px', marginRight: '10px' }}
+              style={{ backgroundColor: '#17a2b8', marginBottom: '20px', marginRight: '10px', width: '170px' }}
             >
               Записаться на Игру!
             </Button>
               <Button
-                style={{ backgroundColor: '#17a2b8', marginBottom: '20px' }}
+                style={{ backgroundColor: '#17a2b8', marginBottom: '20px', width: '170px' }}
               onClick={() => {
                 history.push('/map');
               }}

@@ -31,23 +31,23 @@ const SignUp = () => {
     <div className='container'>
       <form>
         <div className="col-md-4 offset-md-4 mb-3">
-          <label htmlFor="exampleInputEmail1" className="form-label text-white">Name</label>
+          <label htmlFor="exampleInputEmail1" className="form-label text-white">Имя</label>
           <input onChange={inputHandler} name='name' type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
         </div>
         <div className="col-md-4 offset-md-4 mb-3">
-          <label htmlFor="exampleInputEmail2" className="form-label text-white">Email</label>
+          <label htmlFor="exampleInputEmail2" className="form-label text-white">Эл.почта</label>
           <input onChange={inputHandler} name='email' type="email" className="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" />
         </div>
         <div className="col-md-4 offset-md-4 mb-3">
-          <label htmlFor="exampleInputPassword3" className="form-label text-white">Password</label>
+          <label htmlFor="exampleInputPassword3" className="form-label text-white">Пароль</label>
           <input onChange={inputHandler} name='password' type="password" className="form-control" id="exampleInputPassword3" />
         </div>
         <div className="col-md-4 offset-md-4 mb-3">
-          <label htmlFor="exampleInputPassword4" className="form-label text-white">Confirm Password</label>
+          <label htmlFor="exampleInputPassword4" className="form-label text-white">Повторите пароль</label>
           <input onChange={inputHandler} name='confirmPassword' type="password" className="form-control" id="exampleInputPassword4" />
         </div>
         {error ? <p className='text-error text-danger'>{error}</p> : null}
-        <button onClick={submitHandler} type="submit" className="btn btn-primary col-md-2 offset-md-5">Sign Up</button>
+        <button onClick={submitHandler} type="submit" className="btn btn-primary col-md-2 offset-md-5">Регистрация</button>
       </form>
     </div>
     </div>
