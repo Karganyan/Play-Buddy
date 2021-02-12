@@ -47,7 +47,7 @@ function ModalCHat() {
                       avatarPath = `${mess.user_ref.avatar}`;
                     } else {
                       avatarPath = `/uploads/${mess.user_ref.avatar}`;
-                    } 
+                    }
                     return (
                       user.id === mess.user_ref._id
                         ?
@@ -67,7 +67,7 @@ function ModalCHat() {
                                 <img alt="ava" src={avatarPath} className={styles.chatAvatar} />
                               </span>
                               &ensp;
-                              <span>
+                              <span className={styles.author}>
                                 {mess.user_ref.name}:
                               </span>
                             </div>

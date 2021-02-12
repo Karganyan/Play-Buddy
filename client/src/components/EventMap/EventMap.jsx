@@ -57,9 +57,9 @@ const EventMap = () => {
   return (
  <div className="bg">
       <div className="eventMap wrapper">
-      <Link title="Домой" to="/">
-        <img src="icons8-menu-96.png" className="hamburger" />
-      </Link>
+        <Link title="Домой" to="/">
+          <img src="home.svg" alt='home' className="Profile_hamburger__JFYck"/>
+        </Link>
       <div className="container">
         <div className="info">
           {user ? (

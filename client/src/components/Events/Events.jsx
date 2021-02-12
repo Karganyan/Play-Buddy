@@ -7,15 +7,14 @@ const Events = () => {
 
   return (
     <div>
-      <div>
         <Link title="Домой" to="/">
-          <img src="hamburger.png" className={styles.hamburger} />
+          <img src="home.svg" alt='home' className="Profile_hamburger__JFYck"/>
         </Link>
-        <h1 className={styles.title}>Мои События</h1>
+        <div>
+        <h1 className={styles.title} >Мои События</h1>
         <CardGroup className={styles.myGroup}>
           <EventCard />
         </CardGroup>
-        <hr />
         <Link to="/create-event">
           <button className="btn btn-outline-success" type="button">
             Создать новое событие

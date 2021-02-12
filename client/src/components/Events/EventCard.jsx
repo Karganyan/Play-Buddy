@@ -18,7 +18,7 @@ const EventCard = () => {
         return (
           <Card key={event._id} className={styles.myCard}>
             <Card.Img variant="top" src={event.thumbnail} />
-            {user.id == event.creator && (
+            {user.id === event.creator && (
               <div className={styles.sticker}>
                 <img
                   src="/sticker.png"
@@ -31,7 +31,7 @@ const EventCard = () => {
             )}
             <Card.Body
               className={
-                user.id == event.creator
+                user.id === event.creator
                   ? styles.bodyRelative
                   : styles.myCardbBody
               }
