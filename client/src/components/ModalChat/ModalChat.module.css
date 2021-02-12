@@ -22,8 +22,8 @@
 }
 
 ::-webkit-scrollbar {
-  width: 4px; 
-  height: 4px; 
+  width: 4px;
+  height: 4px;
   background-color: #143861;
 }
 ::-webkit-scrollbar-thumb {
@@ -74,5 +74,9 @@
   overflow-wrap:break-word;
   color: #302f2f;
   margin-bottom: 5px;
+  color: #302f2f!important;
+}
+.author {
+  color: #000000;
 }
 

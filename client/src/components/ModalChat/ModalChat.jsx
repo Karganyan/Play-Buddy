@@ -67,7 +67,7 @@ function ModalCHat() {
                                 <img alt="ava" src={avatarPath} className={styles.chatAvatar} />
                               </span>
                               &ensp;
-                              <span>
+                              <span className={styles.author}>
                                 {mess.user_ref.name}:
                               </span>
                             </div>

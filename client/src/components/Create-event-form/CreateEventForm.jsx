@@ -150,7 +150,7 @@ const CreateEventForm = () => {
               </label>
               <input
                 onChange={inputHandler}
-                name="eventPersons"
+                name="max_participants"
                 type="number"
                 className="form-control"
                 id="amount"

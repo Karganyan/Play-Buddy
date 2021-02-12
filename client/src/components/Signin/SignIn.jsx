@@ -47,9 +47,9 @@ const Signin = () => {
           </div>
           {error ? <p className='text-error'>{error}</p> : null}
           <button onClick={submitHandler} type="submit" className="btn btn-primary col-md-2 offset-md-5 mb-2">Sign In</button>
-          <a href='http://localhost:3001/user/google' className=" btn btn-primary google form-text col-md-2 offset-md-5 mb-2">Войти через <i
+          <a href='http://localhost:3001/user/google' className=" btn btn-primary google form-text col-md-2 offset-md-5 mb-2">Sign in with <i
             className="fab fa-google"/></a>
-          <a href='http://localhost:3001/user/auth/vkontakte' className="btn btn-primary vk form-text col-md-2 offset-md-5 mb-2">Войти через <i
+          <a href='http://localhost:3001/user/auth/vkontakte' className="btn btn-primary vk form-text col-md-2 offset-md-5 mb-2">Sign in with <i
             className="fab fa-vk"/></a>
           <Link to='/signup' className="create form-text col-md-2 offset-md-5 mb-2">Create account</Link>
         </form>

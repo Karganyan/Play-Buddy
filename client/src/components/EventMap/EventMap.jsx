@@ -75,7 +75,7 @@ const EventMap = () => {
                       className="btn btn-info"
                       style={{color: '#41444b', padding: '10px'}}
                   >Подробнее
-                   
+
                   </button>
                 </>
               ) : (

@@ -31,7 +31,7 @@ const EventCard = () => {
             )}
             <Card.Body
               className={
-                user.id == event.creator
+                user.id === event.creator
                   ? styles.bodyRelative
                   : styles.myCardbBody
               }

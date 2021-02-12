@@ -49,7 +49,6 @@ const SignUp = () => {
         {error ? <p className='text-error text-danger'>{error}</p> : null}
         <button onClick={submitHandler} type="submit" className="btn btn-primary col-md-2 offset-md-5">Sign Up</button>
       </form>
-      {/*{error ? <p>{error}</p> : null}*/}
     </div>
     </div>
   )
