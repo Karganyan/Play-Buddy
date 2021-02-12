@@ -9,19 +9,21 @@ const Events = () => {
   return (
     <div>
       <div>
-      <Link title='Домой' to='/'>
-            <img src='home.svg' className={styles.hamburger} />
-          </Link>
-        <h1 className={styles.title}>Мои События</h1>
-        <CardGroup className={styles.myGroup}>
-          <EventCard />
-        </CardGroup>
-        <hr />
-        <Link to="/create-event">
-          <button className="btn btn-outline-success" type="button">
-            Создать новое событие
-          </button>
+        <Link title="Домой" to="/">
+          <img src="home.svg" className={styles.hamburger} />
         </Link>
+        <h1 className={styles.title}>Мои События</h1>
+        <div className={styles.flex}>
+          <CardGroup className={styles.myGroup}>
+            <EventCard />
+          </CardGroup>
+          <hr />
+          <Link to="/create-event" >
+            <button className={styles.btnLarge} type="button">
+              Создать новое событие
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
