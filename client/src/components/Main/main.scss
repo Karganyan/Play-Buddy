@@ -40,9 +40,9 @@ $size: 165px;
     &#f1 {
       background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
       transform: rotateX(0deg) translateZ($size / 2);
-      -webkit-animation: Gradient 35s ease infinite;
-      -moz-animation: Gradient 35s ease infinite;
-      animation: Gradient 35s ease infinite;
+      -webkit-animation: Gradient 15s ease infinite;
+      -moz-animation: Gradient 15s ease infinite;
+      animation: Gradient 15s ease infinite;
       background-size: 400% 400%;
     }
     &#f2 {
@@ -108,7 +108,6 @@ $size: 165px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  //font-family: 'BalsamiqSans-Bold';
 }
 .say {
   padding-top: 4rem;

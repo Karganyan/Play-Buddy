@@ -1,14 +1,9 @@
 import { Link } from "react-router-dom"
 import React, { useState } from 'react'
 import { useHistory } from "react-router"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { signInGoogleThunk, signInThunk, signInVkThunk} from "../../redux/action-creators/user"
 import '../Signin/signin.css'
-import {theme} from "../Main/Theme"
-import {GlobalStyles} from "../Main/Global"
-import Burger from "../Main/components/Burger/Burger"
-import Menu from "../Main/components/Menu/Menu"
-import {ThemeProvider} from "styled-components"
 
 const Signin = () => {
   const history = useHistory()

@@ -30,7 +30,6 @@ export const getFavGamesThunk = (user) => {
       body: JSON.stringify(user),
     });
     const resData = await res.json();
-    console.log('resData===>', resData);
     if (resData) {
       dispatch({
         type: GET_FAV_GAMES,

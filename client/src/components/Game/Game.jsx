@@ -14,10 +14,8 @@ function Game() {
   const populatedTags = currGameTags.map(
     (tag) => (tag = tagsInReducer.find((item) => item._id === tag))
   );
-  console.log(populatedTags);
 
   const dispatch = useDispatch();
-  // console.log("game", game);
   useEffect(() => {
     // dispatch(getTagsThunk());
   }, []);
@@ -32,13 +30,13 @@ function Game() {
               <img src={game.img} alt={game.title} />
             </div>
             <div className={styles.gameLink}>
-              <a href={game.rules}>Правила можно почитать тут</a>
+              <a href={game.rules} target='_blank'>Правила можно почитать тут</a>
             </div>
             <div className={styles.gameDetailes}>
-              <div className={styles.span}>
-                от {game.max_players} до {game.max_players} игроков
+              <div >
+                от {game.min_players} до {game.max_players} игроков
               </div>
-              <div className={styles.span}>
+              <div >
                 партия от {game.min_playtime} минут
               </div>
             </div>

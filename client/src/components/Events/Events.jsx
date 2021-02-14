@@ -1,7 +1,7 @@
 import styles from "./Events.module.css";
 import EventCard from "./EventCard";
 import { Link } from "react-router-dom";
-import { Card, CardGroup, Button } from "react-bootstrap";
+import { CardGroup } from "react-bootstrap";
 
 
 const Events = () => {

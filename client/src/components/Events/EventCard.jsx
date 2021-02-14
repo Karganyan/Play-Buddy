@@ -46,6 +46,9 @@ const EventCard = () => {
                 </span>
               </Card.Text>
               <Button className={styles.btn} onClick={() => leaveEvent(user.id, event._id, history)}>Отписаться от события</Button>
+              <Link to={`event-page/${event._id}`}>
+                <button className={styles.btn}>О Событии</button>
+              </Link>
             </Card.Body>
           </Card>
         );

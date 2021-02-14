@@ -1,7 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory} from "react-router-dom";
 import { updateUserThunk } from "../../redux/action-creators/user";
 import { Multiselect } from "multiselect-react-dropdown";
 import styles from "./EditProfile.module.css";
@@ -20,7 +20,6 @@ const EditProfile = () => {
 
   const games = useSelector((store) => store.games.games);
   const selectedGames = useSelector((store) => store.games.favGames);
-  console.log(selectedGames);
 
   const [inputs, setInputs] = useState({
     name: user.name,
@@ -39,7 +38,6 @@ const EditProfile = () => {
 
   const nameHandler = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
-    //console.log('inputs', inputs);
   };
 
   const onSubmit = (event) => {
@@ -54,7 +52,6 @@ const EditProfile = () => {
   };
 
   const selectHandler = (event) => {
-    //console.log(inputs.fav_games);
     setInputs({ ...inputs, fav_games: event.map((e) => (e = e._id)) });
   };
   return (
@@ -62,6 +59,7 @@ const EditProfile = () => {
       <div className={styles.centering}>
         <h1>Редактировать профиль</h1>
         <Form onSubmit={onSubmit} className={styles.form}>
+
           <Form.Group>
             <Form.Label>Имя</Form.Label>
             <Form.Control

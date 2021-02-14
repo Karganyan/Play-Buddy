@@ -28,7 +28,6 @@ function ModalCHat() {
 
   wsClient.onmessage = (message) => {
     const { newMess, chatId } = JSON.parse(message.data);
-    console.log();
     dispatch(addMessageActionCreator({ newMess, chatId }))
   }
 

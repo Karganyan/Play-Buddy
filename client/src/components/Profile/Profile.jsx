@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Link, Switch, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import styles from './Profile.module.css';
 import { useState, useRef } from 'react';
 import ProfileInfo from './ProfileInfo';
@@ -34,11 +34,11 @@ const Profile = () => {
       <div className={styles.header}>
         <div className={styles.profileWrapper}>
           <Link title='Домой' to='/'>
-            <img src='home.svg' className={styles.hamburger} />
+            <img src='home.svg' alt='home' className={styles.hamburger} />
           </Link>
           <img src={avatarPath} alt='avatar' className={styles.avatar} />
           <Link to='/edit'>
-            <img title='Настройки' src='settings.svg' className={styles.settings} />
+            <img title='Настройки' src='settings.svg' alt='setting' className={styles.settings} />
           </Link>
         </div>
 
@@ -76,13 +76,13 @@ const Profile = () => {
             <div>
               {' '}
               <h2 style={{ color: '#fcf876', fontSize: '1.3rem' }}>Личная информация</h2>
-              <p>{user.information} </p>
+              <p>{user?.information} </p>
             </div>
           ) : null}
           {user.phone ? (
             <div>
               <h2 style={{ color: '#fcf876', fontSize: '1.3rem' }}>Со мной можно связаться по номеру</h2>
-              <p>{user.phone} </p>
+              <p>{user?.phone} </p>
             </div>
           ) : null}
           <br />

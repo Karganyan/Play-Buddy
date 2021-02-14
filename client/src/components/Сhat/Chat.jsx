@@ -12,7 +12,6 @@ function Chat() {
   const dispatch = useDispatch()
   const history = useHistory()
   const chat = store.userChats.find(chat => chat._id === store.modalChat)
-  console.log(chat);
   useEffect(() => {
     !store.user.id ? history.push('/signin') : null
   }, [])

@@ -3,7 +3,6 @@ const User = require("../models/user");
 const router = Router();
 const multer = require('multer');
 
-// создаем стор для аватарок
 const storage = multer.diskStorage({
 
   destination: './public/uploads/',
@@ -12,9 +11,7 @@ const storage = multer.diskStorage({
   }
 })
 
-// загружаем аватарки
 const upload = multer({ storage: storage })
-
 
 router.get("/", (req, res) => {
   res.send("Server");
@@ -22,7 +19,6 @@ router.get("/", (req, res) => {
 
 router.post("/edit", upload.single('avatar'), async (req, res) => {
   const { name, info, phone, fav_games, userId } = req.body;
-  const userr = await User.findById(userId)
   req.session.user = { ...req.session.user, name, userId, fav_games, avatar: req.file.filename };
   const user = await User.findByIdAndUpdate(
     userId,
@@ -37,9 +33,6 @@ router.post("/edit", upload.single('avatar'), async (req, res) => {
     },
     { new: true }
   );
-  // console.log(userr);
-
-  console.log('========> user',user);
   res.json(user);
 });
 

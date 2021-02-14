@@ -21,3 +21,13 @@
   color: white;
 
 }
+@media (max-width: 1000px) {
+  .bbbtn {
+    font-size: .6rem;
+    width: 50px;
+  }
+  .inp {
+    font-size: .6rem;
+  }
+}
+

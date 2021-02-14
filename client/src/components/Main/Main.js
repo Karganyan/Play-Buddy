@@ -13,14 +13,10 @@ import styles from "./Main.module.css";
 import './main.scss'
 
 function MainPage() {
-  const history = useHistory()
   const dispatch = useDispatch()
-  const user = useSelector(store => store.user)
-  const currentEvent = useSelector(store => store.currentEvent)
 
   useEffect(() => {
     (async () => {
-      // ЭТО НЕ ТРОГАТЬ!!!!!!!!!!!1
       await dispatch(userInSessionThunk());
       await dispatch(getTagsThunk())
       await dispatch(getGamesThunk())
@@ -39,9 +35,7 @@ function MainPage() {
         <>
           <GlobalStyles />
           <div className='main-wrapper'>
-
             <h1 className={styles.appName}>Play Buddy</h1>
-
             <div className="dice logo pb-3">
               <div className="face" id="f1">Играй</div>
               <div className="face" id="f2">Дружи</div>
@@ -55,7 +49,6 @@ function MainPage() {
           <div ref={node}>
             <Burger open={open} setOpen={setOpen} />
             <Menu open={open} setOpen={setOpen} />
-
           </div>
         </>
       </ThemeProvider>

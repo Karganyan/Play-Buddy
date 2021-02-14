@@ -9,6 +9,12 @@
     width: 55vw;
     margin: 0 auto;
 }
+.hamburger {
+    height: 32px;
+    width: 32px;
+    margin: 32px 0 0 28px;
+    position: absolute;
+}
 
 .hamburger {
     height: 32px;
@@ -74,8 +80,8 @@
 }
 
 .myCard {
-    min-width: 25vw;
-    max-width: 25vw;
+    min-width: 19vw;
+    max-width: 19vw;
     margin-right: 4vw;
     padding: 15px;
     box-shadow: 4px 4px 7px rgba(170, 163, 163, 0.794);

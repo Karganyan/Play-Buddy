@@ -9,7 +9,6 @@ import {
   kickUser,
 } from '../../redux/action-creators/events';
 import styles from './Events.module.css';
-import { Link } from 'react-router-dom';
 
 const EventPage = () => {
   const [count, setCount] = useState(0);
@@ -42,7 +41,8 @@ const EventPage = () => {
       history.push('/chats');
     }
   };
-
+  console.log(user.id)
+  console.log(event)
   return (
     <div className={styles.eventBg}>
       <div className={styles.centering}>
@@ -86,7 +86,7 @@ const EventPage = () => {
                     <img src={avatarPath} className={styles.ava} alt='ava' width='100px' />
                     {event && user.id === event.creator._id ? (
                       userr._id === user.id ? null : (
-                        <Button
+                        <Button style={{width: '150px', marginLeft: '1rem', marginTop: 3, padding: 0}}
                           onClick={() => {
                             setCount(pre => pre + 1);
                             kickUser(userr._id, event._id, history);
@@ -97,25 +97,25 @@ const EventPage = () => {
                         </Button>
                       )
                     ) : null}
-                    {event && userr._id === event.creator._id ? <span> (организатор)</span> : null}
+                    {event && userr._id === event.creator._id ? <span> &nbsp; (организатор)</span> : null}
                   </ul>
                 );
               })}
           </div>
         </div>
         <br />
-        {event && user.id === event.creator ? (
-          <Button onClick={() => closeEvent(event._id, history)} style={{width: '160px'}}>Закрыть запись</Button>
+        {event && user.id === event.creator._id ? (
+          <Button onClick={() => closeEvent(event._id, history)} style={{width: '260px', backgroundColor: '#0dcaf0'}} >Закрыть запись</Button>
         ) : user.id ? (
           <>
             <Button
               onClick={joinEvent}
-              style={{ backgroundColor: '#17a2b8', marginBottom: '20px', marginRight: '10px', width: '170px' }}
+              style={{ backgroundColor: '#17a2b8', marginBottom: '20px', marginRight: '10px', width: '230px', fontSize: '.7rem' }}
             >
               Записаться на Игру!
             </Button>
               <Button
-                style={{ backgroundColor: '#17a2b8', marginBottom: '20px', width: '170px' }}
+                style={{ backgroundColor: '#17a2b8', marginBottom: '20px', width: '230px', fontSize: '.7rem' }}
               onClick={() => {
                 history.push('/map');
               }}
@@ -128,7 +128,7 @@ const EventPage = () => {
             onClick={() => {
               history.push('/signin');
             }}
-          >
+          style={{width: '250px', backgroundColor: '#0dcaf0', border: 0}}>
             Записаться на игротеку
           </Button>
         )}

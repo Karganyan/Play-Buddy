@@ -33,7 +33,6 @@ export const getEventsThunk = () => {
       mode: 'cors',
     })
     const res = await req.json()
-    console.log('tut',res)
     if (res) {
       dispatch(getEvents(res))
     }
@@ -70,7 +69,6 @@ export const joinEventThunk = ({ userId, eventId }) => {
       mode: 'cors'
     })
     const result = await ftch.json()
-    console.log(result.chat);
     dispatch({ type: UPDATE_EVENT, payload: result.event })
     dispatch({ type: SET_NEW_EVENT, payload: result.event })
     dispatch({ type: SET_NEW_CHAT, payload: result.chat })
@@ -92,7 +90,6 @@ export const closeEvent = async (eventId, history) => {
 }
 
 export const kickUser = async (userId, eventId, history) => {
-  console.log('tut');
   const ftch = await fetch(`/event/kick-user`, {
     method: 'POST',
     headers: {

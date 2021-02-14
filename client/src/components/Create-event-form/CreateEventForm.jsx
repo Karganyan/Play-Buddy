@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { createEventThunk } from "../../redux/action-creators/createEventThunk";
-import DatePicker from "react-date-picker";
 import styles from "./Create-event-form.module.css";
 
 const CreateEventForm = () => {
@@ -70,7 +69,6 @@ const CreateEventForm = () => {
     await dispatch(createEventThunk(form, history));
   };
 
-  console.log(">>>>>>>>", form);
   return (
     <div className={styles.formBg}>
       <div className={styles.centering}>

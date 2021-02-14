@@ -129,11 +129,6 @@ export const signUpThunk = (inputValue, history, setError) => {
       dispatch(getUser(result.user))
       history.push('/')
     }
-    // const res = await req.json()
-    // if (res.status === 200) {
-    //   dispatch(getUser(res.user))
-    //   history.push('/')
-    // }
   }
 }
 
@@ -141,7 +136,7 @@ export const userInSessionThunk = () => {
   return async (dispatch) => {
     const req = await fetch('/user/in-session', {
       method: 'GET',
-      // credentials: 'include',
+      credentials: 'include',
       headers: {
         'Content-type': 'application/json',
       },
@@ -185,10 +180,6 @@ export const updateUserThunk = (inputs, userId, history) => {
 
     }
     formData.append('userId', userId);
-
-    // console.log([...formData.entries()])
-    // console.log(typeof formData);
-
     const req = await fetch('/edit', {
       method: 'POST',
       credentials: 'include',
@@ -196,7 +187,6 @@ export const updateUserThunk = (inputs, userId, history) => {
       body: formData
     })
     const res = await req.json()
-    // console.log(res)
     dispatch(updateUser(res))
     history.push('/profile')
   }

@@ -14,7 +14,6 @@ router.post('/', async (req, res) => {
   const fetchToYandex = await fetch(`https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-138a17d2a225&format=json&geocode=${coordinates}`)
   const correctAddress = await fetchToYandex.json()
   const resultAddress = correctAddress?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.metaDataProperty?.GeocoderMetaData?.text
-  // console.log('>>>>>>>>>>', resultAddress)
   const newChat = new Chat({ messages: [], eventTitle: title });
   const newEvent = new Event({ title, description, category, max_participants, chat: newChat._id, creator: req.user._id, participants: [req.user._id], address:resultAddress, game, coordinates: newCoordinates, thumbnail, time });
   const user = await User.findById(req.user._id)
@@ -40,18 +39,14 @@ router.get('/tags', async (req, res) => {
 router.get("/all-games", async (req, res) => {
   const games = await Game.find();
   res.json({ status: 200, games });
-}); // ВЫНЕСТИ В ДРУГОЙ РОУТЕР
+});
 
 router.post("/fav-games", async (req, res) => {
-  // console.log(req.body);
   const currUser = await User.findById(req.body.id).populate('fav_games')
-  // console.log(currUser);
   res.json({ status: 200, favGames: currUser.fav_games });
-}); // ВЫНЕСТИ В ДРУГОЙ РОУТЕР
+});
 
 router.get('/games/', async (req, res) => {
-  const { title } = req.params
-  // const games = await Game.find({'tags' : {$in: title}}).populate()
   const games = await Game.find()
   res.json({ status: 200, games })
 })

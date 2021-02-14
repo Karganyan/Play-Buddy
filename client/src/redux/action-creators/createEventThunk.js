@@ -1,13 +1,10 @@
 import { ADD_MESSAGE, SET_NEW_CHAT } from "../types/userChats";
 import { SET_NEW_EVENT } from "../types/userEvents";
 import { GET_GAMES, GET_TAGS } from "../types/events"
-// import { useDispatch, useSelector } from 'react-redux';
-
 
 const setNewChatActionCreator = (chat) => {
   return { type: SET_NEW_CHAT, payload: chat }
 }
-
 
 export const getTags = (tags) => {
   return {
@@ -21,13 +18,6 @@ export const getGames = (games) => {
     payload: games
   }
 }
-
-// export const getUserInput = (input) => {
-//   return {
-//     type: FILTER_EVENTS_BY_USER_INPUT,
-//     payload: input
-//   }
-// }
 
 const setNewEventActionCreator = (event) => {
   return { type: SET_NEW_EVENT, payload: event }
@@ -50,7 +40,6 @@ export function createEventThunk(formInput, history) {
       mode: 'cors'
     })
     const res = await req.json();
-    console.log(res);
     dispatch(setNewChatActionCreator(res[0]))
     dispatch(setNewEventActionCreator(res[1]))
     history.push(`/event-page/${res[1]._id}`)
@@ -88,18 +77,3 @@ export const getGamesThunk = (title) => {
     }
   }
 }
-
-// export const filterEvents = (events, category, history) => {
-//   return async (dispatch) => {
-//
-//     return dispatch({
-//       type: FILTER_EVENTS_BY_CATEGORY,
-//       payload: {
-//         category: category,
-//         events: category === "" ? events : events.filter(a => console.log(a.category))
-//       }
-//   })
-//   }
-// }
-
-

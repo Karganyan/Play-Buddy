@@ -1,7 +1,6 @@
 const { Router } = require('express')
 const router = Router()
 const passport = require('passport')
-const Event = require('../models/event')
 const User = require('../models/user')
 const Chat = require('../models/chat')
 

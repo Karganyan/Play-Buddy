@@ -82,3 +82,11 @@
   color: #000000;
 }
 
+@media (max-width: 1000px) {
+  .userRight{
+    font-size: .8rem;
+  }
+  .nonUserDiv{
+    font-size: .8rem;
+  }
+}

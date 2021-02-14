@@ -2,7 +2,6 @@ import { bool } from 'prop-types';
 import { StyledMenu } from './Menu.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from "react-router-dom";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { userLogoutThunk } from '../../../../redux/action-creators/user';
 import { useHistory } from "react-router";
 

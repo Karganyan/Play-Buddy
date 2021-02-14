@@ -6,17 +6,12 @@ const initState = () => {
     events: {},
     currentEvent: {},
     modalChat: '',
-    // filterEvents: [],
-    // category: ''
-    modalChat: "",
     games: {
       favGames: [],
       games: [],
     },
   };
-
   const fromLS = window.localStorage.getItem('store')
-
   return fromLS ? JSON.parse(fromLS) : obj
 }
 

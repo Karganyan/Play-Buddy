@@ -60,12 +60,12 @@ const EventMap = () => {
       <div className="eventMap wrapper">
       <Link title='Домой' to='/'>
             <img src='home.svg' className={styles.hamburger} />
-          </Link>
+      </Link>
       <div className="container">
         <div className="info">
           {user ? (
             <div className="current-info">
-              {currentEvent?.id ? (
+              {currentEvent._id ? (
                 <>
                   <h3>{currentEvent.game.title}</h3>
                   <h5>Описание события:  {currentEvent.description}</h5>
@@ -129,3 +129,4 @@ const EventMap = () => {
 };
 
 export default EventMap;
+//http://localhost:3000/event-page/60264e1bf8ce1f363421e565
