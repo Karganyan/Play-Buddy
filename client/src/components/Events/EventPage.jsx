@@ -41,15 +41,10 @@ const EventPage = () => {
       history.push('/chats');
     }
   };
-  console.log(user.id)
-  console.log(event)
   return (
     <div className={styles.eventBg}>
       <div className={styles.centering}>
         <div className={styles.eventWrapper}>
-          {/* <Link title='Домой' to='/map'>
-            <img src='left-arrow.svg' className={styles.hamburger} />
-          </Link> */}
           <img className={styles.thumbnailPic} src={thisEvent && thisEvent.thumbnail} alt='game' />
           <div className={styles.eventMainInfo}>
             <h1>{thisEvent && thisEvent.title}</h1>
