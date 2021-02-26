@@ -9,8 +9,12 @@ import { useOnClickOutside } from '../Main/hooks';
 import './Profile.module.css';
 
 const Profile = () => {
-  const user = useSelector(store => store.user);
-  const avatar = useSelector(store => store.user.avatar);
+  const [open, setOpen] = useState(false);
+  const node = useRef();
+  const { user } = useSelector(store => store);
+  const { avatar } = user;
+
+  const history = useHistory();
 
   let avatarPath;
 
@@ -20,13 +24,10 @@ const Profile = () => {
     avatarPath = `/uploads/${avatar}`;
   }
 
-  const history = useHistory();
   useEffect(() => {
     !user.id ? history.push('/signin') : null;
   }, []);
 
-  const [open, setOpen] = useState(false);
-  const node = useRef();
   useOnClickOutside(node, () => setOpen(false));
 
   return (
@@ -41,7 +42,6 @@ const Profile = () => {
             <img title='Настройки' src='settings.svg' alt='setting' className={styles.settings} />
           </Link>
         </div>
-
         <ProfileInfo />
         <div>
           <>
@@ -90,7 +90,7 @@ const Profile = () => {
           <h1 style={{ color: '#fcf876', fontSize: '1.3rem', textShadow: '1px 1px 2px #e7e7de' }}>
             Любимые Игры
           </h1>
-          {user.fav_games ? <ProfileFavGames /> : <div>Пока не выбрано ни одной любимой игры</div>}
+          {user.fav_games?.length ? <ProfileFavGames /> : <div>Пока не выбрано ни одной любимой игры</div>}
         </div>
       </div>
     </div>

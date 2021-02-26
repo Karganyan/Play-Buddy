@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userInSessionThunk } from "../../redux/action-creators/user";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import styles from "./Profile.module.css";
 import Carousel from "react-multi-carousel";
@@ -9,9 +8,11 @@ import { Image } from "semantic-ui-react";
 import { getFavGamesThunk } from "../../redux/action-creators/getGames";
 
 const ProfileFavGames = () => {
-  const user = useSelector((store) => store.user);
+  const { user } = useSelector((store) => store);
+  const { favGames } = useSelector((store) => store.games);
+
   const dispatch = useDispatch();
-  const favGames = useSelector((store) => store.games.favGames);
+
   useEffect(() => {
     dispatch(getFavGamesThunk(user));
   }, []);

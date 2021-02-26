@@ -1,14 +1,13 @@
 .headCont {
+  width: 80%;
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .titles {
   text-align: center;
   color: #e9e9e9;
-
 }
 
 .chatsConteiner {
@@ -39,7 +38,7 @@
 .hamburger {
   height: 32px;
   width: 32px;
-  margin: 32px 0 0 28px;
+  margin-left: 20%;
 }
 
 .wrapper {
@@ -55,36 +54,36 @@
 
 @-webkit-keyframes Gradient {
   0% {
-      background-position: 0% 50%
+    background-position: 0% 50%
   }
   50% {
-      background-position: 100% 50%
+    background-position: 100% 50%
   }
   100% {
-      background-position: 0% 50%
+    background-position: 0% 50%
   }
 }
 
 @-moz-keyframes Gradient {
   0% {
-      background-position: 0% 50%
+    background-position: 0% 50%
   }
   50% {
-      background-position: 100% 50%
+    background-position: 100% 50%
   }
   100% {
-      background-position: 0% 50%
+    background-position: 0% 50%
   }
 }
 
 @keyframes Gradient {
   0% {
-      background-position: 0% 50%
+    background-position: 0% 50%
   }
   50% {
-      background-position: 100% 50%
+    background-position: 100% 50%
   }
   100% {
-      background-position: 0% 50%
+    background-position: 0% 50%
   }
 }

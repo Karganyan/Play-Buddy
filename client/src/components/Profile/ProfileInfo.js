@@ -4,8 +4,10 @@ import { userInSessionThunk } from "../../redux/action-creators/user";
 import styles from "./Profile.module.css";
 
 const ProfileInfo = () => {
+
+  const { user } = useSelector((store) => store);
   const dispatch = useDispatch();
-  const user = useSelector((store) => store.user);
+  
   useEffect(() => {
     dispatch(userInSessionThunk());
   }, []);

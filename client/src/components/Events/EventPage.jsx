@@ -12,18 +12,22 @@ import styles from './Events.module.css';
 
 const EventPage = () => {
   const [count, setCount] = useState(0);
-  const [userCreator, setUserCreator] = useState('');
+  const [wasAdded, setWasAdded] = useState('');
+  const { user, userEvents, events } = useSelector(store => store);
+
   const dispatch = useDispatch();
+  const history = useHistory();
+  const param = useParams();
+
+
   useEffect(() => {
     dispatch(getEventsThunk());
   }, [count]);
-  const history = useHistory();
-  const { user, userEvents, events } = useSelector(store => store);
-  const param = useParams();
-  const [wasAdded, setWasAdded] = useState('');
+
 
   const event = userEvents.find(event => event._id === param.id);
   const thisEvent = events?.event?.find(event => event._id === param.id);
+
   const joinEvent = () => {
     if (event) {
       setWasAdded('notok');
@@ -31,16 +35,15 @@ const EventPage = () => {
         setWasAdded('');
       }, 3000);
     } else {
-      (async () => {
-        await setWasAdded('ok');
-        await setTimeout(() => {
-          setWasAdded('');
-        }, 3000);
-        await dispatch(joinEventThunk({ userId: user.id, eventId: param.id }));
-      })();
+      setWasAdded('ok');
+      setTimeout(() => {
+        setWasAdded('');
+      }, 3000);
+      dispatch(joinEventThunk({ userId: user.id, eventId: param.id }));
       history.push('/chats');
     }
   };
+
   return (
     <div className={styles.eventBg}>
       <div className={styles.centering}>
@@ -59,14 +62,12 @@ const EventPage = () => {
           </div>
         </div>
         <div className='eventBox'>
-          <div className='eventDescription' style={{ marginLeft: '10px' }}>
-            <h3>Описание мероприятия:</h3>
+          <div className='eventDescription' style={{ marginLeft: '10px', fontSize: '0.9rem' }}>
+            <h6>Описание мероприятия:</h6>
             {thisEvent && thisEvent.description}
           </div>
-
-          <br />
-          <div>
-            <h3 style={{ marginLeft: '10px' }}>Участники мероприятия:</h3>
+          <h6 style={{ marginLeft: '10px' }}>Участники мероприятия:</h6>
+          <div style={{ overflowY: 'scroll' }}>
             {thisEvent &&
               thisEvent.participants.map(userr => {
                 let avatarPath;
@@ -78,10 +79,10 @@ const EventPage = () => {
                 return (
                   <ul key={userr._id}>
                     <li className={styles.participant}>{userr.name}</li>
-                    <img src={avatarPath} className={styles.ava} alt='ava' width='100px' />
+                    <img src={avatarPath} className={styles.ava} alt='ava' width='50px' />
                     {event && user.id === event.creator._id ? (
                       userr._id === user.id ? null : (
-                        <Button style={{width: '150px', marginLeft: '1rem', marginTop: 3, padding: 0}}
+                        <Button style={{ width: '150px', marginLeft: '1rem', marginTop: 3, padding: 0 }}
                           onClick={() => {
                             setCount(pre => pre + 1);
                             kickUser(userr._id, event._id, history);
@@ -98,19 +99,35 @@ const EventPage = () => {
               })}
           </div>
         </div>
-        <br />
         {event && user.id === event.creator._id ? (
-          <Button onClick={() => closeEvent(event._id, history)} style={{width: '260px', backgroundColor: '#0dcaf0'}} >Закрыть запись</Button>
+          <Button
+            onClick={() => closeEvent(event._id, history)}
+            style={{ width: '260px', backgroundColor: '#0dcaf0' }}
+          >
+            Закрыть запись
+          </Button>
         ) : user.id ? (
           <>
             <Button
               onClick={joinEvent}
-              style={{ backgroundColor: '#17a2b8', marginBottom: '20px', marginRight: '10px', width: '230px', fontSize: '.7rem' }}
+              style={{
+                backgroundColor: '#17a2b8',
+                marginBottom: '20px',
+                marginRight: '10px',
+                width: '230px',
+                fontSize: '.7rem'
+              }}
             >
               Записаться на Игру!
             </Button>
-              <Button
-                style={{ backgroundColor: '#17a2b8', marginBottom: '20px', width: '230px', fontSize: '.7rem' }}
+
+            <Button
+              style={{
+                backgroundColor: '#17a2b8',
+                marginBottom: '20px',
+                width: '230px',
+                fontSize: '.7rem'
+              }}
               onClick={() => {
                 history.push('/map');
               }}
@@ -119,14 +136,14 @@ const EventPage = () => {
             </Button>
           </>
         ) : (
-          <Button
-            onClick={() => {
-              history.push('/signin');
-            }}
-          style={{width: '250px', backgroundColor: '#0dcaf0', border: 0}}>
-            Записаться на игротеку
-          </Button>
-        )}
+              <Button
+                onClick={() => {
+                  history.push('/signin');
+                }}
+                style={{ width: '250px', backgroundColor: '#0dcaf0', border: 0 }}>
+                Записаться на игротеку
+              </Button>
+            )}
 
         {wasAdded ? (wasAdded === 'notok' ? 'Ты уже записан :)' : 'BRAT TI ZAPISAN OT DUSHI') : ''}
       </div>

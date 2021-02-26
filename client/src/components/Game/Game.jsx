@@ -17,7 +17,7 @@ function Game() {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    // dispatch(getTagsThunk());
+    dispatch(getTagsThunk());
   }, []);
 
   return (

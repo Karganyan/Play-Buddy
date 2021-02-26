@@ -1,13 +1,11 @@
-import React, { useState } from "react"
-import { useHistory } from "react-router"
-import { signUpThunk} from "../../redux/action-creators/user"
-import { useDispatch } from "react-redux"
-import '../Signup/signup.css'
+import React, { useState } from "react";
+import { useHistory } from "react-router";
+import { signUpThunk} from "../../redux/action-creators/user";
+import { useDispatch } from "react-redux";
+import '../Signup/signup.css';
 
 const SignUp = () => {
-  const history = useHistory()
-  const dispatch = useDispatch()
-  const [error, setError] = useState('')
+  const [error, setError] = useState('');
   const [ inputValue, setInputValue ] = useState({
     name: '',
     email: '',
@@ -15,6 +13,9 @@ const SignUp = () => {
     confirmPassword: ''
   })
 
+  const history = useHistory()
+  const dispatch = useDispatch()
+  
   const inputHandler = (event) => {
     setInputValue(prev => {
       return {...prev, [event.target.name]: event.target.value}

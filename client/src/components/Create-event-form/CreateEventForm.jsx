@@ -33,9 +33,8 @@ const CreateEventForm = () => {
     let street;
     if (event.target.name === "address") {
       street = event.target.value;
-      const req = await fetch(
-        `https://geocode-maps.yandex.ru/1.x/?apikey=51ad9d93-9100-4ffa-8ebf-138a17d2a225&format=json&geocode=${street}`
-      );
+      const url = process.env.REACT_APP_MAP_URL + street;
+      const req = await fetch(url);
       const res = await req.json();
       const coordinates =
         res?.response?.GeoObjectCollection?.featureMember[0]?.GeoObject?.Point
@@ -64,9 +63,10 @@ const CreateEventForm = () => {
       });
     }
   };
-  const createEventHandler = async (event) => {
+
+  const createEventHandler = (event) => {
     event.preventDefault();
-    await dispatch(createEventThunk(form, history));
+    dispatch(createEventThunk(form, history));
   };
 
   return (
@@ -74,7 +74,7 @@ const CreateEventForm = () => {
       <div className={styles.centering}>
         <div className="container">
           <h1 className="mb-4">Создание события</h1>
-          <form onSubmit={createEventHandler}>
+          <form onSubmit={createEventHandler} style={{ textAlign: 'center' }}>
             <div className="mb-3">
               <label htmlFor="event" className="form-label">
                 Название события
@@ -111,7 +111,7 @@ const CreateEventForm = () => {
               {tags &&
                 tags.map((tag) => {
                   return (
-                    <option key={tags._id} value={tag._id}>
+                    <option key={tag._id} value={tag._id}>
                       {tag.title}
                     </option>
                   );
@@ -175,7 +175,7 @@ const CreateEventForm = () => {
           <input onChange={inputHandler} name='advanced' className="form-check-input" type="checkbox" value="" id="advanced" />
         </div> */}
 
-            <button type="submit" className="btn btn-primary" style={{width: '200px', marginBottom: '25px'}}>
+            <button type="submit" className="btn btn-primary" style={{ width: '200px' }}>
               Идём играть!
             </button>
           </form>

@@ -1,20 +1,24 @@
 .formBg {
-    min-height: 100vh;
-    padding-top: 30px;
+  width: 700px;
+  padding-top: 30px;
+  zoom: 70%;
+  text-align: center;
+  margin: auto !important;
 }
 
 .centering {
-    width: 55vw;
-    margin: 0 auto;
+  margin: auto;
 }
 
 * {
   font-size: 25px;
-
 }
 
 .saveBtn {
   width: 300px;
   margin-bottom: 20px;
- 
+}
+
+.Y {
+  margin-bottom: 15px!important;
 }

@@ -1,7 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { updateUserThunk } from "../../redux/action-creators/user";
 import { Multiselect } from "multiselect-react-dropdown";
 import styles from "./EditProfile.module.css";
@@ -9,17 +9,19 @@ import { useEffect } from "react";
 import { getAllGamesThunk } from "../../redux/action-creators/getGames";
 
 const EditProfile = () => {
+  let { user, games } = useSelector((store) => store);
+
   const dispatch = useDispatch();
   const history = useHistory();
-  const { user } = useSelector((store) => store);
-  const userId = useSelector((store) => store.user.id);
+
+  const userId = user.id;
+  games = games.games;
+  const selectedGames = games.favGames;
 
   useEffect(() => {
-    !userId ? history.push("/signin") : null;
+    !userId && history.push("/signin");
+    dispatch(getAllGamesThunk());
   }, []);
-
-  const games = useSelector((store) => store.games.games);
-  const selectedGames = useSelector((store) => store.games.favGames);
 
   const [inputs, setInputs] = useState({
     name: user.name,
@@ -31,10 +33,6 @@ const EditProfile = () => {
         : [],
     avatar: {},
   });
-
-  useEffect(() => {
-    dispatch(getAllGamesThunk());
-  }, []);
 
   const nameHandler = (event) => {
     setInputs({ ...inputs, [event.target.name]: event.target.value });
@@ -54,13 +52,13 @@ const EditProfile = () => {
   const selectHandler = (event) => {
     setInputs({ ...inputs, fav_games: event.map((e) => (e = e._id)) });
   };
+  
   return (
     <div className={styles.formBg}>
       <div className={styles.centering}>
-        <h1>Редактировать профиль</h1>
+        <h3>Редактировать профиль</h3>
         <Form onSubmit={onSubmit} className={styles.form}>
-
-          <Form.Group>
+          <Form.Group className={styles.Y}>
             <Form.Label>Имя</Form.Label>
             <Form.Control
               className={styles.Group}
@@ -71,8 +69,7 @@ const EditProfile = () => {
               value={inputs.name}
             />
           </Form.Group>
-          <br />
-          <Form.Group>
+          <Form.Group className={styles.Y}>
             <Form.Label>Информация</Form.Label>
             <Form.Control
               className={styles.Group}
@@ -85,8 +82,7 @@ const EditProfile = () => {
               rows="3"
             />
           </Form.Group>
-          <br />
-          <Form.Group>
+          <Form.Group className={styles.Y}>
             <Form.Label>Выбрать фото</Form.Label>
             <br />
             <Form.Control
@@ -96,8 +92,7 @@ const EditProfile = () => {
               name="avatar"
             />
           </Form.Group>
-          <br />
-          <Form.Group>
+          <Form.Group className={styles.Y}>
             <Form.Label>Телефон</Form.Label>
             <Form.Control
               onChange={nameHandler}
@@ -108,8 +103,7 @@ const EditProfile = () => {
               value={inputs.phone}
             />
           </Form.Group>
-          <br />
-          <Form.Group>
+          <Form.Group className={styles.Y}>
             <Form.Label>Любимые игры</Form.Label>
             <Multiselect
               options={games}

@@ -10,3 +10,9 @@
   * Passport JS
   * Web Socket
   * Yandex Maps API
+
+#### Быстрый обзор сайта
+![gif](readme-assets/prevGif.gif)
+
+#### Тест:
+Запросить .env-файлы.

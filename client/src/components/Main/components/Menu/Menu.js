@@ -10,12 +10,11 @@ const Menu = ({ open }) => {
   const history = useHistory();
   const isLogged = useSelector(state => state.user.name);
 
-  const logoutHandler = async () => {
+  const logoutHandler = () => {
     dispatch(userLogoutThunk(history))
   }
 
   return (
-
     <StyledMenu open={open}>
       <Link to="/">
         <span role="img" aria-label="ABBA"><img src="https://img.icons8.com/bubbles/50/000000/confetti.png" /></span>
@@ -42,13 +41,12 @@ const Menu = ({ open }) => {
         Войти
       </Link>
       }
-
-
     </StyledMenu>
-
   )
 }
+
 Menu.propTypes = {
   open: bool.isRequired,
 }
+
 export default Menu;

@@ -3,16 +3,14 @@ import EventCard from "./EventCard";
 import { Link } from "react-router-dom";
 import { CardGroup } from "react-bootstrap";
 
-
 const Events = () => {
 
   return (
-    <div>
       <div>
         <Link title="Домой" to="/">
           <img src="home.svg" className={styles.hamburger} />
         </Link>
-        <h1 className={styles.title}>Мои События</h1>
+        <h3 className={styles.title}>Мои События</h3>
         <div className={styles.flex}>
           <CardGroup className={styles.myGroup}>
             <EventCard />
@@ -25,7 +23,6 @@ const Events = () => {
           </Link>
         </div>
       </div>
-    </div>
   );
 };
 
